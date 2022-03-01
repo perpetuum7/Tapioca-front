@@ -1,0 +1,16 @@
+html {
+  background-color: black;
+  color: white;
+  font-family: "Oswald", sans-serif;
+}
+
+.app {
+  padding-top: 200px;
+  text-align: center;
+  font-size: xxx-large;
+}
+
+.font-effect-outline {
+  text-shadow: 0 1px 1px #fff, 0 -1px 1px #fff, 1px 0 1px #fff, -1px 0 1px #fff;
+  color: #000;
+}
