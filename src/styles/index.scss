@@ -1,0 +1,20 @@
+@import "variables";
+
+html {
+  background-color: $black;
+  color: $white;
+  font-family: "Archivo", sans-serif;
+  font-size: $text-md;
+}
+
+.app {
+  padding-top: 200px;
+  text-align: center;
+  font-size: xxx-large;
+}
+
+.font-effect-outline {
+  text-shadow: 0 1px 1px $white, 0 -1px 1px $white, 1px 0 1px $white,
+    -1px 0 1px $white;
+  color: $black;
+}
