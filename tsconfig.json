@@ -21,7 +21,8 @@
       "@/styles/*": ["./styles/*"],
       "@/images/*": ["./images/*"],
       "@/utils/*": ["./utils/*"],
-      "@/wallet/*": ["./wallet/*"]
+      "@/wallet/*": ["./wallet/*"],
+      "@/config/*": ["./config/*"]
     }
   },
   "include": ["src"],
