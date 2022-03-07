@@ -1,8 +1,17 @@
+import { Route, Routes, BrowserRouter } from "react-router-dom";
+import { WalletProvider } from "@/wallet/WalletContext";
+
 const App = () => {
   return (
-    <div className="app">
-      <h2 className="font-effect-outline">COMING SOON</h2>
-    </div>
+    <WalletProvider>
+      <BrowserRouter>
+        <div className="app">
+          <Routes>
+            <Route path="/"></Route>
+          </Routes>
+        </div>
+      </BrowserRouter>
+    </WalletProvider>
   );
 };
 

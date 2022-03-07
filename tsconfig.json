@@ -20,7 +20,8 @@
       "@/components/*": ["./components/*"],
       "@/styles/*": ["./styles/*"],
       "@/images/*": ["./images/*"],
-      "@/utils/*": ["./utils/*"]
+      "@/utils/*": ["./utils/*"],
+      "@/wallet/*": ["./wallet/*"]
     }
   },
   "include": ["src"],
