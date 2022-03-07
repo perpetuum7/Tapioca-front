@@ -18,3 +18,16 @@ html {
     -1px 0 1px $white;
   color: $black;
 }
+
+.arrow-icon {
+  fill: $blue;
+  cursor: pointer;
+
+  &--right {
+    transform: rotate(90deg);
+  }
+
+  &--left {
+    transform: rotate(-90deg);
+  }
+}
