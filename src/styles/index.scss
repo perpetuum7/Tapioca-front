@@ -1,12 +1,17 @@
 @import "variables";
 @import "button";
 @import "header";
+@import "borrow";
 
 html {
   background-color: $black;
   color: $white;
   font-family: "Archivo", sans-serif;
   font-size: $text-md;
+}
+
+.app {
+  margin: 42px 21px;
 }
 
 .row {

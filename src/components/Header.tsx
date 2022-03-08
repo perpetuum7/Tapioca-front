@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { TOKENS } from "@/utils/constants";
 
 import Menu from "@/images/Menu";
+import GroupButton from "@/components/GroupButton";
 import formatAddress from "@/utils/formatAddress";
 import { WalletContext } from "@/wallet/WalletContext";
 import { useLocation } from "react-router-dom";
@@ -36,14 +37,14 @@ const Header = () => {
 
       <div className="row">
         {address ? (
-          <div className="wallet-container">
-            <div className="wallet-container--balance">
-              {balance} {TOKENS.ETH}
-            </div>
-            <button className="wallet-container--button">
-              {formatAddress(address)}
-            </button>
-          </div>
+          <GroupButton
+            size="lg"
+            selectedOption="address"
+            options={[
+              { id: "balance", children: `${balance} ${TOKENS.ETH}` },
+              { id: "address", children: formatAddress(address) },
+            ]}
+          />
         ) : (
           <button
             className="button button--lg button--green"
