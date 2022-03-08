@@ -1,5 +1,7 @@
 {
   "header": {
-    "connectWallet": "Connect Wallet"
+    "connectWallet": "Connect Wallet",
+    "borrow": "Borrow",
+    "mixologist": "Mixologist"
   }
 }

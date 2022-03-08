@@ -5,7 +5,19 @@
   margin: 20px 21px 20px 63px;
 
   &--title {
-    padding: 25px 0;
+    display: flex;
+    flex-direction: column;
+
+    .main-title {
+      font-family: "Bebas Neue";
+      font-size: $text-xxl;
+      line-height: 1;
+    }
+
+    .subtitle {
+      line-height: 0.4;
+      font-size: $text-lg;
+    }
   }
 
   &--menu {
