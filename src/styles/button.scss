@@ -1,0 +1,21 @@
+.button {
+  font-family: "Bebas Neue", cursive;
+  color: $white;
+  background: transparent;
+  text-transform: uppercase;
+  border-radius: 10px;
+  cursor: pointer;
+
+  &--green {
+    border: 4px solid $green;
+  }
+
+  &--pink {
+    border: 4px solid $pink1;
+  }
+
+  &--lg {
+    font-size: $text-xmd;
+    padding: 2px 8px;
+  }
+}

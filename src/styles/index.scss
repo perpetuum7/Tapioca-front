@@ -1,4 +1,6 @@
 @import "variables";
+@import "button";
+@import "header";
 
 html {
   background-color: $black;
@@ -7,16 +9,9 @@ html {
   font-size: $text-md;
 }
 
-.app {
-  padding-top: 200px;
-  text-align: center;
-  font-size: xxx-large;
-}
-
-.font-effect-outline {
-  text-shadow: 0 1px 1px $white, 0 -1px 1px $white, 1px 0 1px $white,
-    -1px 0 1px $white;
-  color: $black;
+.row {
+  display: flex;
+  align-items: center;
 }
 
 .arrow-icon {
