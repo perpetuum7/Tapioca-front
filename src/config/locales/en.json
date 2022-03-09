@@ -5,6 +5,7 @@
     "mixologist": "Mixologist"
   },
   "borrow": {
+    "borrowAgainstYourTokens": "<0>borrow</0> against your tokens liquidi<0>tea</0> <1>without selling</1> them!",
     "selectMainToken": "Select your main token",
     "selectColleteralToken": "Select your collateral",
     "chooseMainToken": "Choose your main token",

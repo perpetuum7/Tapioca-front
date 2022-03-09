@@ -1,3 +1,45 @@
+.borrow {
+  &--header {
+    margin-top: 52px;
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    border-bottom: 5px solid $green;
+    font-family: "Bebas Neue", cursive;
+    font-size: $text-xl;
+    text-align: center;
+
+    .text--green {
+      color: $green;
+    }
+
+    .text--pink {
+      color: $pink1;
+    }
+  }
+
+  &--header-image {
+    width: 380px;
+  }
+
+  &--content {
+    margin: 50px 30px;
+
+    .borrow-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .vs {
+      font-family: "Bebas Neue", cursive;
+      color: $blue;
+      font-size: 80px;
+      margin: 0 30px;
+    }
+  }
+}
+
 .select-token-card {
   width: 100%;
   max-width: 512px;
