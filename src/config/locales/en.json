@@ -3,5 +3,11 @@
     "connectWallet": "Connect Wallet",
     "borrow": "Borrow",
     "mixologist": "Mixologist"
+  },
+  "borrow": {
+    "selectMainToken": "Select your main token",
+    "selectColleteralToken": "Select your collateral",
+    "chooseMainToken": "Choose your main token",
+    "chooseBorrowToken": "Choose what token you want to borrow against"
   }
 }
