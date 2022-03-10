@@ -6,9 +6,9 @@
   },
   "borrow": {
     "borrowAgainstYourTokens": "<0>borrow</0> against your tokens liquidi<0>tea</0> <1>without selling</1> them!",
-    "selectMainToken": "Select your main token",
+    "selectMainToken": "Select your token to borrow",
     "selectColleteralToken": "Select your collateral",
-    "chooseMainToken": "Choose your main token",
+    "chooseMainToken": "Choose your token to borrow",
     "chooseBorrowToken": "Choose what token you want to borrow against"
   }
 }

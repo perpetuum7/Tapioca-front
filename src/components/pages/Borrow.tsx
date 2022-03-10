@@ -14,7 +14,7 @@ const Borrow = () => {
   const [collateral, setCollateral] = useState("");
 
   const collateralListOfTokens = useMemo(() => {
-    const { ETH, FRAX, USDT, BOBA, USDC, DAI } = TOKENS;
+    const { ETH, FRAX, BOBA, USDC, DAI } = TOKENS;
 
     if (mainToken === ETH) return [USDC, DAI, BOBA, FRAX];
     if (mainToken === FRAX) return [ETH, USDC];
@@ -27,12 +27,12 @@ const Borrow = () => {
   }, [mainToken]);
 
   useEffect(() => {
-    if (!collateralListOfTokens.includes(collateral)) setCollateral("");
+    setCollateral(collateralListOfTokens[0]);
   }, [collateralListOfTokens]);
 
   return (
     <div className="borrow">
-      <div className="borrow--header">
+          <div className="borrow--header">
         <div className="borrow--header-image"></div>
 
         <div>
@@ -55,7 +55,7 @@ const Borrow = () => {
           <div className="vs">VS</div>
           <BorrowSelectTokenCard
             tokenList={collateralListOfTokens}
-            selected={collateral || collateralListOfTokens[0]}
+            selected={collateral}
             isCollateral
             selectToken={(token: string) => setCollateral(token)}
           />
