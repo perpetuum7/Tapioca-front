@@ -11,7 +11,12 @@ html {
 }
 
 .app {
+  max-width: 1440px;
+  display: flex;
+  flex-direction: column;
   margin: 42px 21px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .row {
