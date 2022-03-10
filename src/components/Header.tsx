@@ -20,7 +20,7 @@ const Header = () => {
     switch (pathname) {
       case "/borrow":
         return (
-          <div className="header--title">
+          <div className="header__title">
             <span className="main-title">{t("header.borrow")}</span>
             <span className="subtitle">{t("header.mixologist")}</span>
           </div>
@@ -54,7 +54,7 @@ const Header = () => {
           </button>
         )}
 
-        <div className="header--menu">
+        <div className="header__menu">
           <Menu />
         </div>
       </div>

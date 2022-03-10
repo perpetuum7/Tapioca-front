@@ -2,24 +2,24 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
 
-  &--title {
-    display: flex;
-    flex-direction: column;
+.header__title {
+  display: flex;
+  flex-direction: column;
 
-    .main-title {
-      font-family: "Bebas Neue";
-      font-size: $text-xxl;
-      line-height: 1;
-    }
-
-    .subtitle {
-      line-height: 0.4;
-      font-size: $text-lg;
-    }
+  .main-title {
+    font-family: "Bebas Neue";
+    font-size: $text-xxl;
+    line-height: 1;
   }
 
-  &--menu {
-    margin-left: 34px;
+  .subtitle {
+    line-height: 0.4;
+    font-size: $text-lg;
   }
+}
+
+.header__menu {
+  margin-left: 34px;
 }
