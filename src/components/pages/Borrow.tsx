@@ -12,6 +12,7 @@ const Borrow = () => {
 
   const [mainToken, setMainToken] = useState(TOKENS.ETH);
   const [collateral, setCollateral] = useState("");
+  const [noviceMode, setNoviceMode] = useState("no");
 
   const collateralListOfTokens = useMemo(() => {
     const { ETH, FRAX, BOBA, USDC, DAI } = TOKENS;
@@ -58,6 +59,43 @@ const Borrow = () => {
             selected={collateral}
             isCollateral
             selectToken={(token: string) => setCollateral(token)}
+          />
+        </div>
+      </div>
+
+      <div className="borrow--selection-content">
+        <div>
+          <Trans i18nKey="borrow.currentSelection">
+            <span className="text--green" />
+            <span className="current-seletect-token" />
+            {{
+              main: mainToken,
+              collateral,
+            }}
+          </Trans>
+        </div>
+
+        <div className="row">
+          <Button color="green" size="lg" customClassName="continue-button">
+            {t("continue")}
+          </Button>
+
+          <span className="novice-mode">{t("borrow.noviceMode")}</span>
+
+          <GroupButton
+            selectItem={(id: string) => setNoviceMode(id)}
+            selectedOption={noviceMode}
+            noBackground
+            options={[
+              {
+                id: "no",
+                children: <No />,
+              },
+              {
+                id: "yes",
+                children: <Yes />,
+              },
+            ]}
           />
         </div>
       </div>

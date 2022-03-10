@@ -18,7 +18,7 @@ import DAIGrey from "./DAI-grey";
 
 interface Props {
   token: string;
-  isSelected: boolean;
+  isSelected?: boolean;
   width?: string;
   height?: string;
 }

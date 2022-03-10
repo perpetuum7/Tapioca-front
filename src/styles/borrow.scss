@@ -38,6 +38,39 @@
       margin: 0 30px;
     }
   }
+
+  &--selection-content {
+    margin: 44px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: $text-xmd;
+
+    .continue-button {
+      width: 296px;
+      margin-right: 41px;
+    }
+
+    .novice-mode {
+      font-size: $text-xmd;
+      margin-right: 8px;
+      font-weight: lighter;
+    }
+
+    .current-seletect-token {
+      font-family: "Bebas Neue", cursive;
+      color: $pink1;
+      font-size: 30px;
+    }
+  }
+
+  .text--green {
+    color: $green;
+  }
+
+  .text--pink {
+    color: $pink1;
+  }
 }
 
 .select-token-card {

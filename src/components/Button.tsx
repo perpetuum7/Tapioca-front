@@ -1,4 +1,3 @@
-
 interface Props {
   children: JSX.Element | string;
   color?: string;

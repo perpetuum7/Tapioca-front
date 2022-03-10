@@ -9,6 +9,9 @@
     "selectMainToken": "Select your token to borrow",
     "selectColleteralToken": "Select your collateral",
     "chooseMainToken": "Choose your token to borrow",
-    "chooseBorrowToken": "Choose what token you want to borrow against"
-  }
+    "chooseBorrowToken": "Choose what token you want to borrow against",
+    "currentSelection": "<0>Current Selection:</0> <1>{{main}}</1> with <1>{{collateral}}</1>",
+    "noviceMode": "Novice Mode"
+  },
+  "continue": "Continue"
 }

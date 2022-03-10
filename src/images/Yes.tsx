@@ -1,8 +1,8 @@
 const Yes = () => (
-  <svg viewBox="0 0 123 101" xmlSpace="preserve">
+  <svg viewBox="0 0 123 101" xmlSpace="preserve" width="20px" height="20px">
     <style>
       {
-        ".st0{display:none}.st1,.st28{display:inline}.st28{fill:none}.st39{fill:#151516}.st40{fill:#fff}"
+        ".st0{display:none}.st1,.st28{display:inline}.st28{fill:none}.st40{fill:#fff}"
       }
     </style>
     <linearGradient
