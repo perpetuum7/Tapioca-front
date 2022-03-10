@@ -1,21 +1,22 @@
 import { useTranslation } from "react-i18next";
 import Arrow from "@/images/Arrow";
 import GetToken from "@/images/GetToken";
-import { TOKEN_LIST } from "@/utils/constants";
 
 interface Props {
   selected: string;
   isCollateral?: boolean;
   selectToken: (token: string) => void;
+  tokenList: string[];
 }
 
 const BorrowSelectTokenCard = ({
   selected,
   isCollateral = false,
   selectToken,
+  tokenList,
 }: Props) => {
   const { t } = useTranslation();
-  const index = TOKEN_LIST.findIndex((item) => item === selected);
+  const index = tokenList.findIndex((item) => item === selected);
 
   return (
     <div className="select-token-card">
@@ -23,8 +24,8 @@ const BorrowSelectTokenCard = ({
         <button
           className="clickable-area"
           onClick={() => {
-            const previusIndex = (index === 0 ? TOKEN_LIST.length : index) - 1;
-            selectToken(TOKEN_LIST[previusIndex]);
+            const previusIndex = (index === 0 ? tokenList.length : index) - 1;
+            selectToken(tokenList[previusIndex]);
           }}
         >
           <Arrow direction="left" />
@@ -35,9 +36,8 @@ const BorrowSelectTokenCard = ({
         <button
           className="clickable-area"
           onClick={() => {
-            const previusIndex =
-              index === TOKEN_LIST.length - 1 ? 0 : index + 1;
-            selectToken(TOKEN_LIST[previusIndex]);
+            const previusIndex = index === tokenList.length - 1 ? 0 : index + 1;
+            selectToken(tokenList[previusIndex]);
           }}
         >
           <Arrow />
@@ -47,7 +47,7 @@ const BorrowSelectTokenCard = ({
       <div className="selected-token--name">{selected}</div>
 
       <div className="token-list-row">
-        {TOKEN_LIST.map((token) => (
+        {tokenList.map((token) => (
           <div
             key={token}
             className="token-list-row--item"
