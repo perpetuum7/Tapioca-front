@@ -35,26 +35,26 @@ const Borrow = () => {
 
   return (
     <div>
-      <div className="flex mt-14 text-center border-b-4 border-custom-green">
-        <div className="w-[24rem]"></div>
+      <div className="flex justify-center md:mt-14 mt-2 text-center border-b-4 border-custom-green">
+        <div className="md:w-[24rem] md:flex hidden"></div>
 
-        <div className="text-5xl font-bebas-neue">
+        <div className="md:text-5xl text-2xl font-bebas-neue mx-1">
           <Trans i18nKey="borrow.borrowAgainstYourTokens">
             <span className="text-custom-green" />
             <span className="text-custom-pink-1" />
           </Trans>
         </div>
 
-        <div className="w-[24rem]"></div>
+        <div className="md:w-[24rem] md:flex hidden"></div>
       </div>
 
-      <div className="m-8 flex items-center justify-between">
+      <div className="md:m-8 my-4 mx-3 md:flex items-center justify-between">
         <BorrowSelectTokenCard
           tokenList={TOKEN_LIST}
           selected={mainToken}
           selectToken={(token: string) => setMainToken(token)}
         />
-        <div className="text-7xl font-bebas-neue text-custom-blue mx-10">
+        <div className="md:text-7xl text-3xl font-bebas-neue text-custom-blue text-center md:mx-10">
           VS
         </div>
         <BorrowSelectTokenCard
@@ -65,8 +65,8 @@ const Borrow = () => {
         />
       </div>
 
-      <div className="flex items-center justify-between mx-8">
-        <div className="text-3xl">
+      <div className="md:flex items-center justify-between mx-8">
+        <div className="md:text-3xl text-xl">
           <Trans i18nKey="borrow.currentSelection">
             <span className="text-custom-green" />
             <span className="font-bebas-neue text-custom-pink-1" />
@@ -77,28 +77,29 @@ const Borrow = () => {
           </Trans>
         </div>
 
-        <div className="flex items-center">
-          <button className="font-bebas-neue rounded-lg	border-4 border-custom-green bg-custom-grey-3 text-2xl py-0.5 w-72 mr-6">
+        <div className="md:flex items-center">
+          <button className="font-bebas-neue rounded-lg	border-4 border-custom-green bg-custom-grey-3 md:text-2xl py-0.5 md:w-72 w-full md:mr-6 my-4">
             {t("continue")}
           </button>
 
-          <span className="font-light mr-2">{t("borrow.noviceMode")}</span>
-
-          <GroupButton
-            selectItem={(id: string) => setNoviceMode(id)}
-            selectedOption={noviceMode}
-            noBackground
-            options={[
-              {
-                id: "no",
-                children: <No />,
-              },
-              {
-                id: "yes",
-                children: <Yes />,
-              },
-            ]}
-          />
+          <div className="flex items-center justify-center">
+            <span className="font-light mr-2">{t("borrow.noviceMode")}</span>
+            <GroupButton
+              selectItem={(id: string) => setNoviceMode(id)}
+              selectedOption={noviceMode}
+              noBackground
+              options={[
+                {
+                  id: "no",
+                  children: <No />,
+                },
+                {
+                  id: "yes",
+                  children: <Yes />,
+                },
+              ]}
+            />
+          </div>
         </div>
       </div>
     </div>

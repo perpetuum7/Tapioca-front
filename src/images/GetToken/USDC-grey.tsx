@@ -1,9 +1,9 @@
 interface Props {
-  width?: string;
-  height?: string;
+  className?: string;
 }
-const USDCGrey = ({ width, height }: Props) => (
-  <svg viewBox="0 0 150 154" xmlSpace="preserve" width={width} height={height}>
+
+const USDCGrey = ({ className }: Props) => (
+  <svg viewBox="0 0 150 154" xmlSpace="preserve" className={className}>
     <path
       style={{
         fill: "#BFBBBB",

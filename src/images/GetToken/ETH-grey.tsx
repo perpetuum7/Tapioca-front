@@ -1,15 +1,9 @@
 interface Props {
-  width?: string;
-  height?: string;
+  className?: string;
 }
 
-const ETHGray = ({ width, height }: Props) => (
-  <svg
-    viewBox="0 0 150 154"
-    xmlSpace="preserve"
-    width={width}
-    height={height}
-  >
+const ETHGray = ({ className }: Props) => (
+  <svg viewBox="0 0 150 154" xmlSpace="preserve" className={className}>
     <g
       style={{
         opacity: 0.5,

@@ -1,10 +1,8 @@
 interface Props {
-  width?: string;
-  height?: string;
+  className?: string;
 }
-
-const DAI = ({ width, height }: Props) => (
-  <svg viewBox="0 0 150 154" xmlSpace="preserve" width={width} height={height}>
+const DAI = ({ className }: Props) => (
+  <svg viewBox="0 0 150 154" xmlSpace="preserve" className={className}>
     <linearGradient
       id="SVGID_00000167372859918274431310000012563858693603370159_"
       gradientUnits="userSpaceOnUse"

@@ -1,10 +1,9 @@
 interface Props {
-  width?: string;
-  height?: string;
+  className?: string;
 }
 
-const USDT = ({ width, height }: Props) => (
-  <svg viewBox="0 0 150 154" xmlSpace="preserve" width={width} height={height}>
+const USDT = ({ className }: Props) => (
+  <svg viewBox="0 0 150 154" xmlSpace="preserve" className={className}>
     <style>
       {
         ".st0{display:none}.st1,.st28,.st35{display:inline}.st28,.st35{fill:none}.st35{fill:#fff}.st36{fill:#151516}"

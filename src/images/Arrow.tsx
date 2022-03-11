@@ -1,9 +1,14 @@
-const Arrow = ({ direction = "right" }) => (
+const Arrow = ({
+  direction = "right",
+  className = "lg:w-20 md:w-14 lg:h-20 md:h-14 w-10 h-10 fill-custom-blue",
+}) => (
   <svg
-    width="76px"
-    height="76px"
     viewBox="0 0 480.554 480.553"
-    className={`arrow-icon arrow-icon--${direction}`}
+    className={[
+      className,
+      direction === "right" ? "rotate-90" : "",
+      direction === "left" ? "-rotate-90" : "",
+    ].join(" ")}
   >
     <g>
       <path

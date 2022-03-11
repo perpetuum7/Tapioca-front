@@ -1,10 +1,9 @@
 interface Props {
-  width?: string;
-  height?: string;
+  className?: string;
 }
 
-const ETHGray = ({ width, height, ...props }: Props) => (
-  <svg viewBox="0 0 150 154" xmlSpace="preserve" width={width} height={height}>
+const ETHGray = ({ className }: Props) => (
+  <svg viewBox="0 0 150 154" xmlSpace="preserve" className={className}>
     <path
       d="M76.8 53.3c-14.6.1-24.6 12.4-24.6 24.7 0 12.6 10.1 24.6 24.6 24.7 13.7.1 24.8-11 24.8-24.7 0-13.3-10.7-24.6-24.8-24.7z"
       style={{

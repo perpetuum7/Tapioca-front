@@ -1,9 +1,9 @@
 interface Props {
-  width?: string;
-  height?: string;
+  className?: string;
 }
-const USDC = ({ width, height }: Props) => (
-  <svg viewBox="0 0 150 154" xmlSpace="preserve" width={width} height={height}>
+
+const USDC = ({ className }: Props) => (
+  <svg viewBox="0 0 150 154" xmlSpace="preserve" className={className}>
     <linearGradient
       id="SVGID_00000119106363145513880520000013165553175827487384_"
       gradientUnits="userSpaceOnUse"

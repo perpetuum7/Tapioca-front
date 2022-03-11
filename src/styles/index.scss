@@ -1,15 +1,2 @@
 @import "variables";
 @import "button";
-
-.arrow-icon {
-  fill: $blue;
-  cursor: pointer;
-
-  &--right {
-    transform: rotate(90deg);
-  }
-
-  &--left {
-    transform: rotate(-90deg);
-  }
-}

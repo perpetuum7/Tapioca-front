@@ -1,16 +1,14 @@
 interface Props {
-  width?: string;
-  height?: string;
+  className?: string;
 }
 
-const ETH = ({ width, height }: Props) => (
+const ETH = ({ className }: Props) => (
   <svg
     x={0}
     y={0}
     viewBox="0 0 150 154"
     xmlSpace="preserve"
-    width={width}
-    height={height}
+    className={className}
   >
     <style>
       {

@@ -1,10 +1,9 @@
 interface Props {
-  width?: string;
-  height?: string;
+  className?: string;
 }
 
-const USDTGrey = ({ width, height }: Props) => (
-  <svg viewBox="0 0 150 154" xmlSpace="preserve" width={width} height={height}>
+const USDTGrey = ({ className }: Props) => (
+  <svg viewBox="0 0 150 154" xmlSpace="preserve" className={className}>
     <path
       style={{
         fill: "#BFBBBB",

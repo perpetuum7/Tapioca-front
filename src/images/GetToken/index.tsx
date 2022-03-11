@@ -19,52 +19,55 @@ import DAIGrey from "./DAI-grey";
 interface Props {
   token: string;
   isSelected?: boolean;
-  width?: string;
-  height?: string;
+  className?: string;
 }
 
-const GetToken = ({ token, isSelected = false, width, height }: Props) => {
+const GetToken = ({
+  token,
+  isSelected = false,
+  className,
+}: Props) => {
   switch (token) {
     case "ETH":
       return isSelected ? (
-        <ETH width={width} height={height} />
+        <ETH className={className} />
       ) : (
-        <ETHGrey width={width} height={height} />
+        <ETHGrey className={className} />
       );
 
     case "FRAX":
       return isSelected ? (
-        <FRAX width={width} height={height} />
+        <FRAX className={className} />
       ) : (
-        <FRAXGrey width={width} height={height} />
+        <FRAXGrey className={className} />
       );
 
     case "USDT":
       return isSelected ? (
-        <USDT width={width} height={height} />
+        <USDT className={className} />
       ) : (
-        <USDTGrey width={width} height={height} />
+        <USDTGrey className={className} />
       );
 
     case "BOBA":
       return isSelected ? (
-        <BOBA width={width} height={height} />
+        <BOBA className={className} />
       ) : (
-        <BOBAGrey width={width} height={height} />
+        <BOBAGrey className={className} />
       );
 
     case "USDC":
       return isSelected ? (
-        <USDC width={width} height={height} />
+        <USDC className={className} />
       ) : (
-        <USDCGrey width={width} height={height} />
+        <USDCGrey className={className} />
       );
 
     case "DAI":
       return isSelected ? (
-        <DAI width={width} height={height} />
+        <DAI className={className} />
       ) : (
-        <DAIGrey width={width} height={height} />
+        <DAIGrey className={className} />
       );
 
     default:
