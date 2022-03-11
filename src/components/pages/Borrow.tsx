@@ -75,7 +75,7 @@ const Borrow = () => {
           </Trans>
         </div>
 
-        <div className="row">
+        <div className="flex items-center">
           <Button color="green" size="lg" customClassName="continue-button">
             {t("continue")}
           </Button>

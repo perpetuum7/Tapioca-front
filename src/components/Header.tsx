@@ -20,9 +20,13 @@ const Header = () => {
     switch (pathname) {
       case "/borrow":
         return (
-          <div className="header__title">
-            <span className="main-title">{t("header.borrow")}</span>
-            <span className="subtitle">{t("header.mixologist")}</span>
+          <div className="flex flex-col">
+            <span className="font-bebas-neue text-6xl leading-10">
+              {t("header.borrow")}
+            </span>
+            <span className="subtitle text-4xl leading-8 font-light">
+              {t("header.mixologist")}
+            </span>
           </div>
         );
 
@@ -32,13 +36,13 @@ const Header = () => {
   }, []);
 
   return (
-    <div className="header">
+    <div className="flex justify-between items-center">
       {titleHeader}
 
-      <div className="row">
+      <div className="flex items-center h-14">
         {address ? (
           <GroupButton
-            size="lg"
+            size="2xl"
             selectedOption="address"
             options={[
               { id: "balance", children: `${balance} ${TOKENS.ETH}` },
@@ -47,16 +51,14 @@ const Header = () => {
           />
         ) : (
           <button
-            className="button button--lg button--green"
+            className="font-bebas-neue rounded-lg	border-4 border-custom-green text-2xl px-3"
             onClick={connectWallet}
           >
             {t("header.connectWallet")}
           </button>
         )}
 
-        <div className="header__menu">
-          <Menu />
-        </div>
+        <Menu className="ml-8" />
       </div>
     </div>
   );

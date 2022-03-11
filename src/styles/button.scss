@@ -21,49 +21,6 @@
   }
 }
 
-.button-group {
-  display: flex;
-  align-items: center;
-  border: 4px solid $green;
-  border-radius: 10px;
-  background-color: $gray1;
-  padding: 1px;
-  font-family: "Archivo", sans-serif;
-
-  &--item {
-    display: flex;
-    align-items: center;
-    color: $white;
-    padding: 0 10px;
-    background: transparent;
-    border: none;
-  }
-
-  &--item-selected {
-    padding: 2px 6px;
-    background-color: $gray2;
-    border-radius: 10px;
-    border: 4px solid $pink1;
-    color: $white;
-  }
-
-  &--item-selectable {
-    cursor: pointer;
-  }
-
-  &--item-sm {
-    font-size: $text-sm;
-  }
-
-  &--item-lg {
-    font-size: $text-xmd;
-  }
-
-  &--transparent {
-    background-color: transparent;
-  }
-}
-
 .clickable-area {
   border: none;
   background-color: transparent;

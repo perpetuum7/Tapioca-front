@@ -5,6 +5,7 @@ interface Props {
   selectItem?: (id: string) => void;
   noBackground?: boolean;
 }
+
 const GroupButton = ({
   selectedOption,
   options,
@@ -13,17 +14,17 @@ const GroupButton = ({
   noBackground = false,
 }: Props) => (
   <div
-    className={`button-group ${
-      noBackground ? "button-group--transparent" : ""
+    className={`flex items-center border-4 border-custom-green rounded-lg p-0.5 ${
+      !noBackground ? "bg-custom-grey-1" : ""
     }`}
   >
     {options.map(({ id, children }) => {
       const className = [
-        "button-group--item",
-        selectedOption === id ? "button-group--item-selected" : "",
-        size ? `button-group--item-${size}` : "",
-        selectItem ? "button-group--item-selectable" : "",
-        noBackground ? "button-group--transparent" : "",
+        "flex items-center rounded-lg px-2 font-thin",
+        selectedOption === id ? "border-4 border-custom-pink-1 py-0.5" : "",
+        selectedOption === id && !noBackground ? "bg-custom-grey-2" : "",
+        size ? `text-${size}` : "",
+        selectItem ? "cursor-pointer" : "cursor-default",
       ].join(" ");
 
       return (
