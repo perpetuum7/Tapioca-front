@@ -19,10 +19,9 @@ const BorrowSelectTokenCard = ({
   const index = tokenList.findIndex((item) => item === selected);
 
   return (
-    <div className="select-token-card">
-      <div className="select-token-card--row">
+    <div className="w-full rounded-lg	border-4 border-custom-blue flex items-center flex-col bg-custom-grey-3 pt-14 px-6 pb-3">
+      <div className="flex items-center">
         <button
-          className="clickable-area"
           onClick={() => {
             const previusIndex = (index === 0 ? tokenList.length : index) - 1;
             selectToken(tokenList[previusIndex]);
@@ -30,11 +29,11 @@ const BorrowSelectTokenCard = ({
         >
           <Arrow direction="left" />
         </button>
-        <div className="selected-token">
+
+        <div className="w-40 h-40 mx-10">
           <GetToken token={selected} isSelected width="150px" height="150px" />
         </div>
         <button
-          className="clickable-area"
           onClick={() => {
             const previusIndex = index === tokenList.length - 1 ? 0 : index + 1;
             selectToken(tokenList[previusIndex]);
@@ -44,13 +43,15 @@ const BorrowSelectTokenCard = ({
         </button>
       </div>
 
-      <div className="selected-token--name">{selected}</div>
+      <div className="text-5xl font-bebas-neue text-custom-pink-1">
+        {selected}
+      </div>
 
-      <div className="token-list-row">
+      <div className="flex justify-between">
         {tokenList.map((token) => (
           <div
             key={token}
-            className="token-list-row--item"
+            className="m-1 cursor-pointer"
             onClick={() => selectToken(token)}
           >
             <GetToken
@@ -63,7 +64,7 @@ const BorrowSelectTokenCard = ({
         ))}
       </div>
 
-      <div className="select-token-card--message">
+      <div className="text-5xl font-bebas-neue">
         {t(
           isCollateral
             ? "borrow.selectColleteralToken"
@@ -71,7 +72,7 @@ const BorrowSelectTokenCard = ({
         )}
       </div>
 
-      <div className="select-token-card--sub-message">
+      <div className="italic">
         {t(
           isCollateral ? "borrow.chooseBorrowToken" : "borrow.chooseMainToken"
         )}

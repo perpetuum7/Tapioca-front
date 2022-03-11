@@ -1,7 +1,7 @@
 export const TOKENS = {
   ETH: "ETH",
   FRAX: "FRAX",
-  USDT: "USDT",
+  // USDT: "USDT",
   BOBA: "BOBA",
   USDC: "USDC",
   DAI: "DAI",

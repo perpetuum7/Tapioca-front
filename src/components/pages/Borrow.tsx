@@ -28,46 +28,48 @@ const Borrow = () => {
   }, [mainToken]);
 
   useEffect(() => {
-    setCollateral(collateralListOfTokens[0]);
+    if (collateralListOfTokens[0]) {
+      setCollateral(collateralListOfTokens[0]);
+    }
   }, [collateralListOfTokens]);
 
   return (
-    <div className="borrow">
-          <div className="borrow--header">
-        <div className="borrow--header-image"></div>
+    <div>
+      <div className="flex mt-14 text-center border-b-4 border-custom-green">
+        <div className="w-[24rem]"></div>
 
-        <div>
+        <div className="text-5xl font-bebas-neue">
           <Trans i18nKey="borrow.borrowAgainstYourTokens">
-            <span className="text--green" />
-            <span className="text--pink" />
+            <span className="text-custom-green" />
+            <span className="text-custom-pink-1" />
           </Trans>
         </div>
 
-        <div className="borrow--header-image"></div>
+        <div className="w-[24rem]"></div>
       </div>
 
-      <div className="borrow--content">
-        <div className="borrow-row">
-          <BorrowSelectTokenCard
-            tokenList={TOKEN_LIST}
-            selected={mainToken}
-            selectToken={(token: string) => setMainToken(token)}
-          />
-          <div className="vs">VS</div>
-          <BorrowSelectTokenCard
-            tokenList={collateralListOfTokens}
-            selected={collateral}
-            isCollateral
-            selectToken={(token: string) => setCollateral(token)}
-          />
+      <div className="m-8 flex items-center justify-between">
+        <BorrowSelectTokenCard
+          tokenList={TOKEN_LIST}
+          selected={mainToken}
+          selectToken={(token: string) => setMainToken(token)}
+        />
+        <div className="text-7xl font-bebas-neue text-custom-blue mx-10">
+          VS
         </div>
+        <BorrowSelectTokenCard
+          tokenList={collateralListOfTokens}
+          selected={collateral}
+          isCollateral
+          selectToken={(token: string) => setCollateral(token)}
+        />
       </div>
 
-      <div className="borrow--selection-content">
-        <div>
+      <div className="flex items-center justify-between mx-8">
+        <div className="text-3xl">
           <Trans i18nKey="borrow.currentSelection">
-            <span className="text--green" />
-            <span className="current-seletect-token" />
+            <span className="text-custom-green" />
+            <span className="font-bebas-neue text-custom-pink-1" />
             {{
               main: mainToken,
               collateral,
@@ -76,11 +78,11 @@ const Borrow = () => {
         </div>
 
         <div className="flex items-center">
-          <Button color="green" size="lg" customClassName="continue-button">
+          <button className="font-bebas-neue rounded-lg	border-4 border-custom-green bg-custom-grey-3 text-2xl py-0.5 w-72 mr-6">
             {t("continue")}
-          </Button>
+          </button>
 
-          <span className="novice-mode">{t("borrow.noviceMode")}</span>
+          <span className="font-light mr-2">{t("borrow.noviceMode")}</span>
 
           <GroupButton
             selectItem={(id: string) => setNoviceMode(id)}

@@ -21,7 +21,7 @@ const GroupButton = ({
     {options.map(({ id, children }) => {
       const className = [
         "flex items-center rounded-lg px-2 font-thin",
-        selectedOption === id ? "border-4 border-custom-pink-1 py-0.5" : "",
+        selectedOption === id ? "border-4 border-custom-pink-1 px-1 py-0.5" : "",
         selectedOption === id && !noBackground ? "bg-custom-grey-2" : "",
         size ? `text-${size}` : "",
         selectItem ? "cursor-pointer" : "cursor-default",
@@ -29,6 +29,7 @@ const GroupButton = ({
 
       return (
         <button
+          key={id}
           onClick={() => {
             if (selectItem) selectItem(id);
           }}

@@ -7,7 +7,7 @@ const App = () => {
   return (
     <WalletProvider>
       <BrowserRouter>
-        <div className="container mx-xl flex flex-col py-6 md:px-8">
+        <div className="container mx-xl flex flex-col py-6 md:px-4">
           <Header />
 
           <Routes>
