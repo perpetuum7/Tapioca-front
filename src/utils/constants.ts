@@ -1,10 +1,10 @@
 export const TOKENS = {
   ETH: "ETH",
   FRAX: "FRAX",
-  // USDT: "USDT",
+  USDT: "USDT",
   BOBA: "BOBA",
   USDC: "USDC",
   DAI: "DAI",
 };
 
-export const TOKEN_LIST = Object.keys(TOKENS);
+export const BORROW_TOKEN_LIST = [TOKENS.USDC, TOKENS.DAI, TOKENS.ETH];

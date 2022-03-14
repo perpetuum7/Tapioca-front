@@ -2,10 +2,9 @@ import { useEffect, useMemo, useState } from "react";
 import { Trans, useTranslation } from "react-i18next";
 import BorrowSelectTokenCard from "@/components/BorrowSelectTokenCard";
 import GroupButton from "@/components/GroupButton";
-import Button from "@/components/Button";
 import Yes from "@/images/Yes";
 import No from "@/images/No";
-import { TOKENS, TOKEN_LIST } from "@/utils/constants";
+import { TOKENS, BORROW_TOKEN_LIST } from "@/utils/constants";
 
 const Borrow = () => {
   const { t } = useTranslation();
@@ -17,12 +16,9 @@ const Borrow = () => {
   const collateralListOfTokens = useMemo(() => {
     const { ETH, FRAX, BOBA, USDC, DAI } = TOKENS;
 
-    if (mainToken === ETH) return [USDC, DAI, BOBA, FRAX];
-    if (mainToken === FRAX) return [ETH, USDC];
-    // if (mainToken === USDT) return [];
-    if (mainToken === BOBA) return [ETH, USDC, DAI];
     if (mainToken === USDC) return [ETH, DAI, BOBA, FRAX];
     if (mainToken === DAI) return [ETH, USDC, BOBA];
+    if (mainToken === ETH) return [USDC, DAI, BOBA, FRAX];
 
     return [];
   }, [mainToken]);
@@ -50,7 +46,7 @@ const Borrow = () => {
 
       <div className="md:m-8 my-4 mx-3 md:flex items-center justify-between">
         <BorrowSelectTokenCard
-          tokenList={TOKEN_LIST}
+          tokenList={BORROW_TOKEN_LIST}
           selected={mainToken}
           selectToken={(token: string) => setMainToken(token)}
         />
