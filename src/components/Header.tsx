@@ -18,7 +18,7 @@ const Header = () => {
     const { pathname } = useLocation();
 
     switch (pathname) {
-      case "/borrow":
+      case "/":
         return (
           <div className="flex flex-col">
             <span className="font-bebas-neue md:text-6xl md:leading-10 leading-tight text-xl">

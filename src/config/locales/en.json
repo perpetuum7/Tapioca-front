@@ -13,5 +13,6 @@
     "currentSelection": "<0>Currently Borrowing </0><1>{{main}}</1> with Your <1>{{collateral}}</1>",
     "noviceMode": "Novice Mode"
   },
-  "continue": "Continue"
+  "continue": "Continue",
+  "delete": "Delete"
 }
