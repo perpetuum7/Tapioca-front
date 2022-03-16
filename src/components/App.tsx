@@ -12,7 +12,7 @@ const App = () => {
 
           <Routes>
             <Route path="/" element={<Outlet />}>
-              <Route path="borrow" element={<Borrow />} />
+              <Route index element={<Borrow />} />
             </Route>
           </Routes>
         </div>
