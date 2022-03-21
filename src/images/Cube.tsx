@@ -14,7 +14,7 @@ const Cube = ({ isActive, onClick }: Props) => {
     <svg
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`w-40 h-40 ${onClick ? "cursor-pointer" : ""}`}
+      className={`w-32 h-32 ${onClick ? "cursor-pointer" : ""}`}
       viewBox="0 0 512.132 512.132"
       xmlSpace="preserve"
       onClick={onClick}

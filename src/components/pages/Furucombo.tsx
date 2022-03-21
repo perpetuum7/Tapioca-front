@@ -79,29 +79,35 @@ const Furucombo = () => {
         <InitialFunds combo={combo} />
       </div>
 
-      <div className="flex flex-col items-center basis-1/3">
-        {combo.map(({ id }) => (
-          <div key={id}>
-            <Cube isActive />
+      <div className="basis-2/3">
+        {combo.map((combo) => (
+          <div key={combo.id} className="flex items-center">
+            <div className="basis-1/2 flex justify-center">
+              <Cube isActive />
+            </div>
+            <div className="basis-1/2">
+              <SelectedCard {...combo} removeItem={removeItem} />
+            </div>
           </div>
         ))}
-        <Cube onClick={() => setIsModalOpen(true)} />
-      </div>
 
-      <div className="basis-1/3">
-        {combo.map((combo) => (
-          <SelectedCard {...combo} removeItem={removeItem} />
-        ))}
-        {currentSelection && (
-          <FurucomboSelectionCard
-            goBack={() => {
-              setCurrentSelection("");
-              setIsModalOpen(true);
-            }}
-            setCardCube={setCardCube}
-            currentSelection={currentSelection}
-          />
-        )}
+        <div className="flex items-center">
+          <div className="basis-1/2 flex justify-center">
+            <Cube onClick={() => setIsModalOpen(true)} />
+          </div>
+          <div className="basis-1/2">
+            {currentSelection && (
+              <FurucomboSelectionCard
+                goBack={() => {
+                  setCurrentSelection("");
+                  setIsModalOpen(true);
+                }}
+                setCardCube={setCardCube}
+                currentSelection={currentSelection}
+              />
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );
