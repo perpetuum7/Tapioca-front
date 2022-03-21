@@ -1,5 +1,7 @@
 import Close from "@/images/Close";
-import { FUROCOMBO_CUBES } from "@/utils/constants";
+import { FURUCOMBO_CUBES } from "@/utils/constants";
+import GradientButton from "@/components/furucombo/GradientButton";
+
 interface Props {
   closeModal: () => void;
   selectCube: (id: string) => void;
@@ -21,24 +23,26 @@ const NewCubeModal = ({ closeModal, selectCube }: Props) => {
 
             <div className="flex justify-center mt-10">
               <div className="md:w-3/6 overflow-y-auto max-h-[85vh]">
-                {FUROCOMBO_CUBES.map(({ title, defiName, options }) => (
-                  <div key={defiName} className="mb-4">
-                    <div>{title}</div>
-                    <div>
-                      {options.map(({ featureName, title }) => (
-                        <button
-                          className="font-bebas-neue rounded-lg	border-2 border-custom-green py-0.5 w-36 mr-2 mt-2"
-                          onClick={() => {
-                            selectCube(`${defiName}:${featureName}`);
-                            closeModal();
-                          }}
-                        >
-                          {title}
-                        </button>
-                      ))}
+                {FURUCOMBO_CUBES.map(({ title, defiName, options, colors }) => {
+                  return (
+                    <div key={defiName} className="mb-4">
+                      <div>{title}</div>
+                      <div className="flex flex-wrap">
+                        {options.map(({ featureName, title }) => (
+                          <GradientButton
+                            key={featureName}
+                            onClick={() => {
+                              selectCube(`${defiName}:${featureName}`);
+                              closeModal();
+                            }}
+                            colors={colors}
+                            title={title}
+                          />
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </div>

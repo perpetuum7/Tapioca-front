@@ -2,7 +2,7 @@ import { Route, Routes, BrowserRouter, Outlet } from "react-router-dom";
 import { WalletProvider } from "@/wallet/WalletContext";
 import Header from "@/components/Header";
 import Borrow from "@/components/pages/Borrow";
-import Furocombo from "@/components/pages/Furocombo";
+import Furucombo from "@/components/pages/Furucombo";
 
 const App = () => {
   return (
@@ -14,7 +14,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Outlet />}>
               <Route index element={<Borrow />} />
-              <Route path="furocombo" element={<Furocombo />} />
+              <Route path="furucombo" element={<Furucombo />} />
             </Route>
           </Routes>
         </div>

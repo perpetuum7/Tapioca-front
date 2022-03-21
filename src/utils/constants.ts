@@ -9,18 +9,24 @@ export const TOKENS = {
 
 export const BORROW_TOKEN_LIST = [TOKENS.USDC, TOKENS.DAI, TOKENS.ETH];
 
-export const FUROCOMBO_CUBES = [
+export const FURUCOMBO_CUBES = [
   {
     title: "Furucombo",
     defiName: "furucombo",
+    colors: { from: "#5c5d62", to: "#9e9fa6" },
     options: [
-      { featureName: "unstake_token", title: "Unstake Token" },
+      {
+        featureName: "unstake_token",
+        title: "Unstake Token",
+        outputs: ["COMBO", "ETH/COMBO"],
+      },
       { featureName: "clain_combo", title: "Clain COMBO" },
     ],
   },
   {
     title: "Uniswap V2",
     defiName: "uniswapv2",
+    colors: { from: "#e6006e", to: "#ff007a" },
     options: [
       {
         featureName: "swap_token",
@@ -33,12 +39,20 @@ export const FUROCOMBO_CUBES = [
       {
         featureName: "remove_liquidity",
         title: "Remove Liquidity",
+        inputs: ["AAVE/ETH", "AKRO/ETH", "ALBT/ETH", "ALPHA/ETH"],
+        outputEstimate: [
+          { id: "AAVE/ETH", AAVE: 5.29379, ETH: 0.28907 },
+          { id: "AKRO/ETH", AKRO: 1134.3547, ETH: 0.00482 },
+          { id: "ALBT/ETH", ALBT: 211.12596, ETH: 0.01656 },
+          { id: "ALPHA/ETH", ALPHA: 260.16071, ETH: 0.02632 },
+        ],
       },
     ],
   },
   {
     title: "Aave V2",
     defiName: "aavev2",
+    colors: { from: "#b6509e", to: "#2ebac6" },
     options: [
       {
         featureName: "deposit",
@@ -65,6 +79,8 @@ export const FUROCOMBO_CUBES = [
   {
     title: "Sushiswap",
     defiName: "sushiswap",
+    colors: { from: "#d44588", to: "#27b0e6" },
+
     options: [
       { featureName: "swap_token", title: "Swap Token" },
       { featureName: "add_liquidity", title: "Add Liquidity" },
@@ -74,6 +90,8 @@ export const FUROCOMBO_CUBES = [
   {
     title: "Curve",
     defiName: "curve",
+    colors: { from: "#5c5d62", to: "#9e9fa6" },
+
     options: [
       {
         featureName: "swap_usd",
@@ -92,6 +110,8 @@ export const FUROCOMBO_CUBES = [
   {
     title: "Yearn",
     defiName: "yearn",
+    colors: { from: "#5c5d62", to: "#9e9fa6" },
+
     options: [
       {
         title: "Deposit Vault",
@@ -103,6 +123,8 @@ export const FUROCOMBO_CUBES = [
   {
     title: "Compound",
     defiName: "compound",
+    colors: { from: "#5c5d62", to: "#9e9fa6" },
+
     options: [
       {
         featureName: "supply",
@@ -125,6 +147,8 @@ export const FUROCOMBO_CUBES = [
   {
     title: "Maker",
     defiName: "maker",
+    colors: { from: "#5c5d62", to: "#9e9fa6" },
+
     options: [
       { title: "New Vault", featureName: "new_vault" },
       { title: "Deposit", featureName: "deposit" },
@@ -136,6 +160,8 @@ export const FUROCOMBO_CUBES = [
   {
     title: "1inch",
     defiName: "oneinch",
+    colors: { from: "#5c5d62", to: "#9e9fa6" },
+
     options: [
       {
         featureName: "swap_token",
@@ -146,6 +172,8 @@ export const FUROCOMBO_CUBES = [
   {
     title: "Paraswap",
     defiName: "paraswap",
+    colors: { from: "#5c5d62", to: "#9e9fa6" },
+
     options: [
       {
         featureName: "swap_token",
@@ -156,6 +184,8 @@ export const FUROCOMBO_CUBES = [
   {
     title: "Uniswap V3",
     defiName: "uniswapv3",
+    colors: { from: "#5c5d62", to: "#9e9fa6" },
+
     options: [
       {
         featureName: "swap_token",
@@ -166,6 +196,8 @@ export const FUROCOMBO_CUBES = [
   {
     title: "B‧Protocol",
     defiName: "bprotocol",
+    colors: { from: "#5c5d62", to: "#9e9fa6" },
+
     options: [
       {
         featureName: "new_vault",
@@ -181,6 +213,8 @@ export const FUROCOMBO_CUBES = [
   {
     title: "Synthetix",
     defiName: "synthetix",
+    colors: { from: "#5c5d62", to: "#9e9fa6" },
+
     options: [
       { featureName: "stake_token", title: "Stake Token" },
       { featureName: "claim_rewards", title: "Claim Rewards" },
@@ -191,6 +225,8 @@ export const FUROCOMBO_CUBES = [
   {
     title: "Utility",
     defiName: "utility",
+    colors: { from: "#5c5d62", to: "#9e9fa6" },
+
     options: [
       { featureName: "send_token", title: "Send Token" },
       { featureName: "weth", title: "WETH" },
