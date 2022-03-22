@@ -4,7 +4,6 @@ import Cube from "@/images/Cube";
 import NewCubeModal from "@/components/furucombo/NewCubeModal";
 import InitialFunds from "@/components/furucombo/InitialFunds";
 import FurucomboSelectionCard from "@/components/furucombo/FurucomboSelectionCard";
-import { FURUCOMBO_CUBES } from "@/utils/constants";
 import SelectedCard from "../furucombo/SelectedCard";
 
 export interface OutputEstimateProps {
@@ -16,15 +15,14 @@ export interface ComboList {
   crn: string;
   selectedOption?: string;
   amount?: null | number;
-  outputEstimate: OutputEstimateProps;
+  outputEstimate?: OutputEstimateProps;
 }
 
 export interface FeatureProps {
   featureName: string;
   title: string;
-  outputs?: string[];
-  inputs?: string[];
-  outputEstimate?: OutputEstimateProps[];
+  type: string;
+  token?: string;
 }
 
 export interface SelectedDefi {
@@ -98,12 +96,12 @@ const Furucombo = () => {
           <div className="basis-1/2">
             {currentSelection && (
               <FurucomboSelectionCard
+                setCardCube={setCardCube}
+                currentSelection={currentSelection}
                 goBack={() => {
                   setCurrentSelection("");
                   setIsModalOpen(true);
                 }}
-                setCardCube={setCardCube}
-                currentSelection={currentSelection}
               />
             )}
           </div>

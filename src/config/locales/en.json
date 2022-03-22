@@ -13,6 +13,16 @@
     "currentSelection": "<0>Currently Borrowing </0><1>{{main}}</1> with Your <1>{{collateral}}</1>",
     "noviceMode": "Novice Mode"
   },
+  "furucombo": {
+    "output": "Output",
+    "set": "Set",
+    "combo": {
+      "retroactiveRewards": "Retroactive rewards",
+      "stakingComboRewards": "Staking COMBO rewards",
+      "stakingUniV2Rewards": "Staking UNIV2-LP rewards",
+      "usageRewards": "Usage Rewards"
+    }
+  },
   "continue": "Continue",
   "delete": "Delete"
 }

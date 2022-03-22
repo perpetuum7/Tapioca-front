@@ -12,6 +12,7 @@ const Chevron = ({ className = "", direction = "right" }: Props) => (
       className,
       direction === "down" ? "-rotate-90" : "",
       direction === "up" ? "rotate-90" : "",
+      direction === "left" ? "rotate-180" : "",
     ].join(" ")}
   >
     <path

@@ -1,13 +1,7 @@
-import { useEffect, useState } from "react";
-import uuid from "uuid";
 import { FURUCOMBO_CUBES } from "@/utils/constants";
-import Output from "@/components/furucombo/Output";
-import Input from "@/components/furucombo/Input";
-import {
-  OutputEstimateProps,
-  ComboList,
-  SelectedDefi,
-} from "@/components/pages/Furucombo";
+import InputOutpuSelection from "@/components/furucombo/InputOutpuSelection";
+import { ComboList, SelectedDefi } from "@/components/pages/Furucombo";
+import Chevron from "@/images/Chevron";
 
 interface Props {
   goBack: () => void;
@@ -28,84 +22,42 @@ const FurucomboSelectionCard = ({
     ({ featureName }) => featureName === currentSelection.split(":")[1]
   );
 
-  const [amount, setAmount] = useState<null | number>(null);
-  const [selectedOption, setSelectedOption] = useState("");
-
-  useEffect(() => {
-    if (currentSelectedFeature?.outputs?.length)
-      setSelectedOption(currentSelectedFeature?.outputs?.[0]);
-
-    if (currentSelectedFeature?.inputs?.length)
-      setSelectedOption(currentSelectedFeature?.inputs?.[0]);
-  }, []);
-
-  const isDisabled = !!currentSelectedFeature?.outputs?.[0] && !amount;
-
-  const currentOutput =
-    currentSelectedFeature?.outputEstimate?.find(
-      ({ id }) => id === selectedOption
-    ) || ({} as OutputEstimateProps);
-
   return (
     <div className="bg-custom-grey-4 w-full rounded-lg mb-2">
       <div className="flex items-center p-2">
         <div className="basis-1/3">
           <button
-            className="w-fit border rounded px-2 text-xs font-bold"
+            className="w-fit border rounded p-1 text-xs font-bold flex justify-center items-center"
             onClick={goBack}
           >
-            {`<`}
+            <Chevron direction="left" className="-mr-[1px]" />
           </button>
         </div>
-        <div className="basis-1/3 text-center text-lg">
+
+        <div className="basis-1/3 text-center text-xl">
           {currentSelectedDefi?.title}
         </div>
         <div className="basis-1/3" />
       </div>
 
-      <div className="mt-2 flex justify-center">
-        <div className="border rounded px-10 p-1 text-xs">
-          {currentSelectedFeature?.title}
+      <div className="flex justify-center">
+        <div
+          style={{
+            background: `linear-gradient(to right, ${currentSelectedDefi.colors.from}, ${currentSelectedDefi.colors.to})`,
+          }}
+          className="cursor-pointer w-36 p-[1px] rounded relative"
+        >
+          <div className="rounded flex justify-center py-0.5 px-2 bg-custom-grey-3 text-xs">
+            {currentSelectedFeature?.title}
+          </div>
         </div>
       </div>
 
-      <div className="mt-1 px-2">
-        {currentSelectedFeature?.inputs?.length && (
-          <Input
-            currentSelection={currentSelection}
-            inputs={currentSelectedFeature.inputs}
-            selectedOption={selectedOption}
-            selectOption={(op: string) => setSelectedOption(op)}
-            amount={amount}
-            selectAmount={(amount: number) => setAmount(amount)}
-          />
-        )}
-        <Output
-          currentSelection={currentSelection}
-          selectedOption={selectedOption}
-          selectOption={(op: string) => setSelectedOption(op)}
-          outputs={currentSelectedFeature?.outputs}
-          amount={amount}
-          selectAmount={(amount: number) => setAmount(amount)}
-          currentOutput={currentOutput}
-        />
-      </div>
-
-      <button
-        disabled={isDisabled}
-        onClick={() =>
-          setCardCube({
-            crn: currentSelection,
-            id: uuid.v4(),
-            selectedOption,
-            amount,
-            outputEstimate: currentOutput,
-          })
-        }
-        className="mt-2 w-full text-center bg-custom-grey-1 p-2 rounded-b disabled:text-zinc-400 disabled:bg-custom-grey-2"
-      >
-        Set
-      </button>
+      <InputOutpuSelection
+        type={currentSelectedFeature?.type}
+        token={currentSelectedFeature?.token}
+        setCardCube={setCardCube}
+      />
     </div>
   );
 };

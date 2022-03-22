@@ -3,9 +3,9 @@ interface Props {
     from: string;
     to: string;
   };
-  key: string;
+  key?: string;
   onClick: () => void;
-  title: string;
+  title?: string;
 }
 
 const GradientButton = ({ colors, key, onClick, title }: Props) => {
