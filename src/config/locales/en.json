@@ -20,7 +20,14 @@
       "retroactiveRewards": "Retroactive rewards",
       "stakingComboRewards": "Staking COMBO rewards",
       "stakingUniV2Rewards": "Staking UNIV2-LP rewards",
-      "usageRewards": "Usage Rewards"
+      "usageRewards": "Usage Rewards",
+      "currentlyStaked": "Currently staked",
+      "rewardsAvailable": "Rewards available",
+      "borrowAPY": "Borrow APY",
+      "totalDebt": "Total Debt",
+      "totalCollateral": "Total Collateral",
+      "utilization": "Utilization",
+      "fee": "Fee | {{amount}}%"
     }
   },
   "continue": "Continue",

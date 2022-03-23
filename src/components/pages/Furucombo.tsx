@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import Cube from "@/images/Cube";
 import NewCubeModal from "@/components/furucombo/NewCubeModal";
-import InitialFunds from "@/components/furucombo/InitialFunds";
 import FurucomboSelectionCard from "@/components/furucombo/FurucomboSelectionCard";
 import SelectedCard from "../furucombo/SelectedCard";
 
@@ -13,9 +12,8 @@ export interface OutputEstimateProps {
 export interface ComboList {
   id: string;
   crn: string;
-  selectedOption?: string;
+  token?: string;
   amount?: null | number;
-  outputEstimate?: OutputEstimateProps;
 }
 
 export interface FeatureProps {
@@ -23,6 +21,7 @@ export interface FeatureProps {
   title: string;
   type: string;
   token?: string;
+  tokens?: string[];
 }
 
 export interface SelectedDefi {
@@ -73,9 +72,7 @@ const Furucombo = () => {
         />
       )}
 
-      <div className="basis-1/3">
-        <InitialFunds combo={combo} />
-      </div>
+      <div className="basis-1/3"></div>
 
       <div className="basis-2/3">
         {combo.map((combo) => (

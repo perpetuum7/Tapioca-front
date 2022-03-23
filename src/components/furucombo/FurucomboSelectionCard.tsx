@@ -56,6 +56,8 @@ const FurucomboSelectionCard = ({
       <InputOutpuSelection
         type={currentSelectedFeature?.type}
         token={currentSelectedFeature?.token}
+        tokens={currentSelectedFeature?.tokens}
+        currentSelection={currentSelection}
         setCardCube={setCardCube}
       />
     </div>

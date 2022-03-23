@@ -6,12 +6,14 @@ interface Props {
   token?: string;
   tokenBalance?: number;
   setCardCube: (props: ComboList) => void;
+  currentSelection: string;
 }
 
 const FurucomboClaimOutput = ({
   token = "",
   tokenBalance = 0,
   setCardCube,
+  currentSelection,
 }: Props) => {
   const { t } = useTranslation();
 
@@ -75,9 +77,10 @@ const FurucomboClaimOutput = ({
         disabled={!tokenBalance}
         onClick={() =>
           setCardCube({
-            crn: token,
             id: uuid.v4(),
+            crn: currentSelection,
             amount: tokenBalance,
+            token,
           })
         }
         className="mt-2 w-full text-center bg-custom-grey-1 p-2 rounded-b disabled:text-zinc-400 disabled:bg-custom-grey-2"

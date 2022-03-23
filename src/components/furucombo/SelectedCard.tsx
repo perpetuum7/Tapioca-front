@@ -6,14 +6,7 @@ interface Props extends ComboList {
   removeItem: (id: string) => void;
 }
 
-const SelectedCard = ({
-  id,
-  selectedOption,
-  amount,
-  crn,
-  outputEstimate,
-  removeItem,
-}: Props) => {
+const SelectedCard = ({ id, crn, token, amount, removeItem }: Props) => {
   const { t } = useTranslation();
 
   const defi = FURUCOMBO_CUBES.find(
@@ -23,13 +16,6 @@ const SelectedCard = ({
   const feature = defi?.options.find(
     ({ featureName }) => featureName === crn.split(":")[1]
   );
-
-  const selectedOutput = Object.keys(outputEstimate)
-    .filter((id) => id !== "id")
-    .map((id) => {
-      const total = outputEstimate[id] as number;
-      return { id, total: total * (amount || 0) };
-    });
 
   return (
     <div className="p-2 bg-custom-grey-4 w-full rounded-lg mb-2" key={id}>
@@ -54,20 +40,9 @@ const SelectedCard = ({
       </div>
 
       <div className="flex justify-between m-2 items-center">
-        <div className="text-xl">{selectedOption}</div>
+        <div className="text-xl">{token}</div>
         <div className="text-lg">{amount}</div>
       </div>
-
-      {selectedOutput.length ? (
-        <div className="border-t border-zinc-600">
-          {selectedOutput.map(({ id, total }) => (
-            <div key={id} className="m-2 flex justify-between">
-              <div>{id}</div>
-              <div>{parseFloat(total.toFixed(5))}</div>
-            </div>
-          ))}
-        </div>
-      ) : null}
     </div>
   );
 };
