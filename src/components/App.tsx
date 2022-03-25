@@ -3,6 +3,7 @@ import { WalletProvider } from "@/wallet/WalletContext";
 import Header from "@/components/Header";
 import Borrow from "@/components/pages/Borrow";
 import Furucombo from "@/components/pages/Furucombo";
+import Loan from "@/components/pages/Loan";
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
             <Route path="/" element={<Outlet />}>
               <Route index element={<Borrow />} />
               <Route path="furucombo" element={<Furucombo />} />
+              <Route path="loan" element={<Loan />} />
             </Route>
           </Routes>
         </div>
