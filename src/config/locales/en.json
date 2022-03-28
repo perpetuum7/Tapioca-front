@@ -15,6 +15,8 @@
   },
   "furucombo": {
     "output": "Output",
+    "input": "Input",
+    "address": "Address",
     "set": "Set",
     "combo": {
       "retroactiveRewards": "Retroactive rewards",
@@ -25,10 +27,15 @@
       "rewardsAvailable": "Rewards available",
       "borrowAPY": "Borrow APY",
       "totalDebt": "Total Debt",
+      "tokenDebt": "{{token}} Debt",
       "totalCollateral": "Total Collateral",
       "utilization": "Utilization",
-      "fee": "Fee | {{amount}}%"
+      "fee": "Fee | {{amount}}%",
+      "outstandingDebt": "Outstanding debt"
     }
+  },
+  "errors": {
+    "invalidAddress": "Invalid Address"
   },
   "continue": "Continue",
   "delete": "Delete"

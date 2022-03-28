@@ -1,6 +1,7 @@
 import { FURUCOMBO_TYPES } from "@/utils/constants";
 import FurucomboClaimOutput from "./FurucomboClaimOutput";
 import FurucomboOutputToken from "./FurucomboOutputToken";
+import FurucomboAddress from "./FurucomboAddress";
 import { ComboList } from "@/components/pages/Furucombo";
 
 interface Props {
@@ -31,6 +32,15 @@ const InputOutpuSelection = ({
     case FURUCOMBO_TYPES.FURUCOMBO_OUTPUT_TOKEN:
       return (
         <FurucomboOutputToken
+          tokens={tokens}
+          setCardCube={setCardCube}
+          currentSelection={currentSelection}
+        />
+      );
+
+    case FURUCOMBO_TYPES.FURUCOMBO_ADDRESS:
+      return (
+        <FurucomboAddress
           tokens={tokens}
           setCardCube={setCardCube}
           currentSelection={currentSelection}

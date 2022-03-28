@@ -14,6 +14,7 @@ export interface ComboList {
   crn: string;
   token?: string;
   amount?: null | number;
+  address?: string;
 }
 
 export interface FeatureProps {

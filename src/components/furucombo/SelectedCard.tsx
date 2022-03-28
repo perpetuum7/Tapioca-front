@@ -1,12 +1,20 @@
 import { ComboList, SelectedDefi } from "@/components/pages/Furucombo";
 import { FURUCOMBO_CUBES } from "@/utils/constants";
+import formatAddress from "@/utils/formatAddress";
 import { useTranslation } from "react-i18next";
 
 interface Props extends ComboList {
   removeItem: (id: string) => void;
 }
 
-const SelectedCard = ({ id, crn, token, amount, removeItem }: Props) => {
+const SelectedCard = ({
+  id,
+  crn,
+  token,
+  amount,
+  address,
+  removeItem,
+}: Props) => {
   const { t } = useTranslation();
 
   const defi = FURUCOMBO_CUBES.find(
@@ -38,6 +46,12 @@ const SelectedCard = ({ id, crn, token, amount, removeItem }: Props) => {
           {t("delete")}
         </button>
       </div>
+
+      {address && (
+        <div className="flex justify-between m-2 items-center pb-2 border-b border-zinc-500">
+          <div className="text-xl">{formatAddress(address)}</div>
+        </div>
+      )}
 
       <div className="flex justify-between m-2 items-center">
         <div className="text-xl">{token}</div>
