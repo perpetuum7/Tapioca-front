@@ -15,6 +15,7 @@ export interface ComboList {
   token?: string;
   amount?: null | number;
   address?: string;
+  network?: string
 }
 
 export interface FeatureProps {
@@ -23,6 +24,7 @@ export interface FeatureProps {
   type: string;
   token?: string;
   tokens?: string[];
+  network?: string
 }
 
 export interface SelectedDefi {

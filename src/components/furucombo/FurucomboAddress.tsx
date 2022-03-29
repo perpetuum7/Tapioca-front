@@ -17,8 +17,6 @@ const FurucomboAddress = ({ tokens, setCardCube, currentSelection }: Props) => {
   const [address, setAddress] = useState<string>();
   const [selectedOption, setSelectedOption] = useState(tokens?.[0]);
 
-  console.log("currentSelection", currentSelection);
-
   const addressHasError = useMemo(() => {
     return Boolean(address && address.length < 40);
   }, [address]);
@@ -29,7 +27,9 @@ const FurucomboAddress = ({ tokens, setCardCube, currentSelection }: Props) => {
         <div className="px-3">
           <div className="text-custom-grey-1">{t("furucombo.address")}</div>
           <input
-            className={`bg-transparent border-b py-2 w-full ${addressHasError ? "border-red-500" : ""}`}
+            className={`bg-transparent border-b py-2 w-full ${
+              addressHasError ? "border-red-500" : ""
+            }`}
             placeholder="ENS or Address"
             value={address}
             onChange={(e) => setAddress(e.target.value)}

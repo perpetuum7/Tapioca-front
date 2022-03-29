@@ -59,7 +59,7 @@ const SelectDropdown = ({
     "shadow",
     "transition-all",
     "origin-top",
-    "mt-6",
+    "mt-8",
     "z-10",
     "w-40",
     "overflow-y-auto",
@@ -69,13 +69,7 @@ const SelectDropdown = ({
     .filter(Boolean)
     .join(" ");
 
-  const buttonClass = [
-    "w-full",
-    "flex",
-    "items-center",
-    "justify-between",
-    "w-40",
-  ]
+  const buttonClass = ["w-full", "flex", "items-center", "justify-between"]
     .filter(Boolean)
     .join(" ");
 

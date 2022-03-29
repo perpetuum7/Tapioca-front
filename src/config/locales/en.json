@@ -18,6 +18,7 @@
     "input": "Input",
     "address": "Address",
     "set": "Set",
+    "network": "Network",
     "combo": {
       "retroactiveRewards": "Retroactive rewards",
       "stakingComboRewards": "Staking COMBO rewards",

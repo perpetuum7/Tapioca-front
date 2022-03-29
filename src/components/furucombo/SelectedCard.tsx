@@ -13,6 +13,7 @@ const SelectedCard = ({
   token,
   amount,
   address,
+  network,
   removeItem,
 }: Props) => {
   const { t } = useTranslation();
@@ -57,6 +58,12 @@ const SelectedCard = ({
         <div className="text-xl">{token}</div>
         <div className="text-lg">{amount}</div>
       </div>
+
+      {network && (
+        <div className="flex justify-between m-2 items-center pt-2 border-t border-zinc-500">
+          <div className="text-xl">{network}</div>
+        </div>
+      )}
     </div>
   );
 };
