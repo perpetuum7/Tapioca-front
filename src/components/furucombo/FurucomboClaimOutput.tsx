@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 import uuid from "uuid";
 import { ComboList } from "@/components/pages/Furucombo";
+import FurucomboTokenImage from "./FurucomboTokenImage";
 
 interface Props {
   token?: string;
@@ -23,7 +24,10 @@ const FurucomboClaimOutput = ({
         <div className="px-3">
           <div className="text-custom-grey-1">{t("furucombo.output")}</div>
           <div className="flex justify-between text-xl">
-            <div>{token}</div>
+            <div className="flex items-center">
+              <FurucomboTokenImage token={token} />
+              <div className="ml-2">{token}</div>
+            </div>
             <div>{tokenBalance}</div>
           </div>
 
