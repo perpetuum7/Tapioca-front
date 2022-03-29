@@ -1,5 +1,6 @@
-import { createRef, useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import Chevron from "@/images/Chevron";
+import FurucomboTokenImage from "@/components/furucombo/FurucomboTokenImage";
 
 interface Props {
   selectedOption?: string;
@@ -61,7 +62,7 @@ const SelectDropdown = ({
     "origin-top",
     "mt-8",
     "z-10",
-    "w-40",
+    "w-44",
     "overflow-y-auto",
     "max-h-40",
     isOpen ? "opacity-1 scale-x-1 scale-y-1" : "opacity-0 scale-x-1 scale-y-0",
@@ -86,8 +87,10 @@ const SelectDropdown = ({
       <div className={dropdownClass} ref={dropdownMenuContent.current}>
         {options?.map((op) => (
           <button
-            className={`py-1 w-full ${
-              selectedOption === op ? "bg-zinc-700" : "bg-zinc-600"
+            className={`pl-2 py-1 flex items-center w-full ${
+              selectedOption === op
+                ? "bg-zinc-700"
+                : "bg-zinc-600 hover:bg-zinc-700"
             }`}
             onClick={() => {
               selectOption(op);
@@ -95,7 +98,8 @@ const SelectDropdown = ({
             }}
             key={op}
           >
-            {op}
+            <FurucomboTokenImage token={op} width={20} />
+            <span className="ml-2">{op}</span>
           </button>
         ))}
       </div>

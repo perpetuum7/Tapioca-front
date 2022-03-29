@@ -2,6 +2,7 @@ import { ComboList, SelectedDefi } from "@/components/pages/Furucombo";
 import { FURUCOMBO_CUBES } from "@/utils/constants";
 import formatAddress from "@/utils/formatAddress";
 import { useTranslation } from "react-i18next";
+import FurucomboTokenImage from "./FurucomboTokenImage";
 
 interface Props extends ComboList {
   removeItem: (id: string) => void;
@@ -55,7 +56,10 @@ const SelectedCard = ({
       )}
 
       <div className="flex justify-between m-2 items-center">
-        <div className="text-xl">{token}</div>
+        <div className="flex items-center">
+          <FurucomboTokenImage token={token} />
+          <div className="ml-2 text-xl">{token}</div>
+        </div>
         <div className="text-lg">{amount}</div>
       </div>
 
