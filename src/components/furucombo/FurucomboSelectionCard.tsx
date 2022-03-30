@@ -58,6 +58,7 @@ const FurucomboSelectionCard = ({
         token={currentSelectedFeature?.token}
         tokens={currentSelectedFeature?.tokens}
         network={currentSelectedFeature?.network}
+        outputsOptions={currentSelectedFeature?.outputsOptions}
         currentSelection={currentSelection}
         setCardCube={setCardCube}
       />

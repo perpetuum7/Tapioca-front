@@ -4,13 +4,15 @@ import FurucomboOutputToken from "./FurucomboOutputToken";
 import FurucomboAddress from "./FurucomboAddress";
 import FurucomboBridge from "./FurucomboBridge";
 import FurucomboInputToken from "./FurucomboInputToken";
-import { ComboList } from "@/components/pages/Furucombo";
+import FurucomboMultipleInputs from "./FurucomboMultipleInputs";
+import { ComboList, OutputEstimateProps } from "@/components/pages/Furucombo";
 
 interface Props {
   type?: string;
   token?: string;
   network?: string;
   tokens?: string[];
+  outputsOptions?: OutputEstimateProps[];
   setCardCube: (props: ComboList) => void;
   currentSelection: string;
 }
@@ -20,6 +22,7 @@ const InputOutpuSelection = ({
   token,
   setCardCube,
   tokens,
+  outputsOptions,
   currentSelection,
   network,
 }: Props) => {
@@ -65,6 +68,15 @@ const InputOutpuSelection = ({
       return (
         <FurucomboInputToken
           tokens={tokens}
+          setCardCube={setCardCube}
+          currentSelection={currentSelection}
+        />
+      );
+
+    case FURUCOMBO_TYPES.FURUCOMBO_MULTIPLE_INPUTS:
+      return (
+        <FurucomboMultipleInputs
+          outputsOptions={outputsOptions}
           setCardCube={setCardCube}
           currentSelection={currentSelection}
         />

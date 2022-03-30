@@ -40,7 +40,7 @@ const LoanCard = ({
 
       <div className="flex justify-between items-center mt-6">
         <input
-          value={asset}
+          value={asset || ""}
           onChange={(e) => changeAsset(parseFloat(e.target.value))}
           type="number"
           placeholder="0.0"

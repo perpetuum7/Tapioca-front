@@ -6,8 +6,15 @@ import FurucomboSelectionCard from "@/components/furucombo/FurucomboSelectionCar
 import SelectedCard from "../furucombo/SelectedCard";
 
 export interface OutputEstimateProps {
-  id: string;
+  token: string;
   [token: string]: number | string;
+}
+
+export interface OutputOptionsProps {
+  token: string;
+  amount?: number;
+  swapValue?: string | number;
+  total?: number;
 }
 export interface ComboList {
   id: string;
@@ -15,7 +22,8 @@ export interface ComboList {
   token?: string;
   amount?: null | number;
   address?: string;
-  network?: string
+  network?: string;
+  outputsOptions?: OutputOptionsProps[]
 }
 
 export interface FeatureProps {
@@ -24,7 +32,8 @@ export interface FeatureProps {
   type: string;
   token?: string;
   tokens?: string[];
-  network?: string
+  network?: string;
+  outputsOptions?: OutputEstimateProps[];
 }
 
 export interface SelectedDefi {

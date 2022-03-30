@@ -31,7 +31,7 @@ const FurucomboAddress = ({ tokens, setCardCube, currentSelection }: Props) => {
               addressHasError ? "border-red-500" : ""
             }`}
             placeholder="ENS or Address"
-            value={address}
+            value={address || ""}
             onChange={(e) => setAddress(e.target.value)}
             maxLength={40}
           />
