@@ -3,6 +3,7 @@ import FurucomboClaimOutput from "./FurucomboClaimOutput";
 import FurucomboOutputToken from "./FurucomboOutputToken";
 import FurucomboAddress from "./FurucomboAddress";
 import FurucomboBridge from "./FurucomboBridge";
+import FurucomboInputToken from "./FurucomboInputToken";
 import { ComboList } from "@/components/pages/Furucombo";
 
 interface Props {
@@ -57,6 +58,15 @@ const InputOutpuSelection = ({
           setCardCube={setCardCube}
           currentSelection={currentSelection}
           network={network}
+        />
+      );
+
+    case FURUCOMBO_TYPES.FURUCOMBO_INPUT_TOKEN:
+      return (
+        <FurucomboInputToken
+          tokens={tokens}
+          setCardCube={setCardCube}
+          currentSelection={currentSelection}
         />
       );
 
