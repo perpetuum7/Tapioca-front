@@ -3,16 +3,16 @@ interface Props {
     from: string;
     to: string;
   };
-  key?: string;
+  id?: string;
   onClick: () => void;
   title?: string;
 }
 
-const GradientButton = ({ colors, key, onClick, title }: Props) => {
+const GradientButton = ({ colors, id, onClick, title }: Props) => {
   return (
     <div
       onClick={onClick}
-      key={key}
+      key={id}
       style={{
         background: `linear-gradient(to right, ${colors.from}, ${colors.to})`,
       }}

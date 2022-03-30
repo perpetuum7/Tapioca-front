@@ -30,7 +30,7 @@ const NewCubeModal = ({ closeModal, selectCube }: Props) => {
                       <div className="flex flex-wrap">
                         {options.map(({ featureName, title }) => (
                           <GradientButton
-                            key={featureName}
+                            id={featureName}
                             onClick={() => {
                               selectCube(`${defiName}:${featureName}`);
                               closeModal();

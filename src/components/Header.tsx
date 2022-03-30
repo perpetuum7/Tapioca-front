@@ -13,10 +13,9 @@ const Header = () => {
   const { t } = useTranslation();
   const { wallet, connectWallet } = useContext(WalletContext);
   const { address, balance } = wallet;
+  const { pathname } = useLocation();
 
   const titleHeader = useMemo(() => {
-    const { pathname } = useLocation();
-
     switch (pathname) {
       case "/":
         return (
