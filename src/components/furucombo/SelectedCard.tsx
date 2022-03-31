@@ -16,6 +16,7 @@ const SelectedCard = ({
   address,
   network,
   outputsOptions,
+  inputOptions,
   removeItem,
 }: Props) => {
   const { t } = useTranslation();
@@ -27,6 +28,8 @@ const SelectedCard = ({
   const feature = defi?.options.find(
     ({ featureName }) => featureName === crn.split(":")[1]
   );
+
+  const tokenPars = token?.split("/");
 
   return (
     <div className="p-2 bg-custom-grey-4 w-full rounded-lg mb-2" key={id}>
@@ -76,11 +79,32 @@ const SelectedCard = ({
 
       <div className="flex justify-between m-2 items-center">
         <div className="flex items-center">
-          <FurucomboTokenImage token={token} />
+          {tokenPars?.map((tokenPar) => (
+            <FurucomboTokenImage token={tokenPar} />
+          ))}
+
           <div className="ml-2 text-xl">{token}</div>
         </div>
         <div className="text-lg">{amount}</div>
       </div>
+
+      {inputOptions?.length && (
+        <div className="m-2 pt-2 border-t border-zinc-500">
+          {inputOptions.map(({ token, amount }) => (
+            <div
+              className="flex justify-between items-center pb-2"
+              key={`selected-output-${token}`}
+            >
+              <div className="flex items-center">
+                <FurucomboTokenImage token={token} />
+                <div className="ml-2 text-xl">{token}</div>
+              </div>
+
+              <div className="text-xl">{amount || 0}</div>
+            </div>
+          ))}
+        </div>
+      )}
 
       {network && (
         <div className="flex justify-between m-2 items-center pt-2 border-t border-zinc-500">

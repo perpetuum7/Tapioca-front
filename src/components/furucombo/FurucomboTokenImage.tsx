@@ -7,7 +7,7 @@ interface Props {
 
 const BASE_URL = "https://cdn.furucombo.app/assets/img/token/";
 
-const FurucomboTokenImage = ({ token, width = 30 }: Props) => {
+const FurucomboTokenImage = ({ token, width = 25 }: Props) => {
   const [img, setImage] = useState(`${BASE_URL}${token}.png`);
   const [imageNotFound, setImageNotFound] = useState(false);
 

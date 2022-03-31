@@ -23,7 +23,8 @@ export interface ComboList {
   amount?: null | number;
   address?: string;
   network?: string;
-  outputsOptions?: OutputOptionsProps[]
+  outputsOptions?: OutputOptionsProps[];
+  inputOptions?: OutputEstimateProps[];
 }
 
 export interface FeatureProps {
@@ -34,6 +35,7 @@ export interface FeatureProps {
   tokens?: string[];
   network?: string;
   outputsOptions?: OutputEstimateProps[];
+  inputOptions?: OutputEstimateProps[];
 }
 
 export interface SelectedDefi {
