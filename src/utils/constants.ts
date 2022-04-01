@@ -639,19 +639,43 @@ export const FURUCOMBO_CUBES = [
       },
     ],
   },
-  // {
-  //   title: "Maker",
-  //   defiName: "maker",
-  //   colors: { from: "#5c5d62", to: "#9e9fa6" },
+  {
+    title: "Maker",
+    defiName: "maker",
+    colors: { from: "#6ACCB9", to: "#1AAB9B" },
 
-  //   options: [
-  //     { title: "New Vault", featureName: "new_vault" },
-  //     { title: "Deposit", featureName: "deposit" },
-  //     { title: "Withdraw", featureName: "withdraw" },
-  //     { title: "Generate", featureName: "generate" },
-  //     { title: "Pay Back", featureName: "pay_back" },
-  //   ],
-  // },
+    options: [
+      // { title: "New Vault", featureName: "new_vault" },
+      {
+        title: "Deposit",
+        featureName: "deposit",
+        type: FURUCOMBO_TYPES.FURUCOMBO_VAULT,
+        token: "ETH",
+        transactionType: "input",
+      },
+      {
+        title: "Withdraw",
+        featureName: "withdraw",
+        type: FURUCOMBO_TYPES.FURUCOMBO_VAULT,
+        token: "ETH",
+        transactionType: "output",
+      },
+      {
+        title: "Generate",
+        featureName: "generate",
+        type: FURUCOMBO_TYPES.FURUCOMBO_VAULT,
+        token: "DAI",
+        transactionType: "output",
+      },
+      {
+        title: "Pay Back",
+        featureName: "pay_back",
+        type: FURUCOMBO_TYPES.FURUCOMBO_VAULT,
+        token: "DAI",
+        transactionType: "input",
+      },
+    ],
+  },
   // {
   //   title: "1inch",
   //   defiName: "oneinch",
@@ -688,23 +712,43 @@ export const FURUCOMBO_CUBES = [
   //     },
   //   ],
   // },
-  // {
-  //   title: "B‧Protocol",
-  //   defiName: "bprotocol",
-  //   colors: { from: "#5c5d62", to: "#9e9fa6" },
+  {
+    title: "B‧Protocol",
+    defiName: "bprotocol",
+    colors: { from: "#20AA5A", to: "#00C45C" },
 
-  //   options: [
-  //     {
-  //       featureName: "new_vault",
-  //       title: "New Vault",
-  //     },
-  //     { featureName: "new_vault", title: "New Vault" },
-  //     { featureName: "deposit", title: "Deposit" },
-  //     { featureName: "withdraw", title: "Withdraw" },
-  //     { featureName: "generate", title: "Generate" },
-  //     { featureName: "pay_back", title: "Pay Back" },
-  //   ],
-  // },
+    options: [
+      // { featureName: "new_vault", title: "New Vault" },
+      {
+        featureName: "deposit",
+        title: "Deposit",
+        type: FURUCOMBO_TYPES.FURUCOMBO_VAULT,
+        token: "ETH",
+        transactionType: "input",
+      },
+      {
+        featureName: "withdraw",
+        title: "Withdraw",
+        type: FURUCOMBO_TYPES.FURUCOMBO_VAULT,
+        token: "ETH",
+        transactionType: "output",
+      },
+      {
+        featureName: "generate",
+        title: "Generate",
+        type: FURUCOMBO_TYPES.FURUCOMBO_VAULT,
+        token: "DAI",
+        transactionType: "output",
+      },
+      {
+        featureName: "pay_back",
+        title: "Pay Back",
+        type: FURUCOMBO_TYPES.FURUCOMBO_VAULT,
+        token: "DAI",
+        transactionType: "input",
+      },
+    ],
+  },
   // {
   //   title: "Synthetix",
   //   defiName: "synthetix",

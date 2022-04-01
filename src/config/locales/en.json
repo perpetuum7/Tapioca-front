@@ -20,6 +20,7 @@
     "set": "Set",
     "network": "Network",
     "outputEstimate": "Output (Estimate)",
+    "vault": "Vault",
     "combo": {
       "retroactiveRewards": "Retroactive rewards",
       "stakingComboRewards": "Staking COMBO rewards",
@@ -33,11 +34,17 @@
       "totalCollateral": "Total Collateral",
       "utilization": "Utilization",
       "fee": "Fee | {{amount}}%",
-      "outstandingDebt": "Outstanding debt"
+      "outstandingDebt": "Outstanding debt",
+      "outstandingTokenDebt": "Outstanding {{token}} debt",
+      "currentTokenLocked": "Current {{token}} locked",
+      "collateralizationRatio": "Collateralization ratio",
+      "ableToWithdraw": "Able to withdraw",
+      "availableToGenerate": "Available to generate"
     }
   },
   "errors": {
-    "invalidAddress": "Invalid Address"
+    "invalidAddress": "Invalid Address",
+    "notVaultOwner": "You're not the vault owner"
   },
   "continue": "Continue",
   "delete": "Delete"

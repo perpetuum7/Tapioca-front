@@ -25,6 +25,7 @@ export interface ComboList {
   network?: string;
   outputsOptions?: OutputOptionsProps[];
   inputOptions?: OutputEstimateProps[];
+  vault?: number;
 }
 
 export interface FeatureProps {
@@ -36,6 +37,7 @@ export interface FeatureProps {
   network?: string;
   outputsOptions?: OutputEstimateProps[];
   inputOptions?: OutputEstimateProps[];
+  transactionType?: string;
 }
 
 export interface SelectedDefi {

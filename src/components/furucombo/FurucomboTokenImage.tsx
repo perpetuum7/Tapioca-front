@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface Props {
   token?: string;
@@ -18,6 +18,10 @@ const FurucomboTokenImage = ({ token, width = 25 }: Props) => {
     }
     setImage(`${BASE_URL}${token}.svg`);
   };
+
+  useEffect(() => {
+    setImage(`${BASE_URL}${token}.png`);
+  }, [token]);
 
   return (
     <div>

@@ -6,6 +6,7 @@ import FurucomboBridge from "./FurucomboBridge";
 import FurucomboInputToken from "./FurucomboInputToken";
 import FurucomboMultipleInputs from "./FurucomboMultipleInputs";
 import FurucomboTradingPars from "./FurucomboTradingPars";
+import FurucomboVault from "./FurucomboVault";
 import { ComboList, OutputEstimateProps } from "@/components/pages/Furucombo";
 
 interface Props {
@@ -17,6 +18,7 @@ interface Props {
   inputOptions?: OutputEstimateProps[];
   setCardCube: (props: ComboList) => void;
   currentSelection: string;
+  transactionType?: string;
 }
 
 const InputOutpuSelection = ({
@@ -28,6 +30,7 @@ const InputOutpuSelection = ({
   inputOptions,
   currentSelection,
   network,
+  transactionType,
 }: Props) => {
   switch (type) {
     case FURUCOMBO_TYPES.FURUCOMBO_CLAIM_OUTPUT:
@@ -93,6 +96,18 @@ const InputOutpuSelection = ({
           currentSelection={currentSelection}
         />
       );
+
+    case FURUCOMBO_TYPES.FURUCOMBO_VAULT:
+      return (
+        <FurucomboVault
+          token={token}
+          transactionType={transactionType}
+          setCardCube={setCardCube}
+          currentSelection={currentSelection}
+        />
+      );
+
+    //
 
     default:
       return <div></div>;
