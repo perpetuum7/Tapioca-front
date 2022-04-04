@@ -6,6 +6,7 @@ interface Props {
   selectedOption?: string;
   label?: string;
   options?: string[];
+  objectOptins?: { op: string; token: string }[];
   selectOption: (op: string) => void;
 }
 
@@ -13,6 +14,7 @@ const SelectDropdown = ({
   selectedOption,
   label,
   options,
+  objectOptins,
   selectOption,
 }: Props) => {
   const dropdownMenuElement = useRef();
@@ -85,23 +87,41 @@ const SelectDropdown = ({
         <Chevron direction={isOpen ? "down" : "up"} className="ml-2 mb-0.5" />
       </button>
       <div className={dropdownClass} ref={dropdownMenuContent.current}>
-        {options?.map((op) => (
-          <button
-            className={`pl-2 py-1 flex items-center w-full ${
-              selectedOption === op
-                ? "bg-zinc-700"
-                : "bg-zinc-600 hover:bg-zinc-700"
-            }`}
-            onClick={() => {
-              selectOption(op);
-              setIsOpen(false);
-            }}
-            key={op}
-          >
-            <FurucomboTokenImage token={op} width={20} />
-            <span className="ml-2">{op}</span>
-          </button>
-        ))}
+        {objectOptins
+          ? objectOptins?.map(({ op, token }) => (
+              <button
+                className={`pl-2 py-1 flex items-center w-full ${
+                  selectedOption === op
+                    ? "bg-zinc-700"
+                    : "bg-zinc-600 hover:bg-zinc-700"
+                }`}
+                onClick={() => {
+                  selectOption(op);
+                  setIsOpen(false);
+                }}
+                key={op}
+              >
+                <FurucomboTokenImage token={token} width={20} />
+                <span className="ml-2">{op}</span>
+              </button>
+            ))
+          : options?.map((op) => (
+              <button
+                className={`pl-2 py-1 flex items-center w-full ${
+                  selectedOption === op
+                    ? "bg-zinc-700"
+                    : "bg-zinc-600 hover:bg-zinc-700"
+                }`}
+                onClick={() => {
+                  selectOption(op);
+                  setIsOpen(false);
+                }}
+                key={op}
+              >
+                <FurucomboTokenImage token={op} width={20} />
+                <span className="ml-2">{op}</span>
+              </button>
+            ))}
       </div>
     </div>
   );

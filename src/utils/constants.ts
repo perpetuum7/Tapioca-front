@@ -749,18 +749,54 @@ export const FURUCOMBO_CUBES = [
       },
     ],
   },
-  // {
-  //   title: "Synthetix",
-  //   defiName: "synthetix",
-  //   colors: { from: "#5c5d62", to: "#9e9fa6" },
+  {
+    title: "Synthetix",
+    defiName: "synthetix",
+    colors: { from: "#00A5DD", to: "#00D1FF" },
 
-  //   options: [
-  //     { featureName: "stake_token", title: "Stake Token" },
-  //     { featureName: "claim_rewards", title: "Claim Rewards" },
-  //     { featureName: "unstake_token", title: "Unstake Token" },
-  //     { featureName: "claim_and_unstake", title: "Claim & Unstake" },
-  //   ],
-  // },
+    options: [
+      {
+        featureName: "stake_token",
+        title: "Stake Token",
+        type: FURUCOMBO_TYPES.FURUCOMBO_POOL,
+        poolType: "input",
+        pools: [
+          { pool: "Curve Pool sUSD", token: "sCRV" },
+          { pool: "Curve Pool sEUR", token: "eursCRV" },
+        ],
+      },
+      {
+        featureName: "claim_rewards",
+        title: "Claim Rewards",
+        type: FURUCOMBO_TYPES.FURUCOMBO_POOL,
+        poolType: "output",
+        pools: [
+          { pool: "Curve Pool sUSD", token: "SNX" },
+          { pool: "Curve Pool sEUR", token: "SNX" },
+        ],
+      },
+      {
+        featureName: "unstake_token",
+        title: "Unstake Token",
+        type: FURUCOMBO_TYPES.FURUCOMBO_POOL,
+        poolType: "output",
+        pools: [
+          { pool: "Curve Pool sUSD", token: "sCRV" },
+          { pool: "Curve Pool sEUR", token: "eursCRV" },
+        ],
+      },
+      {
+        featureName: "claim_and_unstake",
+        title: "Claim & Unstake",
+        type: FURUCOMBO_TYPES.FURUCOMBO_POOL,
+        poolType: "output",
+        pools: [
+          { pool: "Curve Pool sUSD", tokens: ["sCRV", "SNX"] },
+          { pool: "Curve Pool sEUR", tokens: ["eursCRV", "SNX"] },
+        ],
+      },
+    ],
+  },
   {
     title: "Utility",
     defiName: "utility",

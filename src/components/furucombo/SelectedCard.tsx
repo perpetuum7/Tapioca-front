@@ -18,6 +18,7 @@ const SelectedCard = ({
   outputsOptions,
   inputOptions,
   removeItem,
+  pool,
 }: Props) => {
   const { t } = useTranslation();
 
@@ -56,6 +57,13 @@ const SelectedCard = ({
       {address && (
         <div className="flex justify-between m-2 items-center pb-2 border-b border-zinc-500">
           <div className="text-xl">{formatAddress(address)}</div>
+        </div>
+      )}
+
+      {pool && (
+        <div className="flex m-2 items-center pb-2 border-b border-zinc-500">
+          <FurucomboTokenImage token={token} />
+          <div className="ml-2 text-xl">{pool}</div>
         </div>
       )}
 

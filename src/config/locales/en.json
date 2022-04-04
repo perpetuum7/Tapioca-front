@@ -21,6 +21,7 @@
     "network": "Network",
     "outputEstimate": "Output (Estimate)",
     "vault": "Vault",
+    "pool": "Pool",
     "combo": {
       "retroactiveRewards": "Retroactive rewards",
       "stakingComboRewards": "Staking COMBO rewards",

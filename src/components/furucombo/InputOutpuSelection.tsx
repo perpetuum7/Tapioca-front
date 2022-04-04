@@ -7,7 +7,12 @@ import FurucomboInputToken from "./FurucomboInputToken";
 import FurucomboMultipleInputs from "./FurucomboMultipleInputs";
 import FurucomboTradingPars from "./FurucomboTradingPars";
 import FurucomboVault from "./FurucomboVault";
-import { ComboList, OutputEstimateProps } from "@/components/pages/Furucombo";
+import FurucomboPool from "./FurucomboPool";
+import {
+  ComboList,
+  OutputEstimateProps,
+  PoolProps,
+} from "@/components/pages/Furucombo";
 
 interface Props {
   type?: string;
@@ -19,6 +24,8 @@ interface Props {
   setCardCube: (props: ComboList) => void;
   currentSelection: string;
   transactionType?: string;
+  poolType?: string;
+  pools?: PoolProps[];
 }
 
 const InputOutpuSelection = ({
@@ -31,6 +38,8 @@ const InputOutpuSelection = ({
   currentSelection,
   network,
   transactionType,
+  poolType,
+  pools,
 }: Props) => {
   switch (type) {
     case FURUCOMBO_TYPES.FURUCOMBO_CLAIM_OUTPUT:
@@ -107,7 +116,15 @@ const InputOutpuSelection = ({
         />
       );
 
-    //
+    case FURUCOMBO_TYPES.FURUCOMBO_POOL:
+      return (
+        <FurucomboPool
+          setCardCube={setCardCube}
+          currentSelection={currentSelection}
+          poolType={poolType}
+          pools={pools}
+        />
+      );
 
     default:
       return <div></div>;

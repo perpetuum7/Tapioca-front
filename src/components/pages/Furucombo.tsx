@@ -26,6 +26,13 @@ export interface ComboList {
   outputsOptions?: OutputOptionsProps[];
   inputOptions?: OutputEstimateProps[];
   vault?: number;
+  pool?: string;
+}
+
+export interface PoolProps {
+  pool: string;
+  token?: string;
+  tokens?: string;
 }
 
 export interface FeatureProps {
@@ -38,6 +45,8 @@ export interface FeatureProps {
   outputsOptions?: OutputEstimateProps[];
   inputOptions?: OutputEstimateProps[];
   transactionType?: string;
+  poolType?: string;
+  pools?: PoolProps[];
 }
 
 export interface SelectedDefi {
