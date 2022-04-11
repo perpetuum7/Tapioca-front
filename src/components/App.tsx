@@ -15,7 +15,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Outlet />}>
               <Route index element={<Borrow />} />
-              <Route path="furucombo" element={<Furucombo />} />
+              <Route path="nocode" element={<Furucombo />} />
               <Route path="loan" element={<Loan />} />
             </Route>
           </Routes>
