@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import Cube from "@/images/Cube";
 import NewCubeModal from "@/components/furucombo/NewCubeModal";
 import FurucomboSelectionCard from "@/components/furucombo/FurucomboSelectionCard";
-import SelectedCard from "../furucombo/SelectedCard";
+import SelectedCard from "@/components/furucombo/SelectedCard";
 
 export interface OutputEstimateProps {
   token: string;

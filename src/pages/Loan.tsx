@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import SelectDropdown from "../SelectDropdown";
+import SelectDropdown from "@/components/SelectDropdown";
 import { LOAN_LIST } from "@/utils/constants";
 
 interface Props {
@@ -17,6 +17,9 @@ const LoanCard = ({
   isCollateral = false,
   apy = 0,
 }: Props) => (
+  
+
+
   <div>
     <div className="flex justify-between items-center w-full">
       <div className="font-bebas-neue text-2xl">
