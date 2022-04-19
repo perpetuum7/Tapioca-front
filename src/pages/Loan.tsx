@@ -2,11 +2,65 @@ import { useContext, useEffect, useState } from "react";
 import SelectDropdown from "@/components/SelectDropdown";
 import LoanCard from "@/components/LoanCard";
 import { LOAN_LIST } from "@/utils/constants";
+import { ethers } from "ethers";
+import { loadContract__TEST } from "tapioca-sdk";
 import { WalletContext } from "@/wallet/WalletContext";
+import parseBigBalance from "@/utils/parseBigBalance";
 
-const Loan = () => {
-  const [asset, setAsset] = useState<number>();
-  const [collateral, setCollateral] = useState<number>();
+interface Props {
+  address: string;
+}
+
+// const WETH_ADDRESS = "0xf77d418B10642d497755a42F7EBD5578d7041bC9";
+// const USDC_ADDRESS = "0x7192cb0952f550223A203634Ec0bD4332c4E64e5";
+
+const Loan = ({ address }: Props) => {
+  const winEthereum = (window as any).ethereum;
+  const [depositedAsset, setDepositedAsset] = useState("0");
+  const [depositedCollateral, setDepositedCollateral] = useState("0");
+
+  const provider = new ethers.providers.Web3Provider(winEthereum);
+
+  const { mixologist, beachbar } = loadContract__TEST(provider);
+
+  const approveWeth = async () => {
+    // await beachbar.setApprovalForAll(address, true);
+  };
+  const approveUsdc = () => {};
+
+  const depositWeth = async (amount: number) => {
+    // await beachbar.deposit()
+    // await mixologist.addAsset()
+  };
+  const depositUsdc = (amount: number) => {
+    // await beachbar.deposit()
+    // await mixologist.addCollateral()
+    // await mixologist.borrow()
+    // if got tokens:
+    // await beachbar.withdraw()
+  };
+
+  const getListOfAssets = async () => {
+    // const assets = await beachbar.assets(0);
+    // const assets = await beachbar.assets(1);
+    // const assets = await beachbar.assets(2);
+    // const assets = await beachbar.assets(3);
+  };
+
+  const getAssetBalance = async () => {
+    const balance = await beachbar.balanceOf(address, 1);
+    setDepositedAsset(parseBigBalance(balance));
+  };
+
+  const getCollateralBalance = async () => {
+    const balance = await mixologist.balanceOf(address);
+    setDepositedCollateral(parseBigBalance(balance));
+  };
+
+  useEffect(() => {
+    getAssetBalance();
+    getCollateralBalance();
+  }, []);
 
   const tradingPars = LOAN_LIST.reduce((acc: string[], value) => {
     const { token, prices } = value;
@@ -26,23 +80,6 @@ const Loan = () => {
     (loan) => loan.token === selectedAsset
   );
 
-  const changeAssetValue = (value: number) => {
-    setAsset(value);
-    const colleteralAmount = colleteralValues?.prices[selecteCollateral];
-    if (colleteralAmount) setCollateral(value * colleteralAmount);
-  };
-
-  const changeCollateralValue = (value: number) => {
-    setCollateral(value);
-    const colleteralAmount = colleteralValues?.prices[selecteCollateral];
-    if (colleteralAmount) setAsset(value / colleteralAmount);
-  };
-
-  useEffect(() => {
-    const colleteralAmount = colleteralValues?.prices[selecteCollateral];
-    if (colleteralAmount) setCollateral((asset || 0) * colleteralAmount);
-  }, [selectedMarket]);
-
   return (
     <div className="md:m-8 my-4 mx-3 flex flex-col md:flex-row justify-center">
       <div className="md:basis-1/2 mx-4">
@@ -55,25 +92,25 @@ const Loan = () => {
           />
         </div>
         <LoanCard
-          asset={asset}
-          changeAsset={(asset: number) => changeAssetValue(asset)}
           selectedAsset={selectedAsset}
           apy={colleteralValues?.apy}
+          deposited={depositedAsset}
+          onDeposit={depositWeth}
+          onApprove={approveWeth}
         />
-
         <div className="mt-8 pl-2">
           <div>Asset available: 0</div>
           <div>Asset borrowed: 0</div>
         </div>
       </div>
-
       <div className="md:basis-1/2 mx-4">
         <div className="h-6 md:h-14" />
         <LoanCard
-          asset={collateral}
-          changeAsset={(asset: number) => changeCollateralValue(asset)}
           selectedAsset={selecteCollateral}
           isCollateral
+          deposited={depositedCollateral}
+          onDeposit={depositUsdc}
+          onApprove={approveUsdc}
         />
 
         <div className="mt-8 pl-2">
@@ -87,7 +124,7 @@ const Loan = () => {
 };
 
 const LoadLoan = () => {
-  const { isConnected, isConnecting, metamaskNotAvailable } =
+  const { isConnected, isConnecting, metamaskNotAvailable, wallet } =
     useContext(WalletContext);
 
   if (metamaskNotAvailable) {
@@ -102,7 +139,7 @@ const LoadLoan = () => {
     return <div className="text-center mt-10">Connect your wallet</div>;
   }
 
-  return <Loan />;
+  return <Loan address={wallet.address} />;
 };
 
 export default LoadLoan;
