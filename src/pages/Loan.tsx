@@ -138,7 +138,7 @@ const LoadLoan = () => {
     return <div className="text-center mt-10">Loading...</div>;
   }
 
-  if (!isConnected) {
+  if (!isConnected || !wallet.address) {
     return <div className="text-center mt-10">Connect your wallet</div>;
   }
 
