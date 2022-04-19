@@ -11,20 +11,17 @@ interface Props {
   address: string;
 }
 
-// mixologist 0x167FC96e13144986f61Caa14e91A1633eC51d243
-// beachbar address 0x85E74ECB0038b938e773523C37A80d806E33E72D
-
-// const WETH_ADDRESS = "0xf77d418B10642d497755a42F7EBD5578d7041bC9";
-// const USDC_ADDRESS = "0x7192cb0952f550223A203634Ec0bD4332c4E64e5";
-
 const Loan = ({ address }: Props) => {
   const winEthereum = (window as any).ethereum;
+  const provider = new ethers.providers.Web3Provider(winEthereum);
+
   const [depositedAsset, setDepositedAsset] = useState("0");
   const [depositedCollateral, setDepositedCollateral] = useState("0");
 
-  const provider = new ethers.providers.Web3Provider(winEthereum);
+  const [wethBalance, setWethBalance] = useState("0");
+  const [usdcBalance, setUSDCBalance] = useState("0");
 
-  const { mixologist, beachbar } = loadContract__TEST(provider);
+  const { mixologist, beachbar, usdc, weth } = loadContract__TEST(provider);
 
   const approveWeth = async () => {
     // await beachbar.setApprovalForAll(address, true);
@@ -35,6 +32,7 @@ const Loan = ({ address }: Props) => {
     // await beachbar.deposit()
     // await mixologist.addAsset()
   };
+
   const depositUsdc = (amount: number) => {
     // await beachbar.deposit()
     // await mixologist.addCollateral()
@@ -50,19 +48,32 @@ const Loan = ({ address }: Props) => {
     // const assets = await beachbar.assets(3);
   };
 
-  const getAssetBalance = async () => {
-    const balance = await beachbar.balanceOf(address, 1);
+  const getWETHBalance = async () => {
+    const balance = await weth.balanceOf(address);
+    setWethBalance(parseBigBalance(balance));
+  };
+
+  const getUSDCBalance = async () => {
+    const balance = await usdc.balanceOf(address);
+    setUSDCBalance(parseBigBalance(balance));
+  };
+
+  const getDepositedAsset = async () => {
+    const balance = await beachbar.balanceOf(address, 0);
     setDepositedAsset(parseBigBalance(balance));
   };
 
-  const getCollateralBalance = async () => {
+  const getDepositedCollateral = async () => {
     const balance = await mixologist.balanceOf(address);
     setDepositedCollateral(parseBigBalance(balance));
   };
 
   useEffect(() => {
-    getAssetBalance();
-    getCollateralBalance();
+    getWETHBalance();
+    getUSDCBalance();
+
+    getDepositedAsset();
+    getDepositedCollateral();
   }, []);
 
   const tradingPars = LOAN_LIST.reduce((acc: string[], value) => {
@@ -96,10 +107,10 @@ const Loan = ({ address }: Props) => {
         </div>
         <LoanCard
           selectedAsset={selectedAsset}
-          apy={colleteralValues?.apy}
           deposited={depositedAsset}
           onDeposit={depositWeth}
           onApprove={approveWeth}
+          assetBalance={wethBalance}
         />
         <div className="mt-8 pl-2">
           <div>Asset available: 0</div>
@@ -114,6 +125,7 @@ const Loan = ({ address }: Props) => {
           deposited={depositedCollateral}
           onDeposit={depositUsdc}
           onApprove={approveUsdc}
+          assetBalance={usdcBalance}
         />
 
         <div className="mt-8 pl-2">

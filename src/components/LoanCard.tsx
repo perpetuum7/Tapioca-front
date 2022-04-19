@@ -3,19 +3,19 @@ import { useState } from "react";
 interface Props {
   selectedAsset?: string;
   isCollateral?: boolean;
-  apy?: number;
   deposited: string;
   onDeposit: (amount: number) => void;
   onApprove: () => void;
+  assetBalance?: string;
 }
 
 const LoanCard = ({
   selectedAsset,
   isCollateral = false,
-  apy = 0,
   deposited,
   onDeposit,
   onApprove,
+  assetBalance,
 }: Props) => {
   const [amount, setAmount] = useState<number>();
 
@@ -26,7 +26,12 @@ const LoanCard = ({
           {isCollateral ? "Collateral" : "Asset"}:{" "}
           <span className="text-custom-pink-1">{selectedAsset}</span>
         </div>
-        <div className="font-bebas-neue text-lg">APY%: {apy.toFixed(2)}</div>
+        {assetBalance && (
+          <div className="font-bebas-neue text-lg">
+            Wallet Balance:
+            <span className="text-2xl text-custom-purple ml-1">{assetBalance}</span>
+          </div>
+        )}
       </div>
       <div className="rounded-lg border-2 border-custom-blue bg-custom-grey-4 p-4">
         <div className="flex justify-between mb-4">
