@@ -40,14 +40,29 @@ const Header = () => {
 
       <div className="flex items-center h-14">
         {address ? (
-          <GroupButton
-            size="md:2xl"
-            selectedOption="address"
-            options={[
-              { id: "balance", children: `${balance} ${TOKENS.ETH}` },
-              { id: "address", children: formatAddress(address) },
-            ]}
-          />
+          <>
+            <div className="md:hidden">
+              <GroupButton
+                size="md:2xl"
+                selectedOption="address"
+                options={[
+                  { id: "balance", children: `${parseFloat(balance).toFixed(3)} ${TOKENS.ETH}` },
+                  { id: "address", children: formatAddress(address) },
+                ]}
+              />
+            </div>
+
+            <div className="hidden md:inline">
+              <GroupButton
+                size="md:2xl"
+                selectedOption="address"
+                options={[
+                  { id: "balance", children: `${balance} ${TOKENS.ETH}` },
+                  { id: "address", children: formatAddress(address) },
+                ]}
+              />
+            </div>
+          </>
         ) : (
           <button
             className="font-bebas-neue rounded-lg	border-4 border-custom-green md:text-2xl px-3"
