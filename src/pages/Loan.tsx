@@ -1,15 +1,8 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import SelectDropdown from "@/components/SelectDropdown";
 import LoanCard from "@/components/LoanCard";
 import { LOAN_LIST } from "@/utils/constants";
-
-interface Props {
-  selectedAsset?: string;
-  asset?: number;
-  changeAsset: (value: number) => void;
-  isCollateral?: boolean;
-  apy?: number;
-}
+import { WalletContext } from "@/wallet/WalletContext";
 
 const Loan = () => {
   const [asset, setAsset] = useState<number>();
@@ -93,4 +86,23 @@ const Loan = () => {
   );
 };
 
-export default Loan;
+const LoadLoan = () => {
+  const { isConnected, isConnecting, metamaskNotAvailable } =
+    useContext(WalletContext);
+
+  if (metamaskNotAvailable) {
+    return <div className="text-center mt-10">Metamask not installed.</div>;
+  }
+
+  if (isConnecting) {
+    return <div className="text-center mt-10">Loading...</div>;
+  }
+
+  if (!isConnected) {
+    return <div className="text-center mt-10">Connect your wallet</div>;
+  }
+
+  return <Loan />;
+};
+
+export default LoadLoan;
