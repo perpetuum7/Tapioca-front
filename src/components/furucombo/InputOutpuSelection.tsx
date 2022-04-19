@@ -12,7 +12,7 @@ import {
   ComboList,
   OutputEstimateProps,
   PoolProps,
-} from "@/components/pages/Furucombo";
+} from "@/pages/Furucombo";
 
 interface Props {
   type?: string;

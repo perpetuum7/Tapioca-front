@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import uuid from "uuid";
-import { ComboList } from "@/components/pages/Furucombo";
+import { ComboList } from "@/pages/Furucombo";
 import SelectDropdown from "@/components/SelectDropdown";
 
 interface Props {

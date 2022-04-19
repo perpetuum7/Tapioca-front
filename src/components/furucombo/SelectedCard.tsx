@@ -1,4 +1,4 @@
-import { ComboList, SelectedDefi } from "@/components/pages/Furucombo";
+import { ComboList, SelectedDefi } from "@/pages/Furucombo";
 import { FURUCOMBO_CUBES } from "@/utils/constants";
 import formatAddress from "@/utils/formatAddress";
 import { useTranslation } from "react-i18next";

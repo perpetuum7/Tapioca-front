@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import uuid from "uuid";
 import { useTranslation } from "react-i18next";
-import { ComboList } from "@/components/pages/Furucombo";
+import { ComboList } from "@/pages/Furucombo";
 import FurucomboTokenImage from "./FurucomboTokenImage";
 
 interface Props {

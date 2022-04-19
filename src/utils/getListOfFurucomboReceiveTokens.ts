@@ -1,4 +1,4 @@
-import { ComboList } from "@/components/pages/Furucombo";
+import { ComboList } from "@/pages/Furucombo";
 
 // export const getListOfFurucomboReceiveTokens = (combo: ComboList[]) => {
 //   return combo

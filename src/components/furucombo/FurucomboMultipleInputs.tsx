@@ -5,7 +5,7 @@ import {
   ComboList,
   OutputEstimateProps,
   OutputOptionsProps,
-} from "@/components/pages/Furucombo";
+} from "@/pages/Furucombo";
 import SelectDropdown from "@/components/SelectDropdown";
 import FurucomboTokenImage from "./FurucomboTokenImage";
 
