@@ -14,14 +14,17 @@ interface Props {
 const Loan = ({ address }: Props) => {
   const winEthereum = (window as any).ethereum;
   const provider = new ethers.providers.Web3Provider(winEthereum);
+  const signer = provider.getSigner();
 
+  const [isMintingWeth, setIsMintingWeth] = useState(false);
+  const [isMintingUsdc, setIsMintingUsdc] = useState(false);
   const [depositedAsset, setDepositedAsset] = useState("0");
   const [depositedCollateral, setDepositedCollateral] = useState("0");
 
   const [wethBalance, setWethBalance] = useState("0");
   const [usdcBalance, setUSDCBalance] = useState("0");
 
-  const { mixologist, beachbar, usdc, weth } = loadContract__TEST(provider);
+  const { mixologist, beachbar, usdc, weth } = loadContract__TEST(signer);
 
   const approveWeth = async () => {
     // await beachbar.setApprovalForAll(address, true);
@@ -56,6 +59,24 @@ const Loan = ({ address }: Props) => {
   const getUSDCBalance = async () => {
     const balance = await usdc.balanceOf(address);
     setUSDCBalance(parseBigBalance(balance));
+  };
+
+  const mintWETH = async () => {
+    setIsMintingWeth(true);
+    const mintValue = ethers.BigNumber.from((1e18).toString()).mul(1);
+    const mint = await weth.freeMint(mintValue);
+    await mint.wait();
+    getWETHBalance();
+    setIsMintingWeth(false);
+  };
+
+  const mintUSDC = async () => {
+    setIsMintingUsdc(true);
+    const mintValue = ethers.BigNumber.from((1e18).toString()).mul(1);
+    const mint = await usdc.freeMint(mintValue);
+    await mint.wait();
+    getUSDCBalance();
+    setIsMintingUsdc(false);
   };
 
   const getDepositedAsset = async () => {
@@ -117,8 +138,27 @@ const Loan = ({ address }: Props) => {
           <div>Asset borrowed: 0</div>
         </div>
       </div>
+
       <div className="md:basis-1/2 mx-4">
-        <div className="h-6 md:h-14" />
+        <div className="h-6 md:h-14 flex justify-end">
+          <div>
+            <button
+              disabled={isMintingWeth}
+              onClick={mintWETH}
+              className="font-bebas-neue rounded-lg	border-4 border-custom-purple text-lg px-4 disabled:border-zinc-500 disabled:text-zinc-500 disabled:cursor-not-allowed"
+            >
+              {isMintingWeth ? "Minting..." : <span>Mint FREE <span className="text-custom-green">WETH</span></span>}
+            </button>
+
+            <button
+              disabled={isMintingUsdc}
+              onClick={mintUSDC}
+              className="ml-2 font-bebas-neue rounded-lg	border-4 border-custom-purple text-lg px-4 disabled:border-zinc-500 disabled:text-zinc-500 disabled:cursor-not-allowed"
+            >
+              {isMintingUsdc ? "Minting..." : <span>Mint FREE <span className="text-custom-green">USDC</span></span>}
+            </button>
+          </div>
+        </div>
         <LoanCard
           selectedAsset={selecteCollateral}
           isCollateral
