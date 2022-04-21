@@ -28,6 +28,8 @@ const Loan = ({ address }: Props) => {
     balance: wethBalance,
     isMinting: isMintingWeth,
     isLoading: isLoadingWeth,
+    isApproved: isWethApproved,
+    isAproving: isWethApproving,
     mint: mintWETH,
     approve: approveWeth,
     deposit: depositWeth,
@@ -37,10 +39,16 @@ const Loan = ({ address }: Props) => {
     balance: usdcBalance,
     isMinting: isMintingUsdc,
     isLoading: isLoadingUsdc,
+    isApproved: isUsdcApproved,
+    isAproving: isUsdcApproving,
     mint: mintUSDC,
     approve: approveUsdc,
     deposit: depositUsdc,
   } = useUsdcContract(address);
+
+  // const isAllApproved = isWethApproved && isUsdcApproved && isMixologistApproved;
+  // TODO: if its not all approved dont allow deposit
+  // TODO: change texts to be: Deposit/Lend
 
   const { assetBalance } = useBeachbarContract(address);
 
@@ -88,8 +96,10 @@ const Loan = ({ address }: Props) => {
         onDeposit={depositWeth}
         onApprove={approveWeth}
         assetBalance={wethBalance}
+        isApproved={isWethApproved}
+        isApproving={isWethApproving}
       >
-        <div className="order-0 h-20">
+        <div className="order-0 h-20 pt-2">
           <SelectDropdown
             label="Market selector"
             selectedOption={selectedMarket}
@@ -111,6 +121,8 @@ const Loan = ({ address }: Props) => {
         onDeposit={depositUsdc}
         onApprove={approveUsdc}
         assetBalance={usdcBalance}
+        isApproved={isUsdcApproved}
+        isApproving={isUsdcApproving}
       >
         <div className="order-0 hidden md:inline">
           <MintToken

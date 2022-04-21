@@ -9,6 +9,8 @@ interface Props {
   onApprove: () => void;
   assetBalance?: string;
   children?: React.ReactNode;
+  isApproved?: boolean;
+  isApproving?: boolean;
 }
 
 const LoanCard = ({
@@ -19,8 +21,10 @@ const LoanCard = ({
   onApprove,
   assetBalance,
   children,
+  isApproved = false,
+  isApproving,
 }: Props) => {
-  const [amount, setAmount] = useState<number>();
+  const [amount, setAmount] = useState("");
 
   return (
     <div className="flex flex-col md:basis-1/2 mx-4">
@@ -41,9 +45,15 @@ const LoanCard = ({
         )}
       </div>
       <div className="rounded-lg border-2 border-custom-blue bg-custom-grey-4 p-4">
-        <div className="flex justify-between mb-4">
-          <div>Approve BeachBar</div>
-          <Button onClick={onApprove}>Approve {selectedAsset}</Button>
+        <div className="flex items-center justify-between mb-8">
+          <div>{isApproved ? "Approved" : "Approve"} BeachBar</div>
+          <Button
+            disabled={isApproving || isApproved}
+            isLoading={isApproving}
+            onClick={onApprove}
+          >
+            Approve {selectedAsset}
+          </Button>
         </div>
         <div className="flex justify-between items-center">
           <div className="text-lg">Amount Deposited:</div>
@@ -59,14 +69,16 @@ const LoanCard = ({
 
         <div className="flex justify-between items-center mt-6">
           <input
-            value={amount || ""}
-            onChange={(e) => setAmount(parseFloat(e.target.value))}
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
             type="number"
             placeholder="0.0"
             className="bg-transparent border-b-2 border-custom-green p-1"
           />
           <Button
-            onClick={() => onDeposit({ amount: amount || 0 })}
+            onClick={() =>
+              onDeposit({ amount: amount ? parseFloat(amount) : 0 })
+            }
             buttonColor="blue"
           >
             Deposit

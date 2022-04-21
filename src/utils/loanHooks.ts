@@ -11,6 +11,7 @@ const { mixologist, beachbar, usdc, weth } = loadContract__TEST(signer);
 
 export const useWethContract = (address: string) => {
   const [isLoading, setIsLoading] = useState(true);
+  const [isAproving, setIsApproving] = useState(false);
   const [isMinting, setIsMiting] = useState(false);
   const [isApproved, setIsApproved] = useState(false);
   const [balance, setBalance] = useState("0");
@@ -23,23 +24,66 @@ export const useWethContract = (address: string) => {
   };
 
   const mint = async ({ amount = 1 }) => {
-    // TODO: if error or cancel setIsMiting false
     setIsMiting(true);
-    const mintValue = ethers.BigNumber.from((1e18).toString()).mul(amount);
-    const mint = await weth.freeMint(mintValue);
-    await mint.wait();
-    updateBalance();
+    try {
+      const mintValue = ethers.BigNumber.from((1e18).toString()).mul(amount);
+      const mint = await weth.freeMint(mintValue);
+      await mint.wait();
+      updateBalance();
+    } catch (err: any) {
+      // TODO: message user the error
+      console.error(err.message);
+    }
+
     setIsMiting(false);
   };
 
-  const approve = async () => {};
+  const checkIsApproved = async () => {
+    setIsApproving(true);
+    const res = await weth["allowance(address,address)"](
+      address,
+      beachbar.address
+    );
+
+    setIsApproved(ethers.BigNumber.from(res ?? 0).gt(0));
+    setIsApproving(false);
+  };
+
+  const approve = async () => {
+    setIsApproving(true);
+    try {
+      const res = await weth["approve(address,uint256)"](
+        beachbar.address,
+        ethers.constants.MaxUint256
+      );
+
+      res.wait();
+      checkIsApproved();
+    } catch (err: any) {
+      // TODO: message user the error
+      console.error(err.message);
+      setIsApproving(false);
+    }
+  };
 
   const deposit = async ({ amount = 0 }) => {
     const lendValue = ethers.BigNumber.from((1e18).toString()).mul(amount);
+
+    // const assetId = await mixologist.assetId();
+    // const share = await beachbar.toShare(assetId, lendValue, false);
+
+    // await beachbar["deposit(uint256,address,address,uint256,uint256)"](
+    //   assetId,
+    //   address,
+    //   address,
+    //   lendValue,
+    //   share
+    // );
   };
 
   useEffect(() => {
     updateBalance();
+    checkIsApproved();
   }, []);
 
   return {
@@ -50,12 +94,15 @@ export const useWethContract = (address: string) => {
     mint,
     approve,
     deposit,
+    isApproved,
+    isAproving,
   };
 };
 
 export const useUsdcContract = (address: string) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isMinting, setIsMiting] = useState(false);
+  const [isAproving, setIsApproving] = useState(false);
   const [isApproved, setIsApproved] = useState(false);
   const [balance, setBalance] = useState("0");
 
@@ -67,13 +114,29 @@ export const useUsdcContract = (address: string) => {
   };
 
   const mint = async ({ amount = 1 }) => {
-    // TODO: if error or cancel setIsMiting false
     setIsMiting(true);
-    const mintValue = ethers.BigNumber.from((1e18).toString()).mul(amount);
-    const mint = await usdc.freeMint(mintValue);
-    await mint.wait();
-    updateBalance();
+
+    try {
+      const mintValue = ethers.BigNumber.from((1e18).toString()).mul(amount);
+      const mint = await usdc.freeMint(mintValue);
+      await mint.wait();
+      updateBalance();
+    } catch (err: any) {
+      // TODO: message user the error
+      console.error(err.message);
+    }
+
     setIsMiting(false);
+  };
+
+  const checkIsApproved = async () => {
+    setIsApproving(true);
+    const res = await usdc["allowance(address,address)"](
+      address,
+      beachbar.address
+    );
+    setIsApproved(ethers.BigNumber.from(res ?? 0).gt(0));
+    setIsApproving(false);
   };
 
   const approve = async () => {};
@@ -82,6 +145,7 @@ export const useUsdcContract = (address: string) => {
 
   useEffect(() => {
     updateBalance();
+    checkIsApproved();
   }, []);
 
   return {
@@ -92,6 +156,8 @@ export const useUsdcContract = (address: string) => {
     mint,
     approve,
     deposit,
+    isAproving,
+    isApproved,
   };
 };
 
