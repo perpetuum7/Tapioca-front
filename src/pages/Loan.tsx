@@ -6,6 +6,12 @@ import { ethers } from "ethers";
 import { loadContract__TEST } from "tapioca-sdk";
 import { WalletContext } from "@/wallet/WalletContext";
 import parseBigBalance from "@/utils/parseBigBalance";
+import {
+  useWethContract,
+  useUsdcContract,
+  useBeachbarContract,
+} from "@/utils/loanHooks";
+import MintToken from "@/components/loan/MintTokens";
 
 interface Props {
   address: string;
@@ -16,73 +22,29 @@ const Loan = ({ address }: Props) => {
   const provider = new ethers.providers.Web3Provider(winEthereum);
   const signer = provider.getSigner();
 
-  const [isMintingWeth, setIsMintingWeth] = useState(false);
-  const [isMintingUsdc, setIsMintingUsdc] = useState(false);
-  const [depositedAsset, setDepositedAsset] = useState("0");
   const [depositedCollateral, setDepositedCollateral] = useState("0");
 
-  const [wethBalance, setWethBalance] = useState("0");
-  const [usdcBalance, setUSDCBalance] = useState("0");
+  const {
+    balance: wethBalance,
+    isMinting: isMintingWeth,
+    isLoading: isLoadingWeth,
+    mint: mintWETH,
+    approve: approveWeth,
+    deposit: depositWeth,
+  } = useWethContract(address);
 
-  const { mixologist, beachbar, usdc, weth } = loadContract__TEST(signer);
+  const {
+    balance: usdcBalance,
+    isMinting: isMintingUsdc,
+    isLoading: isLoadingUsdc,
+    mint: mintUSDC,
+    approve: approveUsdc,
+    deposit: depositUsdc,
+  } = useUsdcContract(address);
 
-  const approveWeth = async () => {
-    // await beachbar.setApprovalForAll(address, true);
-  };
-  const approveUsdc = () => {};
+  const { assetBalance } = useBeachbarContract(address);
 
-  const depositWeth = async (amount: number) => {
-    // await beachbar.deposit()
-    // await mixologist.addAsset()
-  };
-
-  const depositUsdc = (amount: number) => {
-    // await beachbar.deposit()
-    // await mixologist.addCollateral()
-    // await mixologist.borrow()
-    // if got tokens:
-    // await beachbar.withdraw()
-  };
-
-  const getListOfAssets = async () => {
-    // const assets = await beachbar.assets(0);
-    // const assets = await beachbar.assets(1);
-    // const assets = await beachbar.assets(2);
-    // const assets = await beachbar.assets(3);
-  };
-
-  const getWETHBalance = async () => {
-    const balance = await weth.balanceOf(address);
-    setWethBalance(parseBigBalance(balance));
-  };
-
-  const getUSDCBalance = async () => {
-    const balance = await usdc.balanceOf(address);
-    setUSDCBalance(parseBigBalance(balance));
-  };
-
-  const mintWETH = async () => {
-    setIsMintingWeth(true);
-    const mintValue = ethers.BigNumber.from((1e18).toString()).mul(1);
-    const mint = await weth.freeMint(mintValue);
-    await mint.wait();
-    getWETHBalance();
-    setIsMintingWeth(false);
-  };
-
-  const mintUSDC = async () => {
-    setIsMintingUsdc(true);
-    const mintValue = ethers.BigNumber.from((1e18).toString()).mul(1);
-    const mint = await usdc.freeMint(mintValue);
-    await mint.wait();
-    getUSDCBalance();
-    setIsMintingUsdc(false);
-  };
-
-  const getDepositedAsset = async () => {
-    const balance = await beachbar.balanceOf(address, 0);
-    setDepositedAsset(parseBigBalance(balance));
-  };
+  const { mixologist } = loadContract__TEST(signer);
 
   const getDepositedCollateral = async () => {
     const balance = await mixologist.balanceOf(address);
@@ -90,10 +52,6 @@ const Loan = ({ address }: Props) => {
   };
 
   useEffect(() => {
-    getWETHBalance();
-    getUSDCBalance();
-
-    getDepositedAsset();
     getDepositedCollateral();
   }, []);
 
@@ -111,14 +69,27 @@ const Loan = ({ address }: Props) => {
   const selectedAsset = selectedMarket?.split("/")[0];
   const selecteCollateral = selectedMarket?.split("/")[1];
 
-  const colleteralValues = LOAN_LIST.find(
-    (loan) => loan.token === selectedAsset
-  );
-
   return (
     <div className="md:m-8 my-4 mx-3 flex flex-col md:flex-row justify-center">
-      <div className="md:basis-1/2 mx-4">
-        <div className="h-14">
+      <div className="md:hidden flex justify-center mb-3">
+        <MintToken
+          mintWETH={mintWETH}
+          mintUSDC={mintUSDC}
+          isMintingWeth={isMintingWeth}
+          isMintingUsdc={isMintingUsdc}
+          isLoadingWeth={isLoadingWeth}
+          isLoadingUsdc={isLoadingUsdc}
+        />
+      </div>
+
+      <LoanCard
+        selectedAsset={selectedAsset}
+        deposited={assetBalance}
+        onDeposit={depositWeth}
+        onApprove={approveWeth}
+        assetBalance={wethBalance}
+      >
+        <div className="order-0 h-20">
           <SelectDropdown
             label="Market selector"
             selectedOption={selectedMarket}
@@ -126,54 +97,38 @@ const Loan = ({ address }: Props) => {
             selectOption={(op: string) => setSelectedMarket(op)}
           />
         </div>
-        <LoanCard
-          selectedAsset={selectedAsset}
-          deposited={depositedAsset}
-          onDeposit={depositWeth}
-          onApprove={approveWeth}
-          assetBalance={wethBalance}
-        />
-        <div className="mt-8 pl-2">
+
+        <div className="order-3 mt-8 pl-2">
           <div>Asset available: 0</div>
           <div>Asset borrowed: 0</div>
         </div>
-      </div>
+      </LoanCard>
 
-      <div className="md:basis-1/2 mx-4">
-        <div className="h-6 md:h-14 flex justify-end">
-          <div>
-            <button
-              disabled={isMintingWeth}
-              onClick={mintWETH}
-              className="font-bebas-neue rounded-lg	border-4 border-custom-purple text-lg px-4 disabled:border-zinc-500 disabled:text-zinc-500 disabled:cursor-not-allowed"
-            >
-              {isMintingWeth ? "Minting..." : <span>Mint FREE <span className="text-custom-green">WETH</span></span>}
-            </button>
-
-            <button
-              disabled={isMintingUsdc}
-              onClick={mintUSDC}
-              className="ml-2 font-bebas-neue rounded-lg	border-4 border-custom-purple text-lg px-4 disabled:border-zinc-500 disabled:text-zinc-500 disabled:cursor-not-allowed"
-            >
-              {isMintingUsdc ? "Minting..." : <span>Mint FREE <span className="text-custom-green">USDC</span></span>}
-            </button>
-          </div>
+      <LoanCard
+        selectedAsset={selecteCollateral}
+        isCollateral
+        deposited={depositedCollateral}
+        onDeposit={depositUsdc}
+        onApprove={approveUsdc}
+        assetBalance={usdcBalance}
+      >
+        <div className="order-0 hidden md:inline">
+          <MintToken
+            mintWETH={mintWETH}
+            mintUSDC={mintUSDC}
+            isMintingWeth={isMintingWeth}
+            isMintingUsdc={isMintingUsdc}
+            isLoadingWeth={isLoadingWeth}
+            isLoadingUsdc={isLoadingUsdc}
+          />
         </div>
-        <LoanCard
-          selectedAsset={selecteCollateral}
-          isCollateral
-          deposited={depositedCollateral}
-          onDeposit={depositUsdc}
-          onApprove={approveUsdc}
-          assetBalance={usdcBalance}
-        />
 
-        <div className="mt-8 pl-2">
+        <div className="mt-8 pl-2 order-3">
           <div>Total collateral: 0</div>
           <div>Borrowed: 0</div>
           <div>Health: 0</div>
         </div>
-      </div>
+      </LoanCard>
     </div>
   );
 };
