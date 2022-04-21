@@ -6,11 +6,7 @@ import { ethers } from "ethers";
 import { loadContract__TEST } from "tapioca-sdk";
 import { WalletContext } from "@/wallet/WalletContext";
 import parseBigBalance from "@/utils/parseBigBalance";
-import {
-  useWethContract,
-  useUsdcContract,
-  useBeachbarContract,
-} from "@/utils/loanHooks";
+import { loanHooks } from "@/utils/loanHooks";
 import MintToken from "@/components/loan/MintTokens";
 
 interface Props {
@@ -18,6 +14,13 @@ interface Props {
 }
 
 const Loan = ({ address }: Props) => {
+  const {
+    useWethContract,
+    useUsdcContract,
+    useBeachbarContract,
+    useMixologistContract,
+  } = loanHooks();
+
   const winEthereum = (window as any).ethereum;
   const provider = new ethers.providers.Web3Provider(winEthereum);
   const signer = provider.getSigner();
