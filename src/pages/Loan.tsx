@@ -1,11 +1,8 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import SelectDropdown from "@/components/SelectDropdown";
 import LoanCard from "@/components/LoanCard";
 import { LOAN_LIST } from "@/utils/constants";
-import { ethers } from "ethers";
-import { loadContract__TEST } from "tapioca-sdk";
 import { WalletContext } from "@/wallet/WalletContext";
-import parseBigBalance from "@/utils/parseBigBalance";
 import { loanHooks } from "@/utils/loanHooks";
 import MintToken from "@/components/loan/MintTokens";
 
@@ -20,12 +17,6 @@ const Loan = ({ address }: Props) => {
     useBeachbarContract,
     useMixologistContract,
   } = loanHooks();
-
-  const winEthereum = (window as any).ethereum;
-  const provider = new ethers.providers.Web3Provider(winEthereum);
-  const signer = provider.getSigner();
-
-  const [depositedCollateral, setDepositedCollateral] = useState("0");
 
   const {
     balance: wethBalance,
@@ -49,22 +40,13 @@ const Loan = ({ address }: Props) => {
     deposit: depositUsdc,
   } = useUsdcContract(address);
 
+  const { depositedCollateral } = useMixologistContract(address);
+
   // const isAllApproved = isWethApproved && isUsdcApproved && isMixologistApproved;
   // TODO: if its not all approved dont allow deposit
   // TODO: change texts to be: Deposit/Lend
 
   const { assetBalance } = useBeachbarContract(address);
-
-  const { mixologist } = loadContract__TEST(signer);
-
-  const getDepositedCollateral = async () => {
-    const balance = await mixologist.balanceOf(address);
-    setDepositedCollateral(parseBigBalance(balance));
-  };
-
-  useEffect(() => {
-    getDepositedCollateral();
-  }, []);
 
   const tradingPars = LOAN_LIST.reduce((acc: string[], value) => {
     const { token, prices } = value;

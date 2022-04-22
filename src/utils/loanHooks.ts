@@ -194,7 +194,22 @@ export const loanHooks = () => {
     return { assetBalance };
   };
 
-  const useMixologistContract = (address: string) => {};
+  const useMixologistContract = (address: string) => {
+    const [depositedCollateral, setDepositedCollateral] = useState("0");
+
+    const getDepositedCollateral = async () => {
+      const balance = await mixologist.balanceOf(address);
+      setDepositedCollateral(parseBigBalance(balance));
+    };
+
+    useEffect(() => {
+      getDepositedCollateral();
+    }, []);
+
+    return {
+      depositedCollateral,
+    };
+  };
 
   return {
     useWethContract,
