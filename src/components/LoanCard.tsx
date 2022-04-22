@@ -35,14 +35,6 @@ const LoanCard = ({
           {isCollateral ? "Collateral" : "Asset"}:{" "}
           <span className="text-custom-pink-1">{selectedAsset}</span>
         </div>
-        {assetBalance && (
-          <div className="font-bebas-neue text-lg">
-            Wallet Balance:
-            <span className="text-2xl text-custom-purple ml-1">
-              {assetBalance}
-            </span>
-          </div>
-        )}
       </div>
       <div className="rounded-lg border-2 border-custom-blue bg-custom-grey-4 p-4">
         <div className="flex items-center justify-between mb-8">
@@ -55,16 +47,19 @@ const LoanCard = ({
             Approve {selectedAsset}
           </Button>
         </div>
-        <div className="flex justify-between items-center">
+
+        <div className="flex justify-between items-center font-bebas-neue">
           <div className="text-lg">Amount Deposited:</div>
-          <div>
+          <span className="text-2xl text-custom-pink-2">
             {deposited} {selectedAsset}
-          </div>
+          </span>
         </div>
 
-        <div className="flex justify-between items-center">
-          <div className="text-sm">In Wallet:</div>
-          <div>0</div>
+        <div className="flex justify-between items-center font-bebas-neue">
+          <div className="text-lg">In Wallet:</div>
+          <span className="text-2xl text-custom-purple">
+            {assetBalance} ETH
+          </span>
         </div>
 
         <div className="flex justify-between items-center mt-6">
@@ -81,7 +76,7 @@ const LoanCard = ({
             }
             buttonColor="blue"
           >
-            Deposit
+            {isCollateral ? "Lend" : "Deposit"}
           </Button>
         </div>
       </div>

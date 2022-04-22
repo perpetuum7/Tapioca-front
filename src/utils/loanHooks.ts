@@ -58,27 +58,12 @@ export const loanHooks = () => {
         );
 
         res.wait();
-        checkIsApproved();
+        setIsApproved(true);
       } catch (err: any) {
         // TODO: message user the error
         console.error(err.message);
         setIsApproving(false);
       }
-    };
-
-    const deposit = async ({ amount = 0 }) => {
-      const lendValue = ethers.BigNumber.from((1e18).toString()).mul(amount);
-
-      // const assetId = await mixologist.assetId();
-      // const share = await beachbar.toShare(assetId, lendValue, false);
-
-      // await beachbar["deposit(uint256,address,address,uint256,uint256)"](
-      //   assetId,
-      //   address,
-      //   address,
-      //   lendValue,
-      //   share
-      // );
     };
 
     useEffect(() => {
@@ -93,7 +78,6 @@ export const loanHooks = () => {
       isMinting,
       mint,
       approve,
-      deposit,
       isApproved,
       isAproving,
     };
@@ -183,11 +167,31 @@ export const loanHooks = () => {
       setAssetBalance(parseBigBalance(balance));
     };
 
+    const deposit = async ({ amount = 0 }) => {
+      const lendValue = ethers.BigNumber.from((1e18).toString()).mul(
+        Number(amount)
+      );
+
+      const assetId = await mixologist.assetId();
+      const share = await beachbar.toShare(assetId, lendValue, false);
+
+      try {
+        const res = await beachbar[
+          "deposit(uint256,address,address,uint256,uint256)"
+        ](assetId, address, address, lendValue, share);
+
+        await res.wait();
+        getAssetInBeachbar();
+      } catch (err: any) {
+        console.error(err.message);
+      }
+    };
+
     useEffect(() => {
       getAssetInBeachbar();
     }, []);
 
-    return { assetBalance };
+    return { assetBalance, deposit };
   };
 
   const useMixologistContract = (address: string) => {

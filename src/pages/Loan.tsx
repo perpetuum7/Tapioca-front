@@ -26,7 +26,6 @@ const Loan = ({ address }: Props) => {
     isAproving: isWethApproving,
     mint: mintWETH,
     approve: approveWeth,
-    deposit: depositWeth,
   } = useWethContract(address);
 
   const {
@@ -40,13 +39,8 @@ const Loan = ({ address }: Props) => {
     deposit: depositUsdc,
   } = useUsdcContract(address);
 
+  const { assetBalance, deposit } = useBeachbarContract(address);
   const { depositedCollateral } = useMixologistContract(address);
-
-  // const isAllApproved = isWethApproved && isUsdcApproved && isMixologistApproved;
-  // TODO: if its not all approved dont allow deposit
-  // TODO: change texts to be: Deposit/Lend
-
-  const { assetBalance } = useBeachbarContract(address);
 
   const tradingPars = LOAN_LIST.reduce((acc: string[], value) => {
     const { token, prices } = value;
@@ -78,7 +72,7 @@ const Loan = ({ address }: Props) => {
       <LoanCard
         selectedAsset={selectedAsset}
         deposited={assetBalance}
-        onDeposit={depositWeth}
+        onDeposit={deposit}
         onApprove={approveWeth}
         assetBalance={wethBalance}
         isApproved={isWethApproved}
