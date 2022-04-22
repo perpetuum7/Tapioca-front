@@ -131,31 +131,27 @@ export const loanHooks = () => {
 
     const checkIsApproved = async () => {
       setIsApproving(true);
-      const res = await usdc["allowance(address,address)"](
-        address,
-        beachbar.address
-      );
-      setIsApproved(ethers.BigNumber.from(res ?? 0).gt(0));
+      const res = await beachbar.isApprovedForAll(address, mixologist.address);
+      setIsApproved(res);
       setIsApproving(false);
     };
 
     const approve = async () => {
       setIsApproving(true);
-      // TODO: test if this works
-      // try {
-      //   const res = await usdc["approve(address,uint256)"](
-      //     beachbar.address,
-      //     ethers.constants.MaxUint256
-      //   );
+      try {
+        const res = await beachbar["setApprovalForAll(address,bool)"](
+          mixologist.address,
+          true
+        );
 
-      //   res.wait();
+        await res.wait();
 
-      //   checkIsApproved();
-      // } catch (err: any) {
-      //   // TODO: message user the error
-      //   console.error(err.message);
-      //   setIsApproving(false);
-      // }
+        checkIsApproved();
+      } catch (err: any) {
+        // TODO: message user the error
+        console.error(err.message);
+      }
+      setIsApproving(false);
     };
 
     const deposit = async ({ amount = 0 }) => {};
