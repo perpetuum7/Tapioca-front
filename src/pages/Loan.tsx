@@ -4,7 +4,6 @@ import LoanCard from "@/components/LoanCard";
 import { LOAN_LIST } from "@/utils/constants";
 import { WalletContext } from "@/wallet/WalletContext";
 import { loanHooks } from "@/utils/loanHooks";
-import MintToken from "@/components/loan/MintTokens";
 
 interface Props {
   address: string;
@@ -36,11 +35,10 @@ const Loan = ({ address }: Props) => {
     isAproving: isUsdcApproving,
     mint: mintUSDC,
     approve: approveUsdc,
-    deposit: depositUsdc,
   } = useUsdcContract(address);
 
   const { assetBalance, deposit } = useBeachbarContract(address);
-  const { depositedCollateral } = useMixologistContract(address);
+  const { depositedCollateral, lendAsset } = useMixologistContract(address);
 
   const tradingPars = LOAN_LIST.reduce((acc: string[], value) => {
     const { token, prices } = value;
@@ -58,17 +56,6 @@ const Loan = ({ address }: Props) => {
 
   return (
     <div className="md:m-8 my-4 mx-3 flex flex-col md:flex-row justify-center">
-      <div className="md:hidden flex justify-center mb-3">
-        <MintToken
-          mintWETH={mintWETH}
-          mintUSDC={mintUSDC}
-          isMintingWeth={isMintingWeth}
-          isMintingUsdc={isMintingUsdc}
-          isLoadingWeth={isLoadingWeth}
-          isLoadingUsdc={isLoadingUsdc}
-        />
-      </div>
-
       <LoanCard
         selectedAsset={selectedAsset}
         deposited={assetBalance}
@@ -77,8 +64,9 @@ const Loan = ({ address }: Props) => {
         assetBalance={wethBalance}
         isApproved={isWethApproved}
         isApproving={isWethApproving}
+        isDepositDisabled={!isUsdcApproved || !isWethApproved}
       >
-        <div className="order-0 h-20 pt-2">
+        <div className="order-0 h-14 pt-2">
           <SelectDropdown
             label="Market selector"
             selectedOption={selectedMarket}
@@ -97,22 +85,14 @@ const Loan = ({ address }: Props) => {
         selectedAsset={selecteCollateral}
         isCollateral
         deposited={depositedCollateral}
-        onDeposit={depositUsdc}
+        onDeposit={lendAsset}
         onApprove={approveUsdc}
         assetBalance={usdcBalance}
         isApproved={isUsdcApproved}
         isApproving={isUsdcApproving}
+        isDepositDisabled={!isUsdcApproved || !isWethApproved}
       >
-        <div className="order-0 hidden md:inline">
-          <MintToken
-            mintWETH={mintWETH}
-            mintUSDC={mintUSDC}
-            isMintingWeth={isMintingWeth}
-            isMintingUsdc={isMintingUsdc}
-            isLoadingWeth={isLoadingWeth}
-            isLoadingUsdc={isLoadingUsdc}
-          />
-        </div>
+        <div className="order-0 hidden md:inline md:h-14"></div>
 
         <div className="mt-8 pl-2 order-3">
           <div>Total collateral: 0</div>

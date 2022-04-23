@@ -11,6 +11,7 @@ interface Props {
   children?: React.ReactNode;
   isApproved?: boolean;
   isApproving?: boolean;
+  isDepositDisabled?: boolean;
 }
 
 const LoanCard = ({
@@ -23,6 +24,7 @@ const LoanCard = ({
   children,
   isApproved = false,
   isApproving,
+  isDepositDisabled = true,
 }: Props) => {
   const [amount, setAmount] = useState("");
 
@@ -58,7 +60,7 @@ const LoanCard = ({
         <div className="flex justify-between items-center font-bebas-neue">
           <div className="text-lg">In Wallet:</div>
           <span className="text-2xl text-custom-purple">
-            {assetBalance} ETH
+            {assetBalance}
           </span>
         </div>
 
@@ -71,6 +73,7 @@ const LoanCard = ({
             className="bg-transparent border-b-2 border-custom-green p-1"
           />
           <Button
+            disabled={isDepositDisabled}
             onClick={() =>
               onDeposit({ amount: amount ? parseFloat(amount) : 0 })
             }

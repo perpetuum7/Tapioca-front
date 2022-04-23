@@ -138,8 +138,6 @@ export const loanHooks = () => {
       setIsApproving(false);
     };
 
-    const deposit = async ({ amount = 0 }) => {};
-
     useEffect(() => {
       updateBalance();
       checkIsApproved();
@@ -152,7 +150,6 @@ export const loanHooks = () => {
       isLoading,
       mint,
       approve,
-      deposit,
       isAproving,
       isApproved,
     };
@@ -168,17 +165,15 @@ export const loanHooks = () => {
     };
 
     const deposit = async ({ amount = 0 }) => {
-      const lendValue = ethers.BigNumber.from((1e18).toString()).mul(
-        Number(amount)
-      );
+
 
       const assetId = await mixologist.assetId();
-      const share = await beachbar.toShare(assetId, lendValue, false);
+      const share = await beachbar.toShare(assetId, amount, false);
 
       try {
         const res = await beachbar[
           "deposit(uint256,address,address,uint256,uint256)"
-        ](assetId, address, address, lendValue, share);
+        ](assetId, address, address, amount, share);
 
         await res.wait();
         getAssetInBeachbar();
@@ -202,11 +197,25 @@ export const loanHooks = () => {
       setDepositedCollateral(parseBigBalance(balance));
     };
 
+    const lendAsset = async ({ amount = 0 }) => {
+      const assetId = await mixologist.assetId();
+      const share = await beachbar.toShare(assetId, amount, false);
+
+      try {
+        const res = await mixologist.addAsset(address, false, share);
+        await res.wait();
+        getDepositedCollateral();
+      } catch (err: any) {
+        console.error(err.message);
+      }
+    };
+
     useEffect(() => {
       getDepositedCollateral();
     }, []);
 
     return {
+      lendAsset,
       depositedCollateral,
     };
   };
