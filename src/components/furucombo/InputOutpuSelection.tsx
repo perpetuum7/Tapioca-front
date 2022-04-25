@@ -1,4 +1,4 @@
-import { FURUCOMBO_TYPES } from "@/utils/constants";
+import { FURUCOMBO_TYPES } from "@/utils/furucomboConfig";
 import FurucomboClaimOutput from "./FurucomboClaimOutput";
 import FurucomboOutputToken from "./FurucomboOutputToken";
 import FurucomboAddress from "./FurucomboAddress";
@@ -8,11 +8,7 @@ import FurucomboMultipleInputs from "./FurucomboMultipleInputs";
 import FurucomboTradingPars from "./FurucomboTradingPars";
 import FurucomboVault from "./FurucomboVault";
 import FurucomboPool from "./FurucomboPool";
-import {
-  ComboList,
-  OutputEstimateProps,
-  PoolProps,
-} from "@/pages/Furucombo";
+import { ComboList, OutputEstimateProps, PoolProps } from "@/pages/Furucombo";
 
 interface Props {
   type?: string;

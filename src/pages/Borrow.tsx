@@ -4,17 +4,17 @@ import BorrowSelectTokenCard from "@/components/BorrowSelectTokenCard";
 import GroupButton from "@/components/GroupButton";
 import Yes from "@/images/Yes";
 import No from "@/images/No";
-import { TOKENS, BORROW_TOKEN_LIST } from "@/utils/constants";
+import { TOKENS_SYMBOLS, BORROW_TOKEN_LIST } from "@/utils/tokens";
 
 const Borrow = () => {
   const { t } = useTranslation();
 
-  const [mainToken, setMainToken] = useState(TOKENS.ETH);
+  const [mainToken, setMainToken] = useState(TOKENS_SYMBOLS.ETH);
   const [collateral, setCollateral] = useState("");
   const [noviceMode, setNoviceMode] = useState("no");
 
   const collateralListOfTokens = useMemo(() => {
-    const { ETH, FRAX, BOBA, USDC, DAI } = TOKENS;
+    const { ETH, FRAX, BOBA, USDC, DAI } = TOKENS_SYMBOLS;
 
     if (mainToken === USDC) return [ETH, DAI, BOBA, FRAX];
     if (mainToken === DAI) return [ETH, USDC, BOBA];
@@ -46,7 +46,7 @@ const Borrow = () => {
 
       <div className="md:m-8 my-4 mx-3 md:flex items-center justify-between">
         <BorrowSelectTokenCard
-          tokenList={BORROW_TOKEN_LIST}
+          tokenList={BORROW_TOKEN_LIST.map(({ symbol }) => symbol)}
           selected={mainToken}
           selectToken={(token: string) => setMainToken(token)}
         />

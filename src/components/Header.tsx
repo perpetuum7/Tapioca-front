@@ -1,7 +1,7 @@
 import { useContext, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 
-import { TOKENS } from "@/utils/constants";
+import { TOKENS_SYMBOLS } from "@/utils/tokens";
 
 import Menu from "@/images/Menu";
 import GroupButton from "@/components/GroupButton";
@@ -46,7 +46,12 @@ const Header = () => {
                 size="md:2xl"
                 selectedOption="address"
                 options={[
-                  { id: "balance", children: `${parseFloat(balance).toFixed(3)} ${TOKENS.ETH}` },
+                  {
+                    id: "balance",
+                    children: `${parseFloat(balance).toFixed(3)} ${
+                      TOKENS_SYMBOLS.ETH
+                    }`,
+                  },
                   { id: "address", children: formatAddress(address) },
                 ]}
               />
@@ -57,7 +62,10 @@ const Header = () => {
                 size="md:2xl"
                 selectedOption="address"
                 options={[
-                  { id: "balance", children: `${balance} ${TOKENS.ETH}` },
+                  {
+                    id: "balance",
+                    children: `${balance} ${TOKENS_SYMBOLS.ETH}`,
+                  },
                   { id: "address", children: formatAddress(address) },
                 ]}
               />
