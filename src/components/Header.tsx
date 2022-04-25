@@ -6,7 +6,7 @@ import { TOKENS_SYMBOLS } from "@/utils/tokens";
 import Menu from "@/images/Menu";
 import GroupButton from "@/components/GroupButton";
 import formatAddress from "@/utils/formatAddress";
-import { WalletContext } from "@/wallet/WalletContext";
+import { WalletContext } from "@/providers/WalletContext";
 import { useLocation } from "react-router-dom";
 
 const Header = () => {

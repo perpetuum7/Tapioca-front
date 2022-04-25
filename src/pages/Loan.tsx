@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import SelectDropdown from "@/components/SelectDropdown";
 import LoanCard from "@/components/LoanCard";
 import { LOAN_LIST } from "@/utils/constants";
-import { WalletContext } from "@/wallet/WalletContext";
+import { WalletContext } from "@/providers/WalletContext";
 import { loanHooks } from "@/utils/loanHooks";
 
 interface Props {

@@ -1,5 +1,5 @@
 import { Route, Routes, BrowserRouter, Outlet } from "react-router-dom";
-import { WalletProvider } from "@/wallet/WalletContext";
+import { WalletProvider } from "@/providers/WalletContext";
 import Header from "@/components/Header";
 import Borrow from "@/pages/Borrow";
 import Furucombo from "@/pages/Furucombo";

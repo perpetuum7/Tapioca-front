@@ -22,7 +22,7 @@
       "@/styles/*": ["./styles/*"],
       "@/images/*": ["./images/*"],
       "@/utils/*": ["./utils/*"],
-      "@/wallet/*": ["./wallet/*"],
+      "@/providers/*": ["./providers/*"],
       "@/config/*": ["./config/*"]
     }
   },
