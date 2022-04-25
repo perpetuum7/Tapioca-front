@@ -1,9 +1,16 @@
 import { ethers } from "ethers";
 import parseBigBalance from "@/utils/parseBigBalance";
+import { NotificationContext } from "@/providers/NotificationContext";
 import { loadContract__TEST } from "tapioca-sdk";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+
+interface ErrorMessage {
+  message: string;
+}
 
 export const loanHooks = () => {
+  const { useNotification } = useContext(NotificationContext);
+
   const winEthereum = (window as any).ethereum;
   const provider = new ethers.providers.Web3Provider(winEthereum);
   const signer = provider.getSigner();
@@ -30,9 +37,9 @@ export const loanHooks = () => {
         const mint = await weth.freeMint(mintValue);
         await mint.wait();
         updateBalance();
-      } catch (err: any) {
-        // TODO: message user the error
-        console.error(err.message);
+      } catch (error) {
+        const { message } = error as ErrorMessage;
+        if (message) useNotification(message);
       }
 
       setIsMiting(false);
@@ -44,7 +51,6 @@ export const loanHooks = () => {
         address,
         beachbar.address
       );
-
       setIsApproved(ethers.BigNumber.from(res ?? 0).gt(0));
       setIsApproving(false);
     };
@@ -59,10 +65,9 @@ export const loanHooks = () => {
 
         res.wait();
         setIsApproved(true);
-      } catch (err: any) {
-        // TODO: message user the error
-        console.error(err.message);
-        setIsApproving(false);
+      } catch (error) {
+        const { message } = error as ErrorMessage;
+        if (message) useNotification(message);
       }
     };
 
@@ -105,9 +110,9 @@ export const loanHooks = () => {
         const mint = await usdc.freeMint(mintValue);
         await mint.wait();
         updateBalance();
-      } catch (err: any) {
-        // TODO: message user the error
-        console.error(err.message);
+      } catch (error) {
+        const { message } = error as ErrorMessage;
+        if (error) useNotification(message);
       }
 
       setIsMiting(false);
@@ -131,10 +136,11 @@ export const loanHooks = () => {
         await res.wait();
 
         checkIsApproved();
-      } catch (err: any) {
-        // TODO: message user the error
-        console.error(err.message);
+      } catch (error) {
+        const { message } = error as ErrorMessage;
+        if (error) useNotification(message);
       }
+
       setIsApproving(false);
     };
 
@@ -165,20 +171,21 @@ export const loanHooks = () => {
     };
 
     const deposit = async ({ amount = 0 }) => {
-
+      const lendValue = amount * 10000000000;
 
       const assetId = await mixologist.assetId();
-      const share = await beachbar.toShare(assetId, amount, false);
+      const share = await beachbar.toShare(assetId, lendValue, false);
 
       try {
         const res = await beachbar[
           "deposit(uint256,address,address,uint256,uint256)"
-        ](assetId, address, address, amount, share);
+        ](assetId, address, address, lendValue, share);
 
         await res.wait();
         getAssetInBeachbar();
-      } catch (err: any) {
-        console.error(err.message);
+      } catch (error) {
+        const { message } = error as ErrorMessage;
+        if (error) useNotification(message);
       }
     };
 
@@ -198,15 +205,19 @@ export const loanHooks = () => {
     };
 
     const lendAsset = async ({ amount = 0 }) => {
+      const lendValue = amount * 10000000000;
+
       const assetId = await mixologist.assetId();
-      const share = await beachbar.toShare(assetId, amount, false);
+      const share = await beachbar.toShare(assetId, lendValue, false);
 
       try {
         const res = await mixologist.addAsset(address, false, share);
         await res.wait();
         getDepositedCollateral();
-      } catch (err: any) {
-        console.error(err.message);
+        // TODO: update asset
+      } catch (error) {
+        const { message } = error as ErrorMessage;
+        if (error) useNotification(message);
       }
     };
 

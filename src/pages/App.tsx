@@ -1,5 +1,6 @@
 import { Route, Routes, BrowserRouter, Outlet } from "react-router-dom";
 import { WalletProvider } from "@/providers/WalletContext";
+import { NotificationProvider } from "@/providers/NotificationContext";
 import Header from "@/components/Header";
 import Borrow from "@/pages/Borrow";
 import Furucombo from "@/pages/Furucombo";
@@ -8,19 +9,21 @@ import Loan from "@/pages/Loan";
 const App = () => {
   return (
     <WalletProvider>
-      <BrowserRouter>
-        <div className="lg:container flex flex-col md:py-6 md:px-4 py-2 w-full">
-          <Header />
+      <NotificationProvider>
+        <BrowserRouter>
+          <div className="lg:container flex flex-col md:py-6 md:px-4 py-2 w-full">
+            <Header />
 
-          <Routes>
-            <Route path="/" element={<Outlet />}>
-              <Route index element={<Borrow />} />
-              <Route path="nocode" element={<Furucombo />} />
-              <Route path="loan" element={<Loan />} />
-            </Route>
-          </Routes>
-        </div>
-      </BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Outlet />}>
+                <Route index element={<Borrow />} />
+                <Route path="nocode" element={<Furucombo />} />
+                <Route path="loan" element={<Loan />} />
+              </Route>
+            </Routes>
+          </div>
+        </BrowserRouter>
+      </NotificationProvider>
     </WalletProvider>
   );
 };
