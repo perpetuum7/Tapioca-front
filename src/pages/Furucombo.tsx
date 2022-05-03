@@ -16,6 +16,17 @@ export interface OutputOptionsProps {
   swapValue?: string | number;
   total?: number;
 }
+
+export interface AssetsOptionsProps {
+  asset: string;
+  input: string;
+  output: string;
+  generateAmount: number;
+  outputMinimum: number;
+  fee: number;
+  collateralization: number;
+}
+
 export interface ComboList {
   id: string;
   crn: string;
@@ -47,6 +58,7 @@ export interface FeatureProps {
   transactionType?: string;
   poolType?: string;
   pools?: PoolProps[];
+  assets?: AssetsOptionsProps[];
 }
 
 export interface SelectedDefi {

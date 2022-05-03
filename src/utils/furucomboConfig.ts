@@ -2,6 +2,8 @@ import {
   TOKENS_SYMBOLS,
   FURUCOMBO_AAVE_TOKENS,
   FURUCOMBO_UTILITY_TOKENS,
+  NEW_VAULT_ASSETS,
+  NEW_VAULT_ETH_ASSETS,
 } from "./tokens";
 
 export const FURUCOMBO_TYPES = {
@@ -10,7 +12,7 @@ export const FURUCOMBO_TYPES = {
   FURUCOMBO_VAULT: "FURUCOMBO_VAULT",
   FURUCOMBO_ADDRESS: "FURUCOMBO_ADDRESS",
   FURUCOMBO_ADDRESS_OR_ENS: "FURUCOMBO_ADDRESS_OR_ENS",
-  FURUCOMBO_ASSET: "FURUCOMBO_ASSET",
+  FURUCOMBO_NEW_VAULT: "FURUCOMBO_NEW_VAULT",
   FURUCOMBO_TRADING_PARS: "FURUCOMBO_TRADING_PARS",
   FURUCOMBO_MULTIPLE_INPUTS: "FURUCOMBO_MULTIPLE_INPUTS",
   FURUCOMBO_BRIGDE: "FURUCOMBO_BRIGDE",
@@ -106,6 +108,10 @@ const FURUCOMBO_FEATURES = {
   return_funds: {
     featureName: "return_funds",
     title: "Return Funds",
+  },
+  new_vault: {
+    featureName: "new_vault",
+    title: "New Vault",
   },
 
   //     { title: "Swap BTC", featureName: "swap_btc" },
@@ -420,7 +426,11 @@ export const Maker = {
   defiName: "maker",
   colors: { from: "#6ACCB9", to: "#1AAB9B" },
   options: [
-    // TODO: add new_vault
+    {
+      ...FURUCOMBO_FEATURES.new_vault,
+      type: FURUCOMBO_TYPES.FURUCOMBO_NEW_VAULT,
+      assets: NEW_VAULT_ASSETS,
+    },
     {
       ...FURUCOMBO_FEATURES.deposit,
       type: FURUCOMBO_TYPES.FURUCOMBO_VAULT,
@@ -480,7 +490,11 @@ export const Bprotocol = {
   defiName: "bprotocol",
   colors: { from: "#20AA5A", to: "#00C45C" },
   options: [
-    // TODO: add new_vault
+    {
+      ...FURUCOMBO_FEATURES.new_vault,
+      type: FURUCOMBO_TYPES.FURUCOMBO_NEW_VAULT,
+      assets: NEW_VAULT_ETH_ASSETS,
+    },
     {
       ...FURUCOMBO_FEATURES.deposit,
       type: FURUCOMBO_TYPES.FURUCOMBO_VAULT,

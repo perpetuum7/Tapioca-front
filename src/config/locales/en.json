@@ -22,6 +22,7 @@
     "outputEstimate": "Output (Estimate)",
     "vault": "Vault",
     "pool": "Pool",
+    "asset": "Asset",
     "combo": {
       "retroactiveRewards": "Retroactive rewards",
       "stakingComboRewards": "Staking COMBO rewards",
@@ -40,12 +41,14 @@
       "currentTokenLocked": "Current {{token}} locked",
       "collateralizationRatio": "Collateralization ratio",
       "ableToWithdraw": "Able to withdraw",
-      "availableToGenerate": "Available to generate"
+      "availableToGenerate": "Available to generate",
+      "stabilityFee": "Stability fee | {{amount}}%"
     }
   },
   "errors": {
     "invalidAddress": "Invalid Address",
-    "notVaultOwner": "You're not the vault owner"
+    "notVaultOwner": "You're not the vault owner",
+    "minimumTokenGenerated": "Minimum {{value}} {{token}} must be generated"
   },
   "continue": "Continue",
   "delete": "Delete"

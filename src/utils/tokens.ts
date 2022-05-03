@@ -142,6 +142,22 @@ const LRC = {
   protocolName: "",
 };
 
+const BAT = {
+  name: "",
+  symbol: "BAT",
+  address: "",
+  decimals: "",
+  protocolName: "",
+};
+
+const MATIC = {
+  name: "",
+  symbol: "MATIC",
+  address: "",
+  decimals: "",
+  protocolName: "",
+};
+
 export const TOKENS_SYMBOLS = {
   WETH: WETH.symbol,
   ETH: ETH.symbol,
@@ -168,10 +184,10 @@ export const BORROW_TOKEN_LIST = [USDC, DAI, ETH];
 export const FURUCOMBO_AAVE_TOKENS = [
   "AMPL",
   "BAL",
-  "BAT",
+  BAT.symbol,
   "BUSD",
   "CRV",
-  "DAI",
+  DAI.symbol,
   "ENJ",
   "ETH",
   "FEI",
@@ -187,9 +203,9 @@ export const FURUCOMBO_AAVE_TOKENS = [
   "SNX",
   "TUSD",
   "UNI",
-  "USDC",
+  USDC.symbol,
   "USDT",
-  "WBTC",
+  WBTC.symbol,
   "YFI",
   "ZRX",
   "renFIL",
@@ -218,7 +234,7 @@ export const FURUCOMBO_UTILITY_TOKENS = [
   "BADGER",
   "BAL",
   "BAND",
-  "BAT",
+  BAT.symbol,
   "BBTC",
   "BFC",
   "BID",
@@ -244,7 +260,7 @@ export const FURUCOMBO_UTILITY_TOKENS = [
   "CRV",
   "CVX",
   "D3-f",
-  "DAI",
+  DAI.symbol,
   "DEFI+L",
   "DEFI+S",
   "DEGO",
@@ -262,4 +278,83 @@ export const FURUCOMBO_UTILITY_TOKENS = [
   "ENJ",
   "ENS",
   "ESD",
+];
+
+export const NEW_VAULT_ETH_ASSETS = [
+  {
+    asset: "ETH-A",
+    input: ETH.symbol,
+    output: DAI.symbol,
+    generateAmount: 1974.4827586206898,
+    outputMinimum: 15000,
+    fee: 2.25,
+    collateralization: 286300,
+  },
+  {
+    asset: "ETH-B",
+    input: ETH.symbol,
+    output: DAI.symbol,
+    generateAmount: 2202.3076923076924,
+    outputMinimum: 40000,
+    fee: 4,
+    collateralization: 286300,
+  },
+  {
+    asset: "ETH-C",
+    input: ETH.symbol,
+    output: DAI.symbol,
+    generateAmount: 1684.1176470588236,
+    outputMinimum: 5000,
+    fee: 0.5,
+    collateralization: 286300,
+  },
+];
+
+export const NEW_VAULT_ASSETS = [
+  ...NEW_VAULT_ETH_ASSETS,
+  {
+    asset: "BAT-A",
+    input: BAT.symbol,
+    output: DAI.symbol,
+    generateAmount: 0.0064205837775,
+    outputMinimum: 10000,
+    fee: 4,
+    collateralization: 71.92,
+  },
+  {
+    asset: "WBTC-A",
+    input: WBTC.symbol,
+    output: DAI.symbol,
+    generateAmount: 26679.458620689657,
+    outputMinimum: 15000,
+    fee: 3.25,
+    collateralization: 3868521.5,
+  },
+  {
+    asset: "USDC-A",
+    input: USDC.symbol,
+    output: DAI.symbol,
+    generateAmount: 0.9900990099009901,
+    outputMinimum: 15000,
+    fee: 1,
+    collateralization: 100,
+  },
+  {
+    asset: "USDC-B",
+    input: USDC.symbol,
+    output: DAI.symbol,
+    generateAmount: 0.8333333333333334,
+    outputMinimum: 10000,
+    fee: 50,
+    collateralization: 100,
+  },
+  {
+    asset: "MATIC-A",
+    input: MATIC.symbol,
+    output: DAI.symbol,
+    generateAmount: 0.6152327912571429,
+    outputMinimum: 15000,
+    fee: 3,
+    collateralization: 107.66573847,
+  },
 ];

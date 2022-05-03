@@ -63,6 +63,7 @@ const FurucomboSelectionCard = ({
         transactionType={currentSelectedFeature?.transactionType}
         poolType={currentSelectedFeature?.poolType}
         pools={currentSelectedFeature?.pools}
+        assets={currentSelectedFeature?.assets}
         currentSelection={currentSelection}
         setCardCube={setCardCube}
       />
