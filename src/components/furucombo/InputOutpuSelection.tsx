@@ -8,13 +8,15 @@ import FurucomboMultipleInputs from "./FurucomboMultipleInputs";
 import FurucomboTradingPars from "./FurucomboTradingPars";
 import FurucomboVault from "./FurucomboVault";
 import FurucomboPool from "./FurucomboPool";
+import FurucomboNewVault from "./FurucomboNewVault";
+import FurucomboSwap from "./FurucomboSwap";
+
 import {
   ComboList,
   OutputEstimateProps,
   PoolProps,
   AssetsOptionsProps,
 } from "@/pages/Furucombo";
-import FurucomboNewVault from "./FurucomboNewVault";
 
 interface Props {
   type?: string;
@@ -136,6 +138,15 @@ const InputOutpuSelection = ({
           setCardCube={setCardCube}
           currentSelection={currentSelection}
           assets={assets}
+        />
+      );
+
+    case FURUCOMBO_TYPES.FURUCOMBO_SWAP:
+      return (
+        <FurucomboSwap
+          inputOptions={inputOptions}
+          setCardCube={setCardCube}
+          currentSelection={currentSelection}
         />
       );
 

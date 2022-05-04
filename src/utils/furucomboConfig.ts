@@ -64,6 +64,10 @@ const FURUCOMBO_FEATURES = {
     featureName: "deposit",
     title: "Deposit",
   },
+  depositVault: {
+    featureName: "depositVault",
+    title: "Deposit Vault",
+  },
   withdraw: {
     featureName: "withdraw",
     title: "Withdraw",
@@ -113,12 +117,15 @@ const FURUCOMBO_FEATURES = {
     featureName: "new_vault",
     title: "New Vault",
   },
-
+  supply: {
+    featureName: "supply",
+    title: "Supply",
+  },
   //     { title: "Swap BTC", featureName: "swap_btc" },
   //     { title: "Swap ETH", featureName: "swap_eth" },
   //     { title: "Swap Crypto", featureName: "swap_crypto" },
   //     { title: "Swap Other", featureName: "swap_other" },
-  // { featureName: "weth", title: "WETH" },
+  weth: { featureName: "weth", title: "WETH" },
 };
 
 export const Furucombo = {
@@ -209,8 +216,60 @@ export const Aave = {
   defiName: "aavev2",
   colors: { from: "#b6509e", to: "#2ebac6" },
   options: [
-    // TODO: add deposit
-    // TODO: add withdraw
+    {
+      ...FURUCOMBO_FEATURES.deposit,
+      type: FURUCOMBO_TYPES.FURUCOMBO_SWAP,
+      inputOptions: [
+        { token: "AAVE", aAAVE: 1 },
+        { token: "AMPL", aAMPL: 1 },
+        { token: "BAL", aBAL: 1 },
+        { token: "BAT", aBAT: 1 },
+        { token: "BUSD", aBUSD: 1 },
+        { token: "CRV", aCRV: 1 },
+        { token: "DAI", aDAI: 1 },
+        { token: "DPI", aDPI: 1 },
+        { token: "ENJ", aENJ: 1 },
+        { token: "ENS", aENS: 1 },
+        { token: "ETH", aWETH: 1 },
+        { token: "FEI", aFEI: 1 },
+        { token: "FRAX", aFRAX: 1 },
+        { token: "GUSD", aGUSD: 1 },
+        { token: "KNCL", aKNCL: 1 },
+        { token: "LINK", aLINK: 1 },
+        { token: "SNX", aSNX: 1 },
+        { token: "USDC", aUSDC: 1 },
+        { token: "USDT", aUSDT: 1 },
+        { token: "WBTC", aWBTC: 1 },
+        { token: "xSUSHI", aXSUSHI: 1 },
+      ],
+    },
+    {
+      ...FURUCOMBO_FEATURES.withdraw,
+      type: FURUCOMBO_TYPES.FURUCOMBO_SWAP,
+      inputOptions: [
+        { AAVE: 1, token: "aAAVE" },
+        { AMPL: 1, token: "aAMPL" },
+        { BAL: 1, token: "aBAL" },
+        { BAT: 1, token: "aBAT" },
+        { BUSD: 1, token: "aBUSD" },
+        { CRV: 1, token: "aCRV" },
+        { DAI: 1, token: "aDAI" },
+        { DPI: 1, token: "aDPI" },
+        { ENJ: 1, token: "aENJ" },
+        { ENS: 1, token: "aENS" },
+        { ETH: 1, token: "aWETH" },
+        { FEI: 1, token: "aFEI" },
+        { FRAX: 1, token: "aFRAX" },
+        { GUSD: 1, token: "aGUSD" },
+        { KNCL: 1, token: "aKNCL" },
+        { LINK: 1, token: "aLINK" },
+        { SNX: 1, token: "aSNX" },
+        { USDC: 1, token: "aUSDC" },
+        { USDT: 1, token: "aUSDT" },
+        { WBTC: 1, token: "aWBTC" },
+        { xSUSHI: 1, token: "aXSUSHI" },
+      ],
+    },
     {
       ...FURUCOMBO_FEATURES.borrow,
       type: FURUCOMBO_TYPES.FURUCOMBO_OUTPUT_TOKEN,
@@ -385,13 +444,122 @@ export const Curve = {
   ],
 };
 
+export const Yearn = {
+  title: "Yearn",
+  defiName: "yearn",
+  colors: { from: "#0854a2", to: "#0075fc" },
+  options: [
+    {
+      ...FURUCOMBO_FEATURES.depositVault,
+      type: FURUCOMBO_TYPES.FURUCOMBO_SWAP,
+      inputOptions: [
+        { token: "1INCH", yv1INCH: 0.93503 },
+        { token: "3Crv", "yvCurve-3pool": 0.96644 },
+        { token: "AAVE", yvAAVE: 0.96945 },
+        { token: "BUSD3CRV-f", "yvCurve-BUSD": 0.94508 },
+        { token: "COMP", yvCOMP: 0.98796 },
+        { token: "DAI", yvDAI: 0.97222 },
+        { token: "EURT-f", "yvCurve-EURT": 0.90447 },
+        { token: "FRAX3CRV-f", "yvCurve-FRAX": 0.90141 },
+      ],
+    },
+    //  TODO: withdraw
+  ],
+};
+
 export const Compound = {
   title: "Compound",
   defiName: "compound",
   colors: { from: "#2E9F9A", to: "#00D395" },
   options: [
-    // TODO: add supply
-    // TODO: add withdraw
+    {
+      ...FURUCOMBO_FEATURES.supply,
+      type: FURUCOMBO_TYPES.FURUCOMBO_SWAP,
+      inputOptions: [
+        { token: "AAVE", cAAVE: 49.70315 },
+        { token: "BAT", cBAT: 48.38187 },
+        { token: "COMP", cCOMP: 49.03409 },
+        { token: "DAI", cDAI: 45.48241 },
+        { token: "ETH", cETH: 49.84382 },
+        { token: "LINK", cLINK: 49.68571 },
+        { token: "MKR", cMKR: 49.95552 },
+        { token: "SUSHI", cSUSHI: 48.97074 },
+        { token: "TUSD", cTUSD: 48.90257 },
+        { token: "UNI", cUNI: 49.36804 },
+        { token: "USDC", cUSDC: 44.25711 },
+        { token: "USDT", cUSDT: 45.81922 },
+        { token: "WBTC", cWBTC: 49.83819 },
+        { token: "YFI", cYFI: 49.48488 },
+        { token: "ZRX", cZRX: 48.59462 },
+      ],
+    },
+    {
+      ...FURUCOMBO_FEATURES.withdraw,
+      type: FURUCOMBO_TYPES.FURUCOMBO_SWAP,
+      inputOptions: [
+        {
+          token: "cAAVE",
+          AAVE: 0.02011,
+        },
+        {
+          token: "cBAT",
+          BAT: 0.02066,
+        },
+        {
+          token: "cCOMP",
+          COMP: 0.02039,
+        },
+        {
+          token: "cDAI",
+          DAI: 0.02198,
+        },
+        {
+          token: "cETH",
+          ETH: 0.02006,
+        },
+        {
+          token: "cLINK",
+          LINK: 0.02012,
+        },
+        {
+          token: "cMKR",
+          MKR: 0.02001,
+        },
+        {
+          token: "cSUSHI",
+          SUSHI: 0.02042,
+        },
+        {
+          token: "cTUSD",
+          TUSD: 0.02044,
+        },
+        {
+          token: "cUNI",
+          UNI: 0.02025,
+        },
+        {
+          token: "cUSDC",
+          USDC: 0.02259,
+        },
+        {
+          token: "cUSDT",
+          USDT: 0.02182,
+        },
+
+        {
+          token: "cWBTC-Legacy",
+          WBTC: 0.0202,
+        },
+        {
+          token: "cYFI",
+          YFI: 0.0202,
+        },
+        {
+          token: "cZRX",
+          ZRX: 0.02057,
+        },
+      ],
+    },
     {
       ...FURUCOMBO_FEATURES.repay,
       type: FURUCOMBO_TYPES.FURUCOMBO_ADDRESS,
@@ -577,7 +745,16 @@ export const Utility = {
       type: FURUCOMBO_TYPES.FURUCOMBO_ADDRESS,
       tokens: FURUCOMBO_UTILITY_TOKENS,
     },
-    // TODO: add weth
+    {
+      ...FURUCOMBO_FEATURES.weth,
+      type: FURUCOMBO_TYPES.FURUCOMBO_SWAP,
+      inputOptions: [
+        {
+          token: "ETH",
+          WETH: 1,
+        },
+      ],
+    },
     {
       ...FURUCOMBO_FEATURES.add_funds,
       type: FURUCOMBO_TYPES.FURUCOMBO_INPUT_TOKEN,
