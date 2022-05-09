@@ -51,5 +51,6 @@
     "minimumTokenGenerated": "Minimum {{value}} {{token}} must be generated"
   },
   "continue": "Continue",
-  "delete": "Delete"
+  "delete": "Delete",
+  "learnMore": "Learn More"
 }

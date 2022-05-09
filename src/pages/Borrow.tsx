@@ -1,10 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
 import { Trans, useTranslation } from "react-i18next";
 import BorrowSelectTokenCard from "@/components/BorrowSelectTokenCard";
-import GroupButton from "@/components/GroupButton";
-import Yes from "@/images/Yes";
-import No from "@/images/No";
+import BorrowTitle from "@/components/BorrowTitle";
 import { TOKENS_SYMBOLS, BORROW_TOKEN_LIST } from "@/utils/tokens";
+import BorrowFooter from "@/components/BorrowFooter";
 
 const Borrow = () => {
   const { t } = useTranslation();
@@ -31,18 +30,7 @@ const Borrow = () => {
 
   return (
     <div>
-      <div className="flex justify-center md:mt-14 mt-2 text-center border-b-4 border-custom-green">
-        <div className="md:w-[24rem] md:flex hidden"></div>
-
-        <div className="md:text-5xl text-2xl font-bebas-neue mx-1">
-          <Trans i18nKey="borrow.borrowAgainstYourTokens">
-            <span className="text-custom-green" />
-            <span className="text-custom-pink-1" />
-          </Trans>
-        </div>
-
-        <div className="md:w-[24rem] md:flex hidden"></div>
-      </div>
+      <BorrowTitle />
 
       <div className="md:m-8 my-4 mx-3 md:flex items-center justify-between">
         <BorrowSelectTokenCard
@@ -61,43 +49,12 @@ const Borrow = () => {
         />
       </div>
 
-      <div className="md:flex items-center justify-between mx-8">
-        <div className="md:text-3xl text-xl">
-          <Trans i18nKey="borrow.currentSelection">
-            <span className="text-custom-green" />
-            <span className="font-bebas-neue text-custom-pink-1" />
-            {{
-              main: mainToken,
-              collateral,
-            }}
-          </Trans>
-        </div>
-
-        <div className="md:flex items-center">
-          <button className="font-bebas-neue rounded-lg	border-4 border-custom-green bg-custom-grey-3 md:text-2xl py-0.5 md:w-72 w-full md:mr-6 my-4">
-            {t("continue")}
-          </button>
-
-          <div className="flex items-center justify-center">
-            <span className="font-light mr-2">{t("borrow.noviceMode")}</span>
-            <GroupButton
-              selectItem={(id: string) => setNoviceMode(id)}
-              selectedOption={noviceMode}
-              noBackground
-              options={[
-                {
-                  id: "no",
-                  children: <No />,
-                },
-                {
-                  id: "yes",
-                  children: <Yes />,
-                },
-              ]}
-            />
-          </div>
-        </div>
-      </div>
+      <BorrowFooter
+        mainToken={mainToken}
+        collateral={collateral}
+        setNoviceMode={setNoviceMode}
+        noviceMode={noviceMode}
+      />
     </div>
   );
 };
