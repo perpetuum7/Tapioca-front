@@ -33,7 +33,7 @@ const HelpModal = ({ video }: Props) => {
     "relative",
     "overflow-hidden",
     "rounded",
-    "w-[64rem]",
+    "w-4/5 md:w-[64rem] md:h-2/3 h-1/2",
     "shadow",
     "my-10",
   ]
@@ -68,6 +68,7 @@ const HelpModal = ({ video }: Props) => {
               <Close className="fill-custom-purple" />
             </button>
             <ReactPlayer
+              onEnded={() => setIsOpen(false)}
               url={video}
               width="100%"
               height="100%"
