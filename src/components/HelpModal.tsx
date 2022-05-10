@@ -67,7 +67,13 @@ const HelpModal = ({ video }: Props) => {
             >
               <Close className="fill-custom-purple" />
             </button>
-            <ReactPlayer url={video} width="100%" height="100%" controls />
+            <ReactPlayer
+              url={video}
+              width="100%"
+              height="100%"
+              controls
+              playing={true}
+            />
           </div>
         </div>
       ) : null}
