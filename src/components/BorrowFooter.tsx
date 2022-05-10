@@ -4,7 +4,6 @@ import Yes from "@/images/Yes";
 import No from "@/images/No";
 import Button from "@/components/Button";
 import HelpModal from "@/components/HelpModal";
-import video from "../videos/borrow.mp4";
 
 interface Props {
   mainToken: string;
@@ -36,7 +35,7 @@ const BorrowFooter = ({
           </Trans>
         </div>
 
-        <HelpModal video={video} />
+        <HelpModal video="https://youtu.be/PcEzWRRkNcQ" />
       </div>
 
       <div className="md:flex items-center">

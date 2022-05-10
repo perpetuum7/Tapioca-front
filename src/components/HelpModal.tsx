@@ -33,7 +33,7 @@ const HelpModal = ({ video }: Props) => {
     "relative",
     "overflow-hidden",
     "rounded",
-    "w-4/5 md:w-[64rem] md:h-2/3 h-1/2",
+    "w-4/5 md:w-[64rem] h-[35rem]",
     "shadow",
     "my-10",
   ]
