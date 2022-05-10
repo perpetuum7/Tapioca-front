@@ -47,10 +47,7 @@ const HelpModal = ({ video }: Props) => {
           onClick={() => setIsOpen(true)}
           className="flex items-center font-bebas-neue"
         >
-          <div className="border-2 rounded-full w-5 h-5 flex items-center justify-center mr-2 text-xs">
-            ?
-          </div>
-          {t("learnMore")}
+          {t("needHelp")}
         </button>
       </div>
 
