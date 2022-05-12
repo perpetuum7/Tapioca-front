@@ -11,7 +11,19 @@
     "chooseMainToken": "Choose the token you want to borrow",
     "chooseBorrowToken": "Choose what token you want to borrow against",
     "currentSelection": "<0>Currently Borrowing </0><1>{{main}}</1> with Your <1>{{collateral}}</1>",
-    "noviceMode": "Novice Mode"
+    "noviceMode": "Novice Mode",
+    "borrowAssets": {
+      "addCollateral": "Add collateral in order to borrow assets",
+      "gainExposureToTokens": "Gain exposure to tokens without reducing your assets. Leverage will enable you to take short positions against assets and earn from downside movements.",
+      "borrowToken": "borrow {{token}}",
+      "collateral": "Collateral",
+      "oracle": "Oracle",
+      "borrowed": "Borrowed",
+      "apr": "APR",
+      "addCollateralFrom": "Add {{token}} collateral from",
+      "borrowTo": "Borrow {{token}} to",
+      "balance": "Balance {{amount}}"
+    }
   },
   "furucombo": {
     "output": "Output",
@@ -52,5 +64,6 @@
   },
   "continue": "Continue",
   "delete": "Delete",
-  "needHelp": "Need Help?"
+  "needHelp": "Need Help?",
+  "approve": "Approve"
 }

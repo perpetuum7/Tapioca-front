@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Trans, useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import BorrowSelectTokenCard from "@/components/BorrowSelectTokenCard";
 import BorrowTitle from "@/components/BorrowTitle";
 import { TOKENS_SYMBOLS, BORROW_TOKEN_LIST } from "@/utils/tokens";

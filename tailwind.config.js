@@ -21,15 +21,6 @@ module.exports = {
       "6xl": "4rem",
       "7xl": "5rem",
     },
-    rounded: {
-      none: "0",
-      sm: "0.125rem",
-      DEFAULT: "0.25rem",
-      md: "0.375rem",
-      lg: "0.625",
-      full: "9999px",
-      large: "12px",
-    },
     extend: {
       colors: {
         custom: {
