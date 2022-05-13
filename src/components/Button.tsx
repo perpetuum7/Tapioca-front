@@ -7,11 +7,12 @@ const BUTTON_COLOR_STYLES = {
   purple: "border-custom-purple",
   green: "border-custom-green",
   blue: "border-custom-blue",
+  pink: "border-custom-pink-1",
 };
 
 interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   customClasses?: string;
-  buttonColor?: "purple" | "green" | "blue";
+  buttonColor?: "purple" | "green" | "blue" | "pink";
   isLoading?: boolean;
 }
 
