@@ -109,25 +109,18 @@ const Furucombo = () => {
         />
       )}
 
-      <div className="basis-1/3"></div>
+      <div className="hidden md:flex md:basis-1/3"></div>
 
-      <div className="basis-2/3">
+      <div className="md:basis-2/3 w-full">
         {combo.map((combo) => (
-          <div key={combo.id} className="flex items-center">
-            <div className="basis-1/2 flex justify-center">
-              <Cube isActive />
-            </div>
-            <div className="basis-1/2">
-              <SelectedCard {...combo} removeItem={removeItem} />
-            </div>
-          </div>
+          <SelectedCard {...combo} removeItem={removeItem} />
         ))}
 
         <div className="flex items-center">
-          <div className="basis-1/2 flex justify-center">
+          <div className="md:basis-1/2 flex justify-center mr-2">
             <Cube onClick={() => setIsModalOpen(true)} />
           </div>
-          <div className="basis-1/2">
+          <div className="md:basis-1/2 w-full mr-2">
             {currentSelection && (
               <FurucomboSelectionCard
                 setCardCube={setCardCube}

@@ -149,7 +149,7 @@ export const Furucombo = {
 export const Uniswapv2 = {
   title: "Uniswap V2",
   defiName: "uniswapv2",
-  colors: { from: "#e6006e", to: "#ff007a" },
+  colors: { from: "#893881", to: "#E80371" },
   options: [
     // TODO: swap_token
     //     {

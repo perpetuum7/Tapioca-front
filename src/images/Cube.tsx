@@ -3,34 +3,60 @@ import { useState } from "react";
 interface Props {
   isActive?: boolean;
   onClick?: () => void;
+  activeColorFrom?: string;
+  activeColorTo?: string;
 }
 
-const Cube = ({ isActive, onClick }: Props) => {
+const Cube = ({ isActive, onClick, activeColorFrom, activeColorTo }: Props) => {
   const [isHovered, setIsHovered] = useState(false);
 
-  const color = isHovered ? "fill-white" : "fill-zinc-400";
+  const color = isHovered ? "fill-zinc-200" : "fill-white";
+
+  const activeStyles = isActive
+    ? {
+        fill: `url(#gradient-${activeColorFrom}-${activeColorTo})`,
+      }
+    : {};
 
   return (
     <svg
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`w-32 h-32 ${onClick ? "cursor-pointer" : ""}`}
+      className={`w-16 md:w-32 h-16 md:h-32 ${onClick ? "cursor-pointer" : ""}`}
       viewBox="0 0 512.132 512.132"
       xmlSpace="preserve"
       onClick={onClick}
     >
+      <linearGradient
+        id={`gradient-${activeColorFrom}-${activeColorTo}`}
+        x2="1"
+        y2="1"
+      >
+        <stop offset="0%" stop-color={activeColorTo} />
+        <stop offset="100%" stop-color={activeColorFrom} />
+      </linearGradient>
+
       <path
-        className={isActive ? "fill-custom-grey-1" : color}
+        className={
+          isActive ? (activeColorFrom ? "" : "fill-custom-grey-3") : color
+        }
+        style={activeStyles}
         d="M254.639 503.599 32.773 392.665V119.599l221.866 110.933z"
         transform="translate(1)"
       />
       <path
-        className={isActive ? "fill-custom-green" : color}
+        className={
+          isActive ? (activeColorFrom ? "" : "fill-custom-grey") : color
+        }
+        style={activeStyles}
         d="m254.639 503.599 221.867-110.934V119.599L254.639 230.532z"
         transform="translate(1)"
       />
       <path
-        className={isActive ? "fill-custom-grey-2" : color}
+        className={
+          isActive ? (activeColorFrom ? "" : "fill-custom-grey-3") : color
+        }
+        style={activeStyles}
         d="M32.773 119.599 246.106 8.665l230.4 110.934-221.867 110.933z"
         transform="translate(1)"
       />
