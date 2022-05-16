@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { useLocation, useNavigate, Navigate } from "react-router-dom";
+import { useLocation, Navigate } from "react-router-dom";
 import GetToken from "@/images/GetToken";
 import { useState } from "react";
 import Input from "@/components/Input";
@@ -8,6 +8,8 @@ import WalletButton from "@/images/Wallet-button.png";
 import Button from "@/components/Button";
 import Miami from "@/images/Miami";
 import Bubbles from "@/images/Bubbles";
+import BubbleGreen from "@/images/BubbleGreen";
+
 
 const getQuery = (search: string, query: string) => {
   const queries = new URLSearchParams(search);
@@ -22,15 +24,24 @@ const ACTIONS = {
   REPAY: "repay",
 } as { [key: string]: string };
 
-const BorrowAssets = () => {
+interface Props {
+  main?: string | null;
+  collateral?: string | null;
+}
+
+const BorrowAssets = ({ main, collateral }: Props) => {
   const { t } = useTranslation();
   const location = useLocation();
-  const navigate = useNavigate();
 
   const [action, setAction] = useState(ACTIONS.BORROW);
 
-  const main = getQuery(location.search, MAIN_QUERY);
-  const collateral = getQuery(location.search, COLLATERAL_QUERY);
+  if (!main) {
+    main = getQuery(location.search, MAIN_QUERY);
+  }
+
+  if (!collateral) {
+    collateral = getQuery(location.search, COLLATERAL_QUERY);
+  }
 
   if (!main || !collateral) return <Navigate to="/" />;
 
@@ -46,20 +57,26 @@ const BorrowAssets = () => {
           </div>
         </div>
 
-        <div className="h-full">
+        <div className="h-1/2">
           <Miami className="rounded-[30px]" />
         </div>
       </div>
 
+      <div className="md:hidden border-b-4 border-custom-green px-4">
+        <div className="uppercase text-2xl font-bebas-neue leading-10">
+          {t("borrow.borrowAssets.addCollateral_mobile")}
+        </div>
+      </div>
+
       <div className="w-full md:basis-1/2 md:bg-custom-grey-4/50 rounded-[30px]">
-        <div className="p-8 pb-2">
-          <div className="uppercase text-5xl font-bebas-neue leading-10">
+        <div className="px-3 md:p-8 md:pb-2">
+          <div className="hidden md:flex uppercase text-5xl font-bebas-neue leading-10">
             {t("borrow.borrowAssets.borrowToken", { token: main })}
           </div>
           <div className="flex items-center pt-2">
-            <GetToken token={main} isSelected className="w-11 h-11" />
-            <GetToken token={collateral} isSelected className="w-11 h-11" />
-            <div className="text-sm ml-2 text-zinc-400">
+            <GetToken token={main} isSelected className="w-8 h-8 md:w-11 w-8 h-8 md:h-11" />
+            <GetToken token={collateral} isSelected className="w-8 h-8 md:w-11 w-8 h-8 md:h-11 ml-2" />
+            <div className="hidden md:flex flex-col text-sm ml-2 text-zinc-400">
               <div>
                 {t("borrow.borrowAssets.collateral")}:
                 <span className="text-white ml-0.5">{collateral}</span>
@@ -69,28 +86,34 @@ const BorrowAssets = () => {
                 <span className="text-white ml-0.5">Chainlink</span>
               </div>
             </div>
+
+            <div className="md:hidden flex items-center ml-4 gap-2 text-xl">
+              <div>{main}</div>
+              <BubbleGreen />
+              <div>{collateral}</div>
+            </div>
           </div>
         </div>
 
-        <div className="border-t-4 border-custom-green p-8">
+        <div className="md:border-t-4 border-custom-green md:p-8 p-4">
           <div className="flex justify-between">
             <div>
               <div> {t("borrow.borrowAssets.collateral")}</div>
-              <div className="text-3xl font-bold text-custom-green">
+              <div className="text-lg md:text-3xl font-bold text-custom-green">
                 0 {collateral}
               </div>
-              <div className="text-sm text-zinc-400">$0,00</div>
+              <div className="text-xs md:text-sm text-zinc-400">$0,00</div>
             </div>
             <div>
               <div>{t("borrow.borrowAssets.borrowed")}</div>
-              <div className="text-3xl font-bold text-custom-pink-2">
+              <div className="text-lg md:text-3xl font-bold text-custom-pink-2">
                 0 {main}
               </div>
-              <div className="text-sm text-zinc-400">$0,00</div>
+              <div className="text-xs md:text-sm text-zinc-400">$0,00</div>
             </div>
-            <div className="mr-2">
+            <div className="md:mr-2">
               <div> {t("borrow.borrowAssets.apr")}</div>
-              <div className="text-3xl font-bold">0,25%</div>
+              <div className="text-lg md:text-3xl font-bold">0,25%</div>
             </div>
           </div>
 
@@ -99,7 +122,7 @@ const BorrowAssets = () => {
               <button
                 onClick={() => setAction(ACTIONS[key])}
                 className={[
-                  "flex items-center justify-center rounded-lg font-bebas-neue text-4xl basis-1/2 leading-20 pt-1",
+                  "flex items-center justify-center rounded-lg font-bebas-neue text-xl md:text-4xl basis-1/2 leading-20 pt-1",
                   action === ACTIONS[key] ? "bg-custom-purple" : "",
                 ].join(" ")}
               >
@@ -108,7 +131,7 @@ const BorrowAssets = () => {
             ))}
           </div>
 
-          <div className="uppercase text-5xl font-bebas-neue leading-10 mb-4">
+          <div className="uppercase text-xl md:text-5xl font-bebas-neue md:leading-10 md:mb-4">
             {t("borrow.borrowAssets.borrowToken", { token: main })}
           </div>
 
@@ -118,7 +141,7 @@ const BorrowAssets = () => {
                 {t("borrow.borrowAssets.addCollateralFrom", {
                   token: collateral,
                 })}
-                <img src={WalletButton} className="ml-1" />
+                <img src={WalletButton} className="ml-1 hidden md:flex" />
               </div>
             }
             subLabel={t("borrow.borrowAssets.balance", {
@@ -139,7 +162,7 @@ const BorrowAssets = () => {
                 {t("borrow.borrowAssets.borrowTo", {
                   token: main,
                 })}
-                <img src={WalletButton} className="ml-1" />
+                <img src={WalletButton} className="ml-1 hidden md:flex" />
               </div>
             }
             subLabel={t("borrow.borrowAssets.balance", {
@@ -153,18 +176,18 @@ const BorrowAssets = () => {
             }
           />
 
-          <Button customClasses="text-4xl mt-8 w-full pt-1">
+          <Button customClasses="text-2xl md:text-4xl mt-8 w-full pt-1">
             {t("approve")}
           </Button>
         </div>
       </div>
 
-      <div className="basis-1/4 bg-custom-grey-4/50 rounded-[30px] hidden md:flex flex-col items-center py-2 px-8">
+      <div className="basis-1/4 md:bg-custom-grey-4/50 md:rounded-[30px] py-10 md:py-2 md:px-8">
         <div>
           <Bubbles className="px-8" />
         </div>
 
-        <div className="mt-4 w-full">
+        <div className="hidden md:flex flex-col mt-4 w-full">
           <div>Market</div>
           <div className="flex justify-between mt-3 text-zinc-300">
             <div>APR 0,25%</div>

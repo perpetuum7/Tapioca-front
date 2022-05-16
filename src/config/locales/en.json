@@ -14,14 +14,15 @@
     "noviceMode": "Novice Mode",
     "borrowAssets": {
       "addCollateral": "Add collateral in order to borrow assets",
+      "addCollateral_mobile": "Add collateral in order to borrow",
       "gainExposureToTokens": "Gain exposure to tokens without reducing your assets. Leverage will enable you to take short positions against assets and earn from downside movements.",
       "borrowToken": "borrow {{token}}",
       "collateral": "Collateral",
       "oracle": "Oracle",
       "borrowed": "Borrowed",
       "apr": "APR",
-      "addCollateralFrom": "Add {{token}} collateral from",
-      "borrowTo": "Borrow {{token}} to",
+      "addCollateralFrom": "Add {{token}} collateral",
+      "borrowTo": "Borrow {{token}}",
       "balance": "Balance {{amount}}"
     }
   },

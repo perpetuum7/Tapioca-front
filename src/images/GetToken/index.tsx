@@ -22,13 +22,10 @@ interface Props {
   className?: string;
 }
 
-const GetToken = ({
-  token,
-  isSelected = false,
-  className,
-}: Props) => {
+const GetToken = ({ token, isSelected = false, className }: Props) => {
   switch (token) {
     case "ETH":
+    case "WETH":
       return isSelected ? (
         <ETH className={className} />
       ) : (

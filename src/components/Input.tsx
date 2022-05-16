@@ -45,7 +45,7 @@ const Input = ({
       <div className={inputClassName}>
         <input
           type="number"
-          className="w-full bg-transparent focus:outline-none p-2 text-lg"
+          className="w-full bg-transparent focus:outline-none py-1 px-2 md:py-2 text-lg"
           {...htmlAttributes}
         />
         {customRightItem}
