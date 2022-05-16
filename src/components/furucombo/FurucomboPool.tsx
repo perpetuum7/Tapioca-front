@@ -39,7 +39,7 @@ const FurucomboPool = ({
       <div className="mt-1 px-2">
         <div className="px-3">
           <div className="text-custom-grey-1">{t(`furucombo.pool`)}</div>
-          <div className="flex items-center">
+          <div className="flex items-center w-full">
             <div className="mr-2">
               <FurucomboTokenImage
                 token={
@@ -47,15 +47,17 @@ const FurucomboPool = ({
                 }
               />
             </div>
-
-            <SelectDropdown
-              selectedOption={selectedPool}
-              objectOptins={pools?.map(({ pool, token, tokens }) => ({
-                op: pool,
-                token: tokens?.[0] || token || pool,
-              }))}
-              selectOption={(op: string) => setSelectedPool(op)}
-            />
+            <div className="w-full">
+              <SelectDropdown
+                flexWidth
+                selectedOption={selectedPool}
+                objectOptins={pools?.map(({ pool, token, tokens }) => ({
+                  op: pool,
+                  token: tokens?.[0] || token || pool,
+                }))}
+                selectOption={(op: string) => setSelectedPool(op)}
+              />
+            </div>
           </div>
 
           <div className="text-custom-grey-1 mt-4">

@@ -100,13 +100,13 @@ const FurucomboMultipleInputs = ({
           </div>
           <div className="flex justify-between">
             <SelectDropdown
-              selectedOption={selectedOutput}
-              options={outputsOptions?.map((op) => op.token)}
-              selectOption={(op: string) => {
-                selectOutput(op);
-                setSelectedOptions([]);
-              }}
-            />
+                selectedOption={selectedOutput}
+                options={outputsOptions?.map((op) => op.token)}
+                selectOption={(op: string) => {
+                  selectOutput(op);
+                  setSelectedOptions([]);
+                }}
+              />
             <div>{parseFloat(outputTotal.toFixed(5))}</div>
           </div>
         </div>

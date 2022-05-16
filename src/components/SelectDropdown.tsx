@@ -8,6 +8,7 @@ interface Props {
   options?: string[];
   objectOptins?: { op: string; token: string }[];
   selectOption: (op: string) => void;
+  flexWidth?: boolean;
 }
 
 const SelectDropdown = ({
@@ -16,6 +17,7 @@ const SelectDropdown = ({
   options,
   objectOptins,
   selectOption,
+  flexWidth = false,
 }: Props) => {
   const dropdownMenuElement = useRef();
   const dropdownMenuContent = useRef();
@@ -62,17 +64,23 @@ const SelectDropdown = ({
     "shadow",
     "transition-all",
     "origin-top",
-    "mt-8",
+    "mt-9",
     "z-10",
-    "w-44",
     "overflow-y-auto",
     "max-h-40",
     isOpen ? "opacity-1 scale-x-1 scale-y-1" : "opacity-0 scale-x-1 scale-y-0",
+    flexWidth ? "rounded bg-custom-grey-1 w-full" : "w-44",
   ]
     .filter(Boolean)
     .join(" ");
 
-  const buttonClass = ["w-full", "flex", "items-center", "justify-between"]
+  const buttonClass = [
+    "w-full",
+    "flex",
+    "items-center",
+    "justify-between",
+    flexWidth ? "rounded bg-custom-grey-1 w-full px-2 p-1" : "",
+  ]
     .filter(Boolean)
     .join(" ");
 

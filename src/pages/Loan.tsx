@@ -68,6 +68,7 @@ const Loan = ({ address }: Props) => {
       >
         <div className="order-0 h-14 pt-2">
           <SelectDropdown
+            flexWidth
             label="Market selector"
             selectedOption={selectedMarket}
             options={tradingPars}
