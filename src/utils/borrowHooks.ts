@@ -12,6 +12,15 @@ export const borrowHooks = () => {
   const { useNotification } = useContext(NotificationContext);
 
   const winEthereum = (window as any).ethereum;
+
+  if (!winEthereum) {
+    return () => ({
+      inProgress: false,
+      assetBalance: 0,
+      depositedCollateral: 0,
+      borrow: () => {},
+    });
+  }
   const provider = new ethers.providers.Web3Provider(winEthereum);
   const signer = provider.getSigner();
   const { mixologist, beachbar, weth } = loadContract__TEST(signer);
