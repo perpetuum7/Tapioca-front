@@ -40,7 +40,12 @@ const BorrowAssets = ({ main, collateral, disabled }: Props) => {
   return (
     <div className="md:flex md:gap-x-4 md:pt-10">
       <CardLeft />
-      <BorrowCard main={main} collateral={collateral} isDisabled={isDisabled} />
+      <BorrowCard
+        main={main}
+        collateral={collateral}
+        isDisabled={isDisabled}
+        address={wallet.address || ""}
+      />
       <CardRight />
     </div>
   );

@@ -6,6 +6,7 @@ import MaxButton from "@/images/Max-button.png";
 import WalletButton from "@/images/Wallet-button.png";
 import Button from "@/components/Button";
 import BubbleGreen from "@/images/BubbleGreen";
+import { borrowHooks } from "@/utils/borrowHooks";
 
 const ACTIONS = {
   BORROW: "borrow",
@@ -16,11 +17,18 @@ interface Props {
   main: string;
   collateral: string;
   isDisabled: boolean;
+  address: string;
 }
 
-const BorrowCard = ({ main, collateral, isDisabled }: Props) => {
+const BorrowCard = ({ main, collateral, isDisabled, address }: Props) => {
+  const useContract = borrowHooks();
+
   const [action, setAction] = useState(ACTIONS.BORROW);
-  const [collateralAmount, setCollateralAmount] = useState();
+  const [collateralAmount, setCollateralAmount] = useState("");
+  const [mainAmount, setMainAmount] = useState("");
+
+  const { inProgress, assetBalance, depositedCollateral, borrow } =
+    useContract(address);
 
   const { t } = useTranslation();
 
@@ -62,21 +70,21 @@ const BorrowCard = ({ main, collateral, isDisabled }: Props) => {
 
       <div className="md:border-t-4 border-custom-green md:p-8 p-4">
         <div className="flex justify-between">
-          <div>
+          <div className="basis-2/5">
             <div> {t("borrow.borrowAssets.collateral")}</div>
             <div className="text-lg md:text-3xl font-bold text-custom-green">
-              0 {collateral}
+              {collateralAmount || 0} {collateral}
             </div>
             <div className="text-xs md:text-sm text-zinc-400">$0,00</div>
           </div>
-          <div>
+          <div className="basis-2/5">
             <div>{t("borrow.borrowAssets.borrowed")}</div>
             <div className="text-lg md:text-3xl font-bold text-custom-pink-2">
-              0 {main}
+              {mainAmount || 0} {main}
             </div>
             <div className="text-xs md:text-sm text-zinc-400">$0,00</div>
           </div>
-          <div className="md:mr-2">
+          <div className="basis-1/5">
             <div> {t("borrow.borrowAssets.apr")}</div>
             <div className="text-lg md:text-3xl font-bold">0,25%</div>
           </div>
@@ -110,15 +118,18 @@ const BorrowCard = ({ main, collateral, isDisabled }: Props) => {
             </div>
           }
           subLabel={t("borrow.borrowAssets.balance", {
-            amount: "0.05600000",
+            amount: assetBalance,
           })}
           placeholder="0.0"
           customRightItem={
-            <button>
+            <button onClick={() => setCollateralAmount(assetBalance)}>
               <img src={MaxButton} />
             </button>
           }
-          value={collateralAmount || ""}
+          type="number"
+          value={collateralAmount}
+          onChange={(e) => setCollateralAmount(e.target.value)}
+          disabled={inProgress}
         />
 
         <Input
@@ -132,19 +143,33 @@ const BorrowCard = ({ main, collateral, isDisabled }: Props) => {
             </div>
           }
           subLabel={t("borrow.borrowAssets.balance", {
-            amount: "0.05600000",
+            amount: depositedCollateral,
           })}
           placeholder="0.0"
           customRightItem={
-            <button>
+            <button onClick={() => setMainAmount(depositedCollateral)}>
               <img src={MaxButton} />
             </button>
           }
+          type="number"
+          value={mainAmount}
+          onChange={(e) => setMainAmount(e.target.value)}
+          disabled={inProgress}
         />
 
         <Button
+          onClick={() =>
+            borrow({
+              collateralAmount: collateralAmount
+                ? parseFloat(collateralAmount)
+                : 0,
+              borrowAmount: mainAmount ? parseFloat(mainAmount) : 0,
+            })
+          }
           customClasses="text-2xl md:text-4xl mt-8 w-full pt-1"
-          disabled={isDisabled}
+          disabled={
+            isDisabled || !mainAmount || !collateralAmount || inProgress
+          }
         >
           {t("approve")}
         </Button>
