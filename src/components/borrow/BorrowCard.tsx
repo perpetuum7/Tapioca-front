@@ -27,7 +27,7 @@ const BorrowCard = ({ main, collateral, isDisabled, address }: Props) => {
   const [collateralAmount, setCollateralAmount] = useState("");
   const [mainAmount, setMainAmount] = useState("");
 
-  const { inProgress, assetBalance, depositedCollateral, borrow } =
+  const { inProgress, assetBalance, depositedCollateral, borrow, status } =
     useContract(address);
 
   const { t } = useTranslation();
@@ -171,7 +171,7 @@ const BorrowCard = ({ main, collateral, isDisabled, address }: Props) => {
             isDisabled || !mainAmount || !collateralAmount || inProgress
           }
         >
-          {t("approve")}
+          {inProgress ? `${status}...` : t("approve")}
         </Button>
       </div>
     </div>

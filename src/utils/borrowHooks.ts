@@ -8,6 +8,13 @@ interface ErrorMessage {
   message: string;
 }
 
+const STATUS = {
+  APPROVING: "APPROVING",
+  DEPOSITING: "DEPOSITING",
+  BORROWING: "BORROWING",
+  WITHDRAWING: "WITHDRAWING",
+};
+
 export const borrowHooks = () => {
   const { useNotification } = useContext(NotificationContext);
 
@@ -16,11 +23,13 @@ export const borrowHooks = () => {
   if (!winEthereum) {
     return () => ({
       inProgress: false,
-      assetBalance: 0,
-      depositedCollateral: 0,
+      assetBalance: "0",
+      depositedCollateral: "0",
       borrow: () => {},
+      status: "",
     });
   }
+
   const provider = new ethers.providers.Web3Provider(winEthereum);
   const signer = provider.getSigner();
   const { mixologist, beachbar, weth } = loadContract__TEST(signer);
@@ -29,6 +38,8 @@ export const borrowHooks = () => {
     const [assetBalance, setAssetBalance] = useState("0");
     const [depositedCollateral, setDepositedCollateral] = useState("0");
     const [inProgress, setInProgress] = useState(false);
+
+    const [status, setStatus] = useState("");
 
     const getAssetInBeachbar = async () => {
       const balance = await mixologist.balanceOf(address);
@@ -76,6 +87,8 @@ export const borrowHooks = () => {
         const borrowRes = await mixologist.borrow(address, share);
         await borrowRes.wait();
 
+        setStatus(STATUS.WITHDRAWING);
+
         const withdrawalRes = await beachbar[
           "withdraw(uint256,address,address,uint256,uint256,bool)"
         ](assetId, address, address, share, 0, false);
@@ -99,10 +112,20 @@ export const borrowHooks = () => {
 
     const borrow = async ({ collateralAmount = 0, borrowAmount = 0 }) => {
       setInProgress(true);
-      await approveTokensAndSetBarApproval();
-      await usdcDepositAndAddCollateral(collateralAmount);
-      await wethBorrowAndWithdrawal(borrowAmount);
-      setInProgress(false);
+
+      try {
+        setStatus(STATUS.APPROVING);
+        await approveTokensAndSetBarApproval();
+        setStatus(STATUS.DEPOSITING);
+        await usdcDepositAndAddCollateral(collateralAmount);
+        setStatus(STATUS.BORROWING);
+        await wethBorrowAndWithdrawal(borrowAmount);
+        setStatus("");
+        setInProgress(false);
+      } catch (err) {
+        setStatus("");
+        setInProgress(false);
+      }
     };
 
     useEffect(() => {
@@ -110,7 +133,7 @@ export const borrowHooks = () => {
       getDepositedCollateral();
     }, []);
 
-    return { assetBalance, depositedCollateral, inProgress, borrow };
+    return { assetBalance, depositedCollateral, inProgress, borrow, status };
   };
 
   return useContract;
