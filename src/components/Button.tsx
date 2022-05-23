@@ -1,4 +1,5 @@
 import React from "react";
+import LoadingSpinner from "@/components/LoadingSpinner";
 
 const BUTTON_BASE_CLASS =
   "font-bebas-neue rounded-lg	border-4 text-lg px-4 disabled:border-zinc-500 disabled:text-zinc-500 disabled:cursor-not-allowed";
@@ -14,6 +15,7 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   customClasses?: string;
   buttonColor?: "purple" | "green" | "blue" | "pink";
   isLoading?: boolean;
+  screenReaderText?: string;
 }
 
 const Button = ({
@@ -21,6 +23,7 @@ const Button = ({
   customClasses = "",
   buttonColor = "green",
   isLoading = false,
+  screenReaderText,
   ...htmlAttributes
 }: Props) => {
   const buttonClassName = [
@@ -33,7 +36,14 @@ const Button = ({
 
   return (
     <button className={buttonClassName} {...htmlAttributes}>
-      {isLoading ? "Loading..." : children}
+      {isLoading ? (
+        <div className="flex items-center justify-center">
+          <LoadingSpinner />
+          {screenReaderText || "Loading"}
+        </div>
+      ) : (
+        children
+      )}
     </button>
   );
 };

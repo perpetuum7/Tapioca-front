@@ -93,6 +93,7 @@ const BorrowCard = ({ main, collateral, isDisabled, address }: Props) => {
         <div className="my-6 flex bg-custom-blue items-center rounded-lg p-1">
           {Object.keys(ACTIONS).map((key: string) => (
             <button
+              key={key}
               onClick={() => setAction(ACTIONS[key])}
               className={[
                 "flex items-center justify-center rounded-lg font-bebas-neue text-xl md:text-4xl basis-1/2 leading-20 pt-1",
@@ -166,12 +167,14 @@ const BorrowCard = ({ main, collateral, isDisabled, address }: Props) => {
               borrowAmount: mainAmount ? parseFloat(mainAmount) : 0,
             })
           }
-          customClasses="text-2xl md:text-4xl mt-8 w-full pt-1"
+          customClasses="text-2xl md:text-4xl mt-8 w-full md:pt-1"
           disabled={
             isDisabled || !mainAmount || !collateralAmount || inProgress
           }
+          isLoading={inProgress}
+          screenReaderText={status}
         >
-          {inProgress ? `${status}...` : t("approve")}
+          {t("approve")}
         </Button>
       </div>
     </div>

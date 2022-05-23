@@ -32,7 +32,7 @@ export const borrowHooks = () => {
 
   const provider = new ethers.providers.Web3Provider(winEthereum);
   const signer = provider.getSigner();
-  const { mixologist, beachbar, weth } = loadContract__TEST(signer);
+  const { mixologist, beachbar, weth, usdc } = loadContract__TEST(signer);
 
   const useContract = (address: string) => {
     const [assetBalance, setAssetBalance] = useState("0");
@@ -42,12 +42,12 @@ export const borrowHooks = () => {
     const [status, setStatus] = useState("");
 
     const getAssetInBeachbar = async () => {
-      const balance = await mixologist.balanceOf(address);
+      const balance = await weth.balanceOf(address);
       setDepositedCollateral(parseBigBalance(balance));
     };
 
     const getDepositedCollateral = async () => {
-      const balance = await mixologist.userCollateralShare(address);
+      const balance = await usdc.balanceOf(address);
       setAssetBalance(parseBigBalance(balance));
     };
 
@@ -107,6 +107,7 @@ export const borrowHooks = () => {
           ethers.constants.MaxUint256
         )
       ).wait();
+
       await (await beachbar.setApprovalForAll(mixologist.address, true)).wait();
     };
 
@@ -129,9 +130,11 @@ export const borrowHooks = () => {
     };
 
     useEffect(() => {
-      getAssetInBeachbar();
-      getDepositedCollateral();
-    }, []);
+      if (!inProgress) {
+        getAssetInBeachbar();
+        getDepositedCollateral();
+      }
+    }, [inProgress]);
 
     return { assetBalance, depositedCollateral, inProgress, borrow, status };
   };
