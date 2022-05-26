@@ -4,11 +4,7 @@ import CardRight from "@/components/borrow/CardRight";
 import BorrowCard from "@/components/borrow/BorrowCard";
 import { WalletContext } from "@/providers/WalletContext";
 import { useContext } from "react";
-
-const getQuery = (search: string, query: string) => {
-  const queries = new URLSearchParams(search);
-  return queries.get(query);
-};
+import { getQuery } from "@/utils/getQuery";
 
 const MAIN_QUERY = "main";
 const COLLATERAL_QUERY = "collateral";

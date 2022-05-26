@@ -30,8 +30,6 @@ const LoanCard = ({
 
   return (
     <div className="flex flex-col md:basis-1/2 mx-4">
-      {children}
-
       <div className="flex justify-between items-center w-full">
         <div className="font-bebas-neue text-2xl">
           {isCollateral ? "Collateral" : "Asset"}:{" "}
@@ -59,9 +57,7 @@ const LoanCard = ({
 
         <div className="flex justify-between items-center font-bebas-neue">
           <div className="text-lg">In Wallet:</div>
-          <span className="text-2xl text-custom-purple">
-            {assetBalance}
-          </span>
+          <span className="text-2xl text-custom-purple">{assetBalance}</span>
         </div>
 
         <div className="flex justify-between items-center mt-6">

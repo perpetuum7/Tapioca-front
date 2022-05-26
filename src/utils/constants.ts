@@ -21,7 +21,32 @@ const TOKENS = TOKENS_SYMBOLS;
 export const LOAN_LIST = [
   {
     token: TOKENS.WETH,
-    apy: 0,
+    collateral: TOKENS.USDC,
+    apy: 0.25,
+    prices: {
+      [TOKENS.USDC]: 1.12,
+    },
+  },
+  {
+    token: TOKENS.DAI,
+    collateral: TOKENS.USDT,
+    apy: 0.25,
+    prices: {
+      [TOKENS.USDC]: 1.12,
+    },
+  },
+  {
+    token: TOKENS.DAI,
+    collateral: TOKENS.ETH,
+    apy: 0.25,
+    prices: {
+      [TOKENS.USDC]: 1.12,
+    },
+  },
+  {
+    token: TOKENS.DAI,
+    collateral: TOKENS.BOBA,
+    apy: 0.25,
     prices: {
       [TOKENS.USDC]: 1.12,
     },
