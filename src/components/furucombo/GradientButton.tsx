@@ -18,7 +18,7 @@ const GradientButton = ({ colors, id, onClick, title }: Props) => {
       }}
       className="cursor-pointer p-[1px] w-full rounded relative mr-2 mt-2"
     >
-      <div className="font-bebas-neue rounded flex justify-center py-0.5 px-2 bg-black hover:bg-transparent">
+      <div className="font-bebas-neue rounded flex justify-center py-0.5 px-2 md:bg-black hover:bg-transparent">
         {title}
       </div>
     </div>

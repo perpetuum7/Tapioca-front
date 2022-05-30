@@ -16,6 +16,7 @@ interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string | JSX.Element;
   subLabel?: string | JSX.Element;
   customRightItem?: string | JSX.Element;
+  customLeftItem?: string | JSX.Element;
 }
 
 const Input = ({
@@ -25,6 +26,8 @@ const Input = ({
   containerCustomClasses = "",
   color = "pink",
   customRightItem,
+  customLeftItem,
+  type = "text",
   ...htmlAttributes
 }: Props) => {
   const inputClassName = [
@@ -43,8 +46,9 @@ const Input = ({
       </div>
 
       <div className={inputClassName}>
+        {customLeftItem}
         <input
-          type="number"
+          type={type}
           className="w-full bg-transparent focus:outline-none py-1 px-2 md:py-2 text-lg"
           {...htmlAttributes}
         />
