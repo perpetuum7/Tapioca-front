@@ -82,18 +82,19 @@ const Furucombo = () => {
     setCurrentSelection(id);
   };
 
-  const setCardCube = (combo: ComboList) => {
-    setCombo((prev) => [...prev, combo]);
+  const updateCube = (update: ComboList[]) => {
+    setCombo(update);
+    localStorage.setItem("combo", JSON.stringify(update));
+  };
+
+  const setCardCube = (cube: ComboList) => {
+    updateCube([...combo, cube]);
     setCurrentSelection("");
   };
 
   const removeItem = (id: string) => {
-    setCombo(combo.filter((item) => item.id !== id));
+    updateCube(combo.filter((item) => item.id !== id));
   };
-
-  useEffect(() => {
-    if (combo?.length) localStorage.setItem("combo", JSON.stringify(combo));
-  }, [combo]);
 
   useEffect(() => {
     const localStorageCombo = localStorage.getItem("combo");
