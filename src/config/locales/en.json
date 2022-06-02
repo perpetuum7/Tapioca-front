@@ -1,0 +1,70 @@
+{
+  "header": {
+    "connectWallet": "Connect Wallet",
+    "borrow": "Borrow",
+    "mixologist": "Mixologist"
+  },
+  "borrow": {
+    "borrowAgainstYourTokens": "<0>borrow</0> against your tokens liquidi<0>tea</0>, <1>without selling</1> them!",
+    "selectMainToken": "Token to borrow",
+    "selectColleteralToken": "Select your collateral",
+    "chooseMainToken": "Choose the token you want to borrow",
+    "chooseBorrowToken": "Choose what token you want to borrow against",
+    "currentSelection": "<0>Currently Borrowing </0><1>{{main}}</1> with Your <1>{{collateral}}</1>",
+    "noviceMode": "Novice Mode",
+    "borrowAssets": {
+      "addCollateral": "Add collateral in order to borrow assets",
+      "addCollateral_mobile": "Add collateral in order to borrow",
+      "gainExposureToTokens": "Gain exposure to tokens without reducing your assets. Leverage will enable you to take short positions against assets and earn from downside movements.",
+      "borrowToken": "borrow {{token}}",
+      "collateral": "Collateral",
+      "oracle": "Oracle",
+      "borrowed": "Borrowed",
+      "apr": "APR",
+      "addCollateralFrom": "Add {{token}} collateral",
+      "borrowTo": "Borrow {{token}}",
+      "balance": "Balance {{amount}}"
+    }
+  },
+  "furucombo": {
+    "output": "Output",
+    "input": "Input",
+    "address": "Address",
+    "set": "Set",
+    "network": "Network",
+    "outputEstimate": "Output (Estimate)",
+    "vault": "Vault",
+    "pool": "Pool",
+    "asset": "Asset",
+    "combo": {
+      "retroactiveRewards": "Retroactive rewards",
+      "stakingComboRewards": "Staking COMBO rewards",
+      "stakingUniV2Rewards": "Staking UNIV2-LP rewards",
+      "usageRewards": "Usage Rewards",
+      "currentlyStaked": "Currently staked",
+      "rewardsAvailable": "Rewards available",
+      "borrowAPY": "Borrow APY",
+      "totalDebt": "Total Debt",
+      "tokenDebt": "{{token}} Debt",
+      "totalCollateral": "Total Collateral",
+      "utilization": "Utilization",
+      "fee": "Fee | {{amount}}%",
+      "outstandingDebt": "Outstanding debt",
+      "outstandingTokenDebt": "Outstanding {{token}} debt",
+      "currentTokenLocked": "Current {{token}} locked",
+      "collateralizationRatio": "Collateralization ratio",
+      "ableToWithdraw": "Able to withdraw",
+      "availableToGenerate": "Available to generate",
+      "stabilityFee": "Stability fee | {{amount}}%"
+    }
+  },
+  "errors": {
+    "invalidAddress": "Invalid Address",
+    "notVaultOwner": "You're not the vault owner",
+    "minimumTokenGenerated": "Minimum {{value}} {{token}} must be generated"
+  },
+  "continue": "Continue",
+  "delete": "Delete",
+  "needHelp": "Need Help?",
+  "approve": "Approve"
+}
