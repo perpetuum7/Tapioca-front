@@ -21,23 +21,10 @@ jobs:
         with:
           node-version: "16.x"
 
-      - name: Check for outdated packages 🔍
-        id: vars
-        run: |
-          OUTDATED=$(npm outdated) || true
-          if [[ -z "$OUTDATED" ]]; then
-            echo 'Nothing to upgrade'
-          else
-            echo 'Found outdated packages:'
-            echo "$OUTDATED"
-          fi
-
       - name: Upgrade packages 🔀
-        if: ${{ steps.vars.outputs.outdated != '' }}
         run: npm update
 
       - name: Commit and create PR 🔀
-        if: ${{ steps.vars.outputs.outdated != '' }}
         uses: peter-evans/create-pull-request@v3
         with:
           title: "build(deps): Upgrade NPM packages (automated)"
